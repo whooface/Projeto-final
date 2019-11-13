@@ -14,7 +14,13 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+  },  { path: 'adduser', loadChildren: './adduser/adduser.module#AdduserPageModule' },
+  { path: 'adduser', loadChildren: './pages/adduser/adduser.module#AdduserPageModule' },
+  { path: 'adduser', loadChildren: './pages/adduser/adduser.module#AdduserPageModule' },
+  { path: 'adddog', loadChildren: './pages/adddog/adddog.module#AdddogPageModule' },
+  { path: 'perfildog', loadChildren: './pages/perfildog/perfildog.module#PerfildogPageModule' },
+  { path: 'perfiluser', loadChildren: './pages/perfiluser/perfiluser.module#PerfiluserPageModule' }
+
 ];
 
 @NgModule({
