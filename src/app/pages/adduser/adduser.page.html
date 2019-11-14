@@ -13,7 +13,7 @@
 
   <ion-item>
     <ion-label position="floating">E-mail</ion-label>
-    <ion-input type="email" name="email" [(ngModel)] = "user.email" required></ion-input>
+    <ion-input type="email" name="email" [(ngModel)] = "user.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
   </ion-item>
 
   <ion-item>
@@ -32,9 +32,8 @@
   <ion-text color="danger" *ngIf="s.value != c.value">As senhas não coincidem!!</ion-text>
 
   <section>
-    <ion-button type="submit" expand="full" [disabled]="fc.invalid">Enviar</ion-button>
+    <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
     <ion-button type="reset" expand="full" color="danger">Cancelar</ion-button>
   </section>
 </form>
-{{user.nome}}
 </ion-content>
