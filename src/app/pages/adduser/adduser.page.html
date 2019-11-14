@@ -5,5 +5,11 @@
 </ion-header>
 
 <ion-content>
-
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-item>
+    <ion-label>NOME</ion-label>
+    <ion-input type="text" name="nome" [(ngModel)]="user.nome"></ion-input>
+  </ion-item>
+</form>
+  
 </ion-content>

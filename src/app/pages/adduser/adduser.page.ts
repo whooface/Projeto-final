@@ -11,5 +11,7 @@ export class AdduserPage implements OnInit {
 
   ngOnInit() {
   }
-
+  onSubmit(){
+    
+  }
 }
