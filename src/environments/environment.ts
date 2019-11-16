@@ -4,17 +4,18 @@
 
 export const environment = {
   production: false,
-    firebaseConfig: {
-    apiKey: "AIzaSyB_uxXZESOcpxY0ajTTRTrub5HSYcFAdkE",
-    authDomain: "ionic-whooface.firebaseapp.com",
-    databaseURL: "https://ionic-whooface.firebaseio.com",
-    projectId: "ionic-whooface",
-    storageBucket: "ionic-whooface.appspot.com",
-    messagingSenderId: "490031744175",
-    appId: "1:490031744175:web:9e9f2d2062760ada1f005a",
-    measurementId: "G-ZJ3FNLY8HH"
+  firebaseConfig : {
+    apiKey: "AIzaSyBulPxdMUe6NZW2HlDriIVSYAVX6Z2iP4g",
+    authDomain: "ionic-modelo.firebaseapp.com",
+    databaseURL: "https://ionic-modelo.firebaseio.com",
+    projectId: "ionic-modelo",
+    storageBucket: "ionic-modelo.appspot.com",
+    messagingSenderId: "493849809954",
+    appId: "1:493849809954:web:e0e662aff848ca5589a67b",
+    measurementId: "G-SE6Q209CRY"
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -7,16 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adduser.page.scss'],
 })
 export class AdduserPage implements OnInit {
-
-  protected user: User = new User;
-
+  protected usuario = new User;
   constructor() { }
 
   ngOnInit() {
+
   }
 
   onSubmit(){
-
+    console.log(this.usuario)
   }
+
+  
 
 }
