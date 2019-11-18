@@ -17,7 +17,7 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Novo user',
+      title: 'Adicionar Usuários',
       url: '/adduser',
       icon: 'list'
     }
