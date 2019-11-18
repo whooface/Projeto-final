@@ -1,3 +1,4 @@
+import { UserService } from './../../service/user.service';
 import { User } from './../../model/user';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,13 +11,23 @@ export class AdduserPage implements OnInit {
 
   protected user: User = new User;
 
-  constructor() { }
+  constructor(
+    private userService:UserService
+  ) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-
+    console.log(this.user);
+    this.userService.add(this.user).then(
+      res=>{
+        console.log("Cadastrado!", res);
+      },
+       erro=>{
+        console.log("Erro: ", erro); 
+       }
+    )
   }
 
 }
