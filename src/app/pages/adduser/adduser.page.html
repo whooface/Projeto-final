@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>addusedsdr</ion-title>
+    <ion-title>Novo Usuário</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input type="text" name="nome" [(ngModel)] = "user.nome" required></ion-input>
+  </ion-item>
 
+  <ion-item>
+    <ion-label position="floating">E-mail</ion-label>
+    <ion-input type="email" name="email" [(ngModel)] = "user.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Senha</ion-label>
+    <ion-input type="password" name="password" [(ngModel)] = "user.senha" required minlength="6" #s="ngModel"></ion-input>
+  </ion-item>
+  
+  <ion-text color="danger" *ngIf="s.invalid && s.dirty">Senha muito curta !!</ion-text>
+
+
+  <ion-item>
+    <ion-label position="floating">Confirmar Senha</ion-label>
+    <ion-input type="password" name="confpassword" (ngModel) = "confpassword" required minlength="6" #c="ngModel"></ion-input>
+  </ion-item>
+
+  <ion-text color="danger" *ngIf="s.value != c.value">As senhas não coincidem!!</ion-text>
+
+  <section>
+    <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
+    <ion-button type="reset" expand="full" color="danger">Cancelar</ion-button>
+  </section>
+</form>
 </ion-content>
