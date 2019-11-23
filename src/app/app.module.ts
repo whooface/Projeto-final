@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from "@angular/fire/database"
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 @NgModule({
@@ -23,8 +24,14 @@ import { AngularFireDatabaseModule } from "@angular/fire/database"
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+<<<<<<< HEAD
     AngularFireDatabaseModule
   ],
+=======
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
+    ],
+>>>>>>> 4e1c047842c56e0aec6af16d32d11177a99ae778
   providers: [
     StatusBar,
     SplashScreen,
