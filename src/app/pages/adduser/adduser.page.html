@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-item lines="none">
+    <img src="assets/perfil.png" (click)="escolherfoto()" *ngIf="!user.foto">
+    <img [src]="user.foto" (click)="escolherfoto()" *ngIf="user.foto">
+  </ion-item>
+
+
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
   <ion-item>
     <ion-label position="floating">Nome</ion-label>
