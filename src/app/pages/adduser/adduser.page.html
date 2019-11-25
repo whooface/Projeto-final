@@ -5,8 +5,13 @@
 </ion-header>
 
 <ion-content>
-  
+
+  <ion-item lines="none">
+    <img src="assets/profile.png" (click)="escolherfoto()" *ngIf="!user.foto">
+    <img [src]="user.foto" (click)="escolherfoto()" *ngIf="user.foto">
+  </ion-item>
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+  <ion-card color="">
   <ion-item>
     <ion-label position="floating">Nome</ion-label>
     <ion-input type="text" name="nome" [(ngModel)] = "user.nome" required></ion-input>
@@ -32,10 +37,10 @@
 
   <ion-text color="danger" *ngIf="s.value != c.value">As senhas não coincidem!!</ion-text>
 
-  <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value !=c.value">Cadastrar</ion-button>
   <section>
-    <ion-button type="reset" expand="full" color="danger">Cancelar</ion-button>
+    <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
+    <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
   </section>
+</ion-card>
 </form>
-
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  protected email:string = null;
+  protected senha:string = null;
+
+  constructor(
+    private afAuth:AngularFireAuth
+  ) { }
 
   ngOnInit() {
+  }
+  
+  ngOnSubmit(fc) {
+
   }
 
 }

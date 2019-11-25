@@ -7,18 +7,18 @@ import { AlertController } from '@ionic/angular';
 export class MensagemService {
 
   constructor(
-    private alertController: AlertController
+    public alertController: AlertController
   ) { }
-  async presentAlert(titulo: string, texto: string) {
+
+  async presentAlert(titulo:string, texto:string){
     const alert = await this.alertController.create({
       header: titulo,
-    //subHeader: 'Subtitle',
+      //subHeader: 'Subtitle',
       message: texto,
       buttons: ['OK']
     });
 
     await alert.present();
   }
-
 
 }
