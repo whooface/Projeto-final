@@ -12,11 +12,12 @@ export class LoginPage implements OnInit {
 
   protected email:string=null;
   protected senha:string=null;
-  private router:Router;
-  private msg:MensagemService;
+  
 
   constructor(
     private afAuth : AngularFireAuth,
+    private router:Router,
+    private msg:MensagemService
   ) { }
 
   ngOnInit() {
@@ -37,4 +38,11 @@ export class LoginPage implements OnInit {
 
     )
   }
+
+  logout(){
+    this.afAuth.auth.signOut().then(
+      () => this.router.navigate([''])
+    );
+  }
+
 }
