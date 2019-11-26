@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(
     private firedb : AngularFireDatabase,
-    private afAuth : AngularFireAuth,
+    public afAuth : AngularFireAuth,
   ) { }
 
   add(user:User){
@@ -19,7 +19,7 @@ export class UserService {
         res=>{
           user.senha = null;
           user.email = null;
-          return this.firedb.object("user/" + res.user.uid).set(user).then().catch(
+          return this.firedb.object("usuarios/" + res.user.uid).set(user).then().catch(
             ()=>{
               this.afAuth.auth.currentUser.delete()
             });//apagar user
@@ -40,20 +40,23 @@ export class UserService {
   get(){
     let user = this.afAuth.auth.currentUser;
     console.log(user);
-    return this.firedb.object("user/"+ user.uid).valueChanges();
+    return this.firedb.object<User>("usuarios/"+ user.uid).valueChanges();
   }
 
   //varivel com dois U
   update(user:User){
     let uuser = this.afAuth.auth.currentUser;
     console.log(user);
-    return this.firedb.object("user/"+ uuser.uid).update(user);
+    return this.firedb.object("usuarios/"+ uuser.uid).update(user);
   }
   //varivel com dois U
   delete(user:User){
     let uid = this.afAuth.auth.currentUser;
     this.afAuth.auth.currentUser.delete()
-    return this.firedb.object("user/"+ uid).update({ativo: false});
+    return this.firedb.object("usuarios/"+ uid).update({ativo: false});
+  }
+  logout(){
+    this.afAuth.auth.signOut()
   }
 }
 

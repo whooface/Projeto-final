@@ -18,7 +18,7 @@
     </ion-item> 
 
     <section>
-      <ion-button type="submit" expand="full" [disabled]="fc.invalid" >Entra</ion-button>
+      <ion-button type="submit" expand="full" [disabled]="fc.invalid" (click)="login()">Entra</ion-button>
       <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
     </section>
   </form>
