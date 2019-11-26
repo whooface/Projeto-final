@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from './../service/user.service';
+import { User } from './../model/user';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,29 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+protected user:User = new User
 
-  constructor() {}
+  constructor(
+    protected userservice:UserService
+  ) {
+    console.log(this.userservice.afAuth.auth.currentUser)
+    //console.log(this.userservice.afAuth.user)
+  }
 
+  ionViewWillEnter() {
+    let login = this.userservice.afAuth.auth.currentUser;
+    if (login) {
+      this.userservice.get().subscribe(
+        res => {
+          if (res == null) {
+            this.user = new User
+          } else {
+            this.user = res
+          }
+            this.user.email = login.email
+          }
+       
+      )
+    }
+  }
 }

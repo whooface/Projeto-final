@@ -21,7 +21,7 @@ export class AdduserPage implements OnInit {
     private userService : UserService,
     private msg : MensagemService,
     private router:Router,
-    private camera: Camera,
+    private camera:Camera,
     public actionSheetController: ActionSheetController,
   ) { }
 
@@ -116,5 +116,4 @@ export class AdduserPage implements OnInit {
     });
     await actionSheet.present();
   }
-
 }

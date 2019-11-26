@@ -6,9 +6,19 @@
     <ion-title>
       Home
     </ion-title>
+
     <ion-title slot="end">
-    <ion-icon routerLink="/login" name="person"></ion-icon>
+    <ion-icon routerLink="/login" *ngIf="!userservice.afAuth.auth.currentUser" name="person"></ion-icon>
+    
+    <ion-chip routerLink="/perfiluser" *ngIf="userservice.afAuth.auth.currentUser">
+    <ion-avatar>
+      <img src="assets/perfil.png" *ngIf="!user.foto">
+      <img [src]="user.foto" *ngIf="user.foto">
+    </ion-avatar>
+    <ion-label>{{user.nome}}</ion-label>
+    </ion-chip>
   </ion-title>
+
   </ion-toolbar>
 </ion-header>
 

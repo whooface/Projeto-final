@@ -19,16 +19,16 @@
         </ion-item>
       
         <section>
-          <ion-button type="submit" expand="full" [disabled]="fc.invalid">Entrar</ion-button>
+          <ion-button type="submit" expand="full" [disabled]="fc.invalid" ((click)="login()")>Entrar</ion-button>
           <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
         </section>
 
-
+      </form>
       
 
       <section>
           <ion-button expand="full" [disabled]="fc.invalid" color="success" routerLinks="/adduser">Novo Cadastro</ion-button>
           <ion-button  expand="full" color="" >Entrar Pelo Google</ion-button>
         </section>
-      </form>
+      
 </ion-content>
