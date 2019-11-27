@@ -6,7 +6,11 @@
 
 <ion-content>
   <ion-list lines="none">
-      <ion-item>
+    <ion-item>
+        <img src="assets/perfil.png" *ngIf="!usuario.foto">
+        <img [src]="usuario.foto" *ngIf="usuario.foto">
+    </ion-item>  
+    <ion-item>
           <h2>{{user.nome}}</h2>
       </ion-item>
       <ion-item>
