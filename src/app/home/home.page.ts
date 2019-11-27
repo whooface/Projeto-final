@@ -1,6 +1,5 @@
-import { Router } from '@angular/router';
-import { User } from './../model/user';
 import { UserService } from 'src/app/service/user.service';
+import { User } from './../model/user';
 import { Component } from '@angular/core';
 
 
@@ -11,17 +10,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  protected user:User
-
+  protected user :User = new User
 
   constructor(
-    protected userService:UserService,
-    private router:Router
-  ) {}
-
-  ngOnit(){
-    
+    protected userService:UserService
+  ) {
+    console.log(this.userService.afAuth.auth.currentUser)
+    // console.log(this.userService.afAuth.user)
   }
+
   ionViewWillEnter() {
     let login = this.userService.afAuth.auth.currentUser;
     if (login) {
@@ -31,12 +28,10 @@ export class HomePage {
             this.user = new User;
           } else {
             this.user = res
-            this.user.email = login.email
           }
-          
+          this.user.email = login.email
         }
       )
     }
   }
-  
 }

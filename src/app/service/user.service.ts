@@ -40,7 +40,7 @@ export class UserService {
   get(){
     let user = this.afAuth.auth.currentUser;
     console.log(user);
-    return this.firedb.object<User>("usuarios/"+ user.uid).valueChanges();
+    return this.firedb.object<User>("user/"+ user.uid).valueChanges();
   }
 
   //varivel com dois U

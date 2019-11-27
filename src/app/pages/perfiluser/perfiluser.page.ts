@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
+import { UserService } from './../../service/user.service';
 import { User } from './../../model/user';
-import { Component, OnInit, Sanitizer } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-perfiluser',
@@ -10,22 +10,19 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class PerfiluserPage implements OnInit {
 
-  protected user : User = new User
-  
+  protected user:User = new User
+
   constructor(
-    protected userService:UserService,
+    protected userservice:UserService,
     private router:Router
   ) { }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
- 
   ionViewWillEnter() {
-    let login = this.userService.afAuth.auth.currentUser;
+    let login = this.userservice.afAuth.auth.currentUser;
     if (login) {
-      this.userService.get().subscribe(
+      this.userservice.get().subscribe(
         res => {
           if (res == null) {
             this.user = new User;
@@ -44,7 +41,7 @@ export class PerfiluserPage implements OnInit {
   }
 
   sair() {
-    this.userService.logout()
+    this.userservice.logout()
     this.router.navigate(["/"])
   }
 }

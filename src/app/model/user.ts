@@ -4,4 +4,5 @@ export class User {
     email:string;
     senha:string;
     foto:string;
+    ativo:boolean = true;
 }

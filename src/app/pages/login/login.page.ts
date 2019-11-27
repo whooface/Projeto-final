@@ -1,7 +1,11 @@
+import { Platform } from '@ionic/angular';
 import { MensagemService } from './../../service/mensagem.service';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
 
 
 @Component({
@@ -11,37 +15,54 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  protected email: string = null;
-  protected senha: string = null;
+  protected email:string=null;
+  protected senha:string=null;
+  
 
   constructor(
-    private afAuth:AngularFireAuth,
+    private afAuth : AngularFireAuth,
     private router:Router,
-    private msg: MensagemService
-
+    private msg:MensagemService,
+    private googlePlus: GooglePlus,
+    private platform:Platform
   ) { }
 
   ngOnInit() {
   }
   onSubmit(fc){
-    
+
   }
-    login(){
-      this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha).then(
-        res=>{
-          this.router.navigate([''])
-        },
-        err=>{
-          console.log(err);
-          this.msg.presentAlert("Ops!", "Não foi encontrado o usuario!");
-        }
+  
+  login(){
+    this.afAuth.auth.signInWithEmailAndPassword(this.email,this.senha).then(
+      res =>{
+        this.router.navigate([''])
+      },
+      err=>{
+        console.log(err);
+        this.msg.presentAlert("Ops!","Não foi encontrado o usuário!");
+      }
+
+    )
+  }
+  loginGoogle(){
+    if(!this.platform.is("cordova")){
+     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()); 
+    }
+    else{
+      this.googlePlus.login({})
+      .then(res => 
+        this.router.navigate([''])
       )
+      .catch(err => console.error(err));}
+  }
+
+  logout(){
+    this.afAuth.auth.signOut().then(
+      () => this.router.navigate([''])
+    );
+  }
 
       
     }
-    logout(){
-      this.afAuth.auth.signOut().then(
-          () => this.router.navigate([''])
-      )
-    }
-}
+    
