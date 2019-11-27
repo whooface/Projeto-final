@@ -6,6 +6,12 @@
 
 <ion-content>
   <ion-list lines="none">
+    <div class="image-cropper"> 
+    <ion-item>
+            <img src="assets/profile.png" *ngIf="!user.foto">
+            <img [src]="user.foto" *ngIf="user.foto">
+      </ion-item>
+    </div> 
       <ion-item>
           <h2>{{user.nome}}</h2>
       </ion-item>
