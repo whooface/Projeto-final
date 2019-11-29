@@ -14,17 +14,17 @@
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
   <ion-item>
     <ion-label position="floating">Nome</ion-label>
-    <ion-input type="text" name="nome" [(ngModel)] = "usuario.nome" required></ion-input>
+    <ion-input type="text" name="nome" [(ngModel)] = "user.nome" required></ion-input>
   </ion-item>
 
     <ion-item>
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input type="email" name="email" [(ngModel)]="usuario.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+      <ion-input type="email" name="email" [(ngModel)]="user.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" name="pws" [(ngModel)]="usuario.pwd" required minlength="6" #s="ngModel"></ion-input>
+      <ion-input type="password" name="pws" [(ngModel)]="user.pwd" required minlength="6" #s="ngModel"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="s.invalid && s.dirty">Senha Muito Curta</ion-text>
 
@@ -36,7 +36,7 @@
 
     <section>
       <ion-button [disabled]="fc.invalid || s.value != c.value" type="submit" expand="full" >Salvar</ion-button>
-      <ion-button type="reset" expand="full" color="danger">Cancelar</ion-button>
+      <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
     </section>
   </form>
 

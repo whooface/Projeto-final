@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera/ngx';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -8,10 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-<<<<<<< HEAD
-=======
-import { Camera } from '@ionic-native/camera/ngx';
->>>>>>> fc3c857a878ee168fe2371e85789963a10c92751
 
 //Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -28,19 +25,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-<<<<<<< HEAD
-    AngularFireDatabaseModule
-  ],
-=======
     AngularFireDatabaseModule,
     AngularFireAuthModule
     ],
->>>>>>> 4e1c047842c56e0aec6af16d32d11177a99ae778
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera
+    
   ],
   bootstrap: [AppComponent]
 })
