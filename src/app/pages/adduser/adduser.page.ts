@@ -16,6 +16,7 @@ export class AdduserPage implements OnInit {
   protected user: User = new User;
 
   constructor(
+    
     private userService : UserService,
     private msg : MensagemService,
     private router:Router,
@@ -42,6 +43,78 @@ export class AdduserPage implements OnInit {
         this.msg.presentAlert("IH MANÉ","Erro no cadastro!")
        }
     )
+  }
+  tirarFoto(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.user.foto = base64Image;
+    }, (err) => {
+     // Handle error
+    });
+  }
+
+  pegarFoto(){
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.user.foto = base64Image;
+    }, (err) => {
+     // Handle error
+    });
+  }
+  async escolherFoto() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Escolher Opção',
+      buttons: [
+        {
+        text: 'Tirar Foto',
+        icon: 'camera',
+        handler: () => {
+          this.tirarFoto()
+        }
+      }, 
+      {
+        text: 'Galeria',
+        icon: 'photos',
+        handler: () => {
+          this.pegarFoto()
+        }
+      },
+      {
+        text: 'Remover foto',
+        icon: 'qr-scanner',
+        handler: () => {
+          this.user.foto = null;
+        }
+      },
+       {
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
 
@@ -121,3 +194,5 @@ export class AdduserPage implements OnInit {
   
 
 }
+
+

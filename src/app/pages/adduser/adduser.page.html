@@ -34,10 +34,9 @@
     </ion-item>
     <ion-text color="danger" *ngIf="s.value != c.value && c.dirty">Senhas diferentes!</ion-text>
 
-    <section>
-      <ion-button [disabled]="fc.invalid || s.value != c.value" type="submit" expand="full" >Salvar</ion-button>
-      <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
-    </section>
-  </form>
-
+  <section>
+    <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
+    <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
+  </section>
+</form>
 </ion-content>
