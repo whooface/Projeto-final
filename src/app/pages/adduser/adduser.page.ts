@@ -157,42 +157,6 @@ export class AdduserPage implements OnInit {
     });
   }
 
-    //ACTION SHEET
-  async escolherfoto() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Escolher imagem da:',
-      buttons: [{
-        text: 'Câmera',
-        icon: 'camera',
-        handler: () => {
-          this.tirarfoto();
-        }
-      },{
-        text: 'Galeria',
-        icon: 'photos',
-        handler: () => {
-          this.pegarfoto();
-        }
-      },{
-        text: 'Remover Foto',
-        icon: 'qr-scanner',
-        handler: () => {
-          this.user.foto = null;
-        }
-      },
-      {
-        text: 'Cancelar',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
-  }
-  
-
 }
 
 
