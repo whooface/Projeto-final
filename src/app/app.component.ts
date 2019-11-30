@@ -17,8 +17,8 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
+      title: 'Adicionar Usuários',
+      url: '/adduser',
       icon: 'list'
     }
   ];
