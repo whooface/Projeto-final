@@ -24,7 +24,11 @@ protected user:User = new User
         res => {
           if (res == null) {
             this.user = new User
-          } else {
+           if(login.displayName != null) {
+            this.user.foto = login.photoURL
+            this.user.nome = login.displayName
+          } 
+        } else {
             this.user = res
           }
             this.user.email = login.email

@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Platform } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-login',
@@ -18,28 +21,66 @@ export class LoginPage implements OnInit {
   constructor(
     private afAuth : AngularFireAuth,
     private router:Router,
-  private msg:MensagemService,
+    private msg:MensagemService,
+    private googlePlus: GooglePlus,
+    private platform:Platform,
+    private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
+    this.localAtual()
+    
   }
   onSubmit(fc){
 
   }
+
   loginGoogle() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    if (!this.platform.is("cordova")) {
+      this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+        .then(res => {
+          console.log(res)
+          this.router.navigate([''])
+        })
+        .catch(err => console.error(err))
+    } else {
+      this.googlePlus.login({})
+        .then(res => {
+          console.log(res)
+          this.router.navigate([''])
+        })
+        .catch(err => console.error(err))
+    }
   }
 
-  login(){
-    this.afAuth.auth.signInWithEmailAndPassword(this.email,this.senha).then(
-      res =>{
+  login() {
+    this.msg.presentLoading()
+    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha).then(
+      res => {
+        this.msg.dismissLoading()
         this.router.navigate([''])
       },
-      err=>{
+      err => {
         console.log(err);
-        this.msg.presentAlert("Ops!","Não foi encontrado o usuário!");
+        this.msg.dismissLoading()
+        this.msg.presentAlert("Ops!", "Não foi encotrado o usuario!");
       }
-
     )
   }
+
+  logout(){
+    this.afAuth.auth.signOut().then(
+      () => this.router.navigate([''])
+    );
+  }
+
+  localAtual(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
+
 }

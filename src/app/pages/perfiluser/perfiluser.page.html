@@ -1,26 +1,31 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title>Pefil Usuário</ion-title>
+        <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+      <ion-title>Perfil Do Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list lines="none">
-    <div class="image-cropper"> 
-    <ion-item>
-            <img src="assets/profile.png" *ngIf="!user.foto">
+        <ion-item>
+            <img src="assets/perfil.png" *ngIf="!user.foto">
             <img [src]="user.foto" *ngIf="user.foto">
-      </ion-item>
-    </div> 
+        </ion-item>
       <ion-item>
           <h2>{{user.nome}}</h2>
       </ion-item>
       <ion-item>
-          <p>E-mail:{{user.email}}</p>
+          <p>E-mail : {{user.email}}</p>
       </ion-item>
       <ion-item>
-          <p>Ativo:{{user.ativo}}</p>
+          <p>Ativo : {{user.ativo}}</p>
       </ion-item>
+    <ion-item>
+        <p>Latitude : {{user.lat}}</p>
+        <p>Longitude : {{user.lng}}</p>
+    </ion-item>
 
       <ion-item>
           <ion-button type="reset" expand="full" color="danger" (click)="sair()">Sair</ion-button>
