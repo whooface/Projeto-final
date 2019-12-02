@@ -26,7 +26,8 @@ export class MensagemService {
   async presentLoading() {
     const loading = await this.loadingController.create({
       // message: 'Hellooo',
-      // duration: 2000
+      // duration: 2000,
+      spinner: "dots"
     });
     await loading.present();
   }

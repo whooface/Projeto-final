@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 @Component({
   selector: 'app-login',
@@ -22,13 +24,15 @@ export class LoginPage implements OnInit {
     private router:Router,
     private msg:MensagemService,
     private googlePlus : GooglePlus,
-    private platform : Platform
+    private platform : Platform,
+    private geolocal : Geolocation
   ) { }
 
   ngOnInit() {
-  }
+      this.localatual()
+      }
   onSubmit(fc){
-
+    this.login()
   }
   
   login(){
@@ -53,11 +57,27 @@ export class LoginPage implements OnInit {
   loginGoogle() {
     if(!this.platform.is("cordova")){
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+    .then(res => {
+      console.log(res)
+      this.router.navigate([''])
+    })
     } else {
       this.googlePlus.login({})
-      .then(res => {console.log(res)
-        this.router.navigate([''])})
+      .then(res => {
+        console.log(res)
+        this.router.navigate([''])
+      })
       .catch(err => console.error(err));
       }
   }
+
+  localatual(){
+    this.geolocal.getCurrentPosition().then((resp) => {
+      console.log("latitude:",resp.coords.latitude)
+      console.log("longitude: ",resp.coords.longitude)
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
+
 }
