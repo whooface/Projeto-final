@@ -102,4 +102,6 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>We use your location for full functionality of certain app features.</string>
     </edit-config>
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyB_uxXZESOcpxY0ajTTRTrub5HSYcFAdkE" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyB_uxXZESOcpxY0ajTTRTrub5HSYcFAdkE" />
 </widget>

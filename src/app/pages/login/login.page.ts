@@ -8,6 +8,8 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -25,7 +27,7 @@ export class LoginPage implements OnInit {
     private msg:MensagemService,
     private googlePlus : GooglePlus,
     private platform : Platform,
-    private geolocal : Geolocation
+    private geolocal : Geolocation,
   ) { }
 
   ngOnInit() {
@@ -79,5 +81,10 @@ export class LoginPage implements OnInit {
        console.log('Error getting location', error);
      });
   }
+
+
+
+
+
 
 }

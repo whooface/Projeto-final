@@ -51,7 +51,7 @@ export class PerfiluserPage implements OnInit {
 
   sair() {
     this.userservice.logout()
-    this.router.navigate(["/"])
+    this.router.navigate(["/login"])
   }
 
   localatual(){
