@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'adddog', loadChildren: './pages/adddog/adddog.module#AdddogPageModule' },
   { path: 'perfildog', loadChildren: './pages/perfildog/perfildog.module#PerfildogPageModule' },
   { path: 'perfiluser', loadChildren: './pages/perfiluser/perfiluser.module#PerfiluserPageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  { path: 'googlemaps', loadChildren: './pages/googlemaps/googlemaps.module#GooglemapsPageModule' }
 
 
 ];
