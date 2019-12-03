@@ -22,6 +22,7 @@ import { AngularFireDatabaseModule } from "@angular/fire/database"
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -39,7 +40,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     GooglePlus,
-    Geolocation,AndroidPermissions
+    Geolocation,AndroidPermissions,
   ],
   bootstrap: [AppComponent]
 })

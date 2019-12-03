@@ -10,6 +10,7 @@ import{ Geolocation} from '@ionic-native/geolocation/ngx';
 
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -27,7 +28,7 @@ export class LoginPage implements OnInit {
     private msg:MensagemService,
     private googlePlus: GooglePlus,
     private platform:Platform,
-    private geolocation:Geolocation
+    private geolocation:Geolocation,
 
    
  

@@ -26,6 +26,11 @@ export class AppComponent {
       title: 'Cadastra-se Seu Pet',
       url:'/adddog',
       icon:'paw'
+    },
+    {
+      title:'maps',
+      url:'/googlemaps',
+      icon:'map'
     }
 
   ];
