@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { Camera } from '@ionic-native/camera/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -9,12 +9,17 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { Camera } from '@ionic-native/camera/ngx';
 
-//firebase-----------------------------------------------------
+//Firebase
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import {AngularFireDatabaseModule} from "@angular/fire/database";
-import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from "@angular/fire/database"
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,13 +30,16 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
     ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
+    GooglePlus,
+    Geolocation,
+    AndroidPermissions
   ],
   bootstrap: [AppComponent]
 })

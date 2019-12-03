@@ -1,7 +1,8 @@
-import { Component, OnInit, Sanitizer } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from './../../service/user.service';
 import { User } from './../../model/user';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-perfiluser',
@@ -14,10 +15,13 @@ export class PerfiluserPage implements OnInit {
 
   constructor(
     protected userservice:UserService,
-    private router:Router
+    private router:Router,
+    private geolocation: Geolocation
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   ionViewWillEnter() {
     let login = this.userservice.afAuth.auth.currentUser;
@@ -26,10 +30,15 @@ export class PerfiluserPage implements OnInit {
         res => {
           if (res == null) {
             this.user = new User;
-          } else {
+          }if(login.displayName  != null){
+            this.user.foto = login.photoURL
+            this.user.nome = login.displayName
+          }
+           else {
             this.user = res
             this.user.email = login.email
           }
+          this.localAtual()
           console.log(this.user)
         },
         erro => {
@@ -45,5 +54,12 @@ export class PerfiluserPage implements OnInit {
     this.router.navigate(["/"])
   }
 
-
+  localAtual(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.user.lat = resp.coords.latitude
+      this.user.lng = resp.coords.longitude
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
 }

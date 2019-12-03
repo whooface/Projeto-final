@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
-
-
 @Component({
   selector: 'app-adduser',
   templateUrl: './adduser.page.html',
@@ -32,14 +30,14 @@ export class AdduserPage implements OnInit {
     this.userService.add(this.user).then(
       res=>{
         //console.log("Cadastrado!", res);
-        this.msg.presentAlert("DAAALE","Cadastado com sucesso!")
+        this.msg.presentAlert("Parabéns","Cadastado com sucesso!")
         this.user = new User;
         form.reset();
         this.router.navigate(['']);
       },
        erro=>{
         console.log("Erro: ", erro); 
-        this.msg.presentAlert("IH MANÉ","Erro no cadastro!")
+        this.msg.presentAlert("Ops!","Erro no cadastro!")
        }
     )
   }
@@ -61,11 +59,13 @@ export class AdduserPage implements OnInit {
     });
   }
 
-  pegarfoto(){
+
+    pegarfoto(){
     const options: CameraOptions = {
       quality: 50,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      //Galeria
+      sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -79,34 +79,32 @@ export class AdduserPage implements OnInit {
      // Handle error
     });
   }
+
+    //ACTION SHEET
   async escolherfoto() {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Escolher Opção',
-      buttons: [
-        {
+      header: 'Escolher imagem da:',
+      buttons: [{
         text: 'Câmera',
         icon: 'camera',
         handler: () => {
           this.tirarfoto();
         }
-      }, 
-      
-      {
-        text: 'Remover Foto',
-        icon: 'qr-scanner',
-        handler: () => {
-         this.user.foto=null;
-        }
-      },
-      {
+      },{
         text: 'Galeria',
         icon: 'photos',
         handler: () => {
-         this.pegarfoto();
+          this.pegarfoto();
         }
-      },  
+      },{
+        text: 'Remover Foto',
+        icon: 'qr-scanner',
+        handler: () => {
+          this.user.foto = null;
+        }
+      },
       {
-        text: 'Cancel',
+        text: 'Cancelar',
         icon: 'close',
         role: 'cancel',
         handler: () => {
@@ -116,4 +114,6 @@ export class AdduserPage implements OnInit {
     });
     await actionSheet.present();
   }
+  
+
 }

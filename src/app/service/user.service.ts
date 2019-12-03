@@ -19,6 +19,7 @@ export class UserService {
         res=>{
           user.senha = null;
           user.email = null;
+          user.ativo = true;
           return this.firedb.object("user/" + res.user.uid).set(user).then().catch(
             ()=>{
               this.afAuth.auth.currentUser.delete()
@@ -55,8 +56,9 @@ export class UserService {
     this.afAuth.auth.currentUser.delete()
     return this.firedb.object("user/"+ uid).update({ativo: false});
   }
-  logout() {
+  logout(){
     this.afAuth.auth.signOut();
   }
+
 }
 

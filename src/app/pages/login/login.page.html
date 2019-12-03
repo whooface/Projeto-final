@@ -1,31 +1,30 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-title>login</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-      <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
-      
-      <ion-item>
-        <ion-label position="floating">E-mail</ion-label>
-        <ion-input type="email" name="email" [(ngModel)] = "email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
-      </ion-item>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
     
-      <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password" name="password" [(ngModel)] = "senha" required minlength="6" #s="ngModel"></ion-input>
-      </ion-item> 
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" name="email" [(ngModel)] = "email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+    </ion-item>
   
-      <section>
-        <ion-button type="submit" expand="full" [disabled]="fc.invalid" (click)="login()">Entrar</ion-button>
-        <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
-      </section>
-    </form>
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" name="password" [(ngModel)] = "senha" required minlength="6" #s="ngModel"></ion-input>
+    </ion-item> 
+
     <section>
-        <ion-button type="submit" expand="full" color="success" routerLink="/adduser">Novo Cadastrar</ion-button>
-        <ion-button type="reset" expand="full" color="" >Entrar Pelo Google</ion-button>
-      </section>
-  </ion-content>
-  
-  
+      <ion-button type="submit" expand="block" [disabled]="fc.invalid" (click)="login()">Entrar</ion-button>
+      <ion-button type="reset" expand="block" color="danger" routerLink="/home">Cancelar</ion-button>
+    </section>
+  </form>
+  <section>
+      <ion-button type="submit" expand="block" color="success" routerLink="/adduser">Novo Cadastrar</ion-button>
+      <ion-button type="reset" expand="block" color="" (click)="loginGoogle()">Entrar Pelo Google</ion-button>
+    </section>
+</ion-content>
+
