@@ -6,6 +6,8 @@ import { auth } from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -28,7 +30,8 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.localAtual()
+    this.localAtual(),
+    this.hide()
     
   }
   onSubmit(fc){
@@ -81,6 +84,18 @@ export class LoginPage implements OnInit {
      }).catch((error) => {
        console.log('Error getting location', error);
      });
+  }
+  show(){
+    
+    //document.getElementById('b').style.visibility = "visible";
+    if(document.getElementById('b').style.visibility == "hidden"){
+      document.getElementById('b').style.visibility = "visible";
+    }else{
+      document.getElementById('b').style.visibility = "hidden"
+    }
+  }
+  hide(){
+    document.getElementById('b').style.visibility = "hidden";
   }
 
 }
