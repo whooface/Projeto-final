@@ -1,9 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>adddog</ion-title>
+    <ion-title style="text-align: center;">Novo Cachorro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item lines="none">
+    <img src="assets/perfil.png" (click)="escolherfoto()" *ngIf="!dog.foto">
+    <img [src]="dog.foto" (click)="escolherfoto()" *ngIf="dog.foto">
+  </ion-item>
 
+
+<form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+  <ion-item>
+    <ion-label position="floating">Nome:</ion-label>
+    <ion-input type="text" name="nome" [(ngModel)] = "dog.nome" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Espécie:</ion-label>
+    <ion-input type="email" name="email" [(ngModel)] = "dog.email" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Idade:</ion-label>
+    <ion-input type="password" name="password" [(ngModel)] = "dog.idade" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descrição:</ion-label>
+    <ion-input type="password" name="password" [(ngModel)] = "dog.descricao" required></ion-input>
+  </ion-item>
+  
+  <!-- <ion-text color="danger" *ngIf="s.invalid && s.dirty">Senha muito curta !!</ion-text>
+
+
+  <ion-item>
+    <ion-label position="floating">Confirmar Senha</ion-label>
+    <ion-input type="password" name="confpassword" (ngModel) = "confpassword" required minlength="6" #c="ngModel"></ion-input>
+  </ion-item>
+
+  <ion-text color="danger" *ngIf="s.value != c.value">As senhas não coincidem!!</ion-text> -->
+
+  <section>
+    <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
+    <ion-button type="reset" expand="full" color="danger" routerLink="/login" >Cancelar</ion-button>
+  </section>
+</form>
 </ion-content>
+

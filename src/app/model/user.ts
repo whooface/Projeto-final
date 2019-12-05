@@ -5,6 +5,7 @@ export class User {
     senha:string;
     foto:string;
     ativo:boolean = true;
-    lat:number;
-    lng:number;
+    lat:number; // nao utilizar dps
+    lng:number; // não utlizar dps
+    
 }
