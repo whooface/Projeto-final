@@ -37,6 +37,7 @@
     "cordova-plugin-googlemaps": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps",
     "cordova-plugin-googleplus": "^8.2.0",
     "core-js": "^2.5.4",
+    "es.keensoft.fullscreenimage": "^0.2.10",
     "firebase": "^7.5.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
@@ -89,7 +90,8 @@
       },
       "cordova-plugin-geolocation": {},
       "cordova-plugin-android-permissions": {},
-      "cordova-plugin-googlemaps": {}
+      "cordova-plugin-googlemaps": {},
+      "es.keensoft.fullscreenimage": {}
     },
     "platforms": [
       "browser",
