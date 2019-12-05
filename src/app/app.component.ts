@@ -21,6 +21,11 @@ export class AppComponent {
       title: 'Adicionar Usuários',
       url: '/adduser',
       icon: 'list'
+    },
+    {
+      title: 'Mapa',
+      url: '/googlemaps',
+      icon: 'map'
     }
   ];
 

@@ -14,18 +14,17 @@ import { Camera } from '@ionic-native/camera/ngx';
 //Firebase
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from "@angular/fire/database"
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {AngularFireAuthModule} from '@angular/fire/auth';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule,
+  BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -36,10 +35,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera,
-    GooglePlus,
-    Geolocation,
-    AndroidPermissions
+    Camera, GooglePlus, Geolocation, AndroidPermissions
   ],
   bootstrap: [AppComponent]
 })

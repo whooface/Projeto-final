@@ -9,7 +9,7 @@ export class MensagemService {
 
   constructor(
     public alertController: AlertController,
-    public loadingController: LoadingController
+    public LoadingController: LoadingController
   ) { }
 
   async presentAlert(titulo:string, texto:string){
@@ -22,14 +22,17 @@ export class MensagemService {
 
     await alert.present();
   }
-  async presentLoading(){
-    const loading = await this.loadingController.create({
-       message: 'Carregando'
-
+  async presentLoading() {
+    const loading = await this.LoadingController.create({
+      // message: 'Hellooo',
+      // duration: 2000
+      spinner:"dots"
     });
     await loading.present();
   }
-    async dismissLoading(){
-      await this.loadingController.dismiss();
-    }
+
+  async dismissLoading() {
+  await this.LoadingController.dismiss();
+  }
+
 }

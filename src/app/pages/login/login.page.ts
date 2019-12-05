@@ -2,9 +2,9 @@ import { MensagemService } from './../../service/mensagem.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Platform } from '@ionic/angular';
+import { auth } from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { auth } from 'firebase';
+import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
@@ -22,20 +22,20 @@ export class LoginPage implements OnInit {
     private afAuth : AngularFireAuth,
     private router:Router,
     private msg:MensagemService,
-    private platform : Platform,
-    private googlePlus : GooglePlus,
+    private googlePlus: GooglePlus,
+    private platform:Platform,
     private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
     this.localAtual()
+    
   }
   onSubmit(fc){
 
 
   }
 
-  
   loginGoogle() {
     if (!this.platform.is("cordova")) {
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
@@ -54,19 +54,18 @@ export class LoginPage implements OnInit {
     }
   }
 
-  login(){
+  login() {
     this.msg.presentLoading()
-    this.afAuth.auth.signInWithEmailAndPassword(this.email,this.senha).then(
-      res =>{
+    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha).then(
+      res => {
         this.msg.dismissLoading()
         this.router.navigate([''])
       },
-      erro=>{
+      err => {
+        console.log(err);
         this.msg.dismissLoading()
-        console.log(erro);
-        this.msg.presentAlert("Ops!","Não foi encontrado o usuário!");
+        this.msg.presentAlert("Ops!", "Não foi encotrado o usuario!");
       }
-
     )
   }
 

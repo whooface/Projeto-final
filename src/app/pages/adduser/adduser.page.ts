@@ -30,14 +30,16 @@ export class AdduserPage implements OnInit {
     this.userService.add(this.user).then(
       res=>{
         //console.log("Cadastrado!", res);
-        this.msg.presentAlert("Parabéns","Cadastado com sucesso!")
+        this.msg.dismissLoading()
+        this.msg.presentAlert("Bem Vindo","Cadastado com sucesso!")
         this.user = new User;
         form.reset();
         this.router.navigate(['']);
       },
        erro=>{
         console.log("Erro: ", erro); 
-        this.msg.presentAlert("Ops!","Erro no cadastro!")
+        this.msg.dismissLoading()
+        this.msg.presentAlert("Ops!","Erro no cadastrar!")
        }
     )
   }

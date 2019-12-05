@@ -26,13 +26,12 @@ protected user:User = new User
       this.userservice.get().subscribe(
         res => {
           if (res == null) {
-            this.user = new User;
-          }
-          if(login.displayName != null){
+            this.user = new User
+           if(login.displayName != null) {
             this.user.foto = login.photoURL
             this.user.nome = login.displayName
-          }
-           else {
+          } 
+        } else {
             this.user = res
           }
           this.user.email = login.email
