@@ -1,6 +1,6 @@
 export class Dog {
 
-    dono:string; //{this.afAuth}
+    dono: string; //{this.afAuth}
     nome:string;
     // raça:string;
     especie: string;   //string ou number
