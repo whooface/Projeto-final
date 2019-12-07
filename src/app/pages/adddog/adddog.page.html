@@ -5,5 +5,33 @@
 </ion-header>
 
 <ion-content>
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" name="nome" [(ngModel)] = "dog.nome" required></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Especie</ion-label>
+      <ion-select>
+        <ion-select-option *ngFor="let p of pets">{{p.especies}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input type="text" name="descricao" [(ngModel)]="dog.descricao" required minlength="6">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Idade</ion-label>
+      <ion-input type="text" name="idade" maxlength="2" required pattern="/^0|[1-9]\d*$/"></ion-input>
+    </ion-item>
+
+    <section>
+      <ion-button type="submit" expand="full" [disabled]="fc.invalid ">Cadastrar</ion-button>
+      <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
+    </section>
+  </form>
 </ion-content>
