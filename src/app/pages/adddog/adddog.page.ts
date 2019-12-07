@@ -1,5 +1,6 @@
+import { DogService } from './../../service/dog.service';
+import { Dog } from './../../model/dog';
 import { MensagemService } from './../../service/mensagem.service';
-import { UserService } from './../../service/user.service';
 import { User } from './../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,9 +15,36 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class AdddogPage implements OnInit {
 
-  constructor() { }
+  protected dog: Dog = new Dog;
+
+  constructor(
+    private dogService : DogService,
+    private msg : MensagemService,
+    private router:Router,
+    private camera:Camera,
+    public actionSheetController: ActionSheetController,
+  ) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(form){
+    //console.log(this.user);
+    this.msg.presentLoading()
+    this.dogService.add(this.dog).then(
+      res=>{
+        //console.log("Cadastrado!", res);
+        this.msg.dismissLoading()
+        this.msg.presentAlert("DAAALE","Cadastado com sucesso!")
+        this.dog = new Dog;
+        form.reset();
+        this.router.navigate(['']);
+      },
+       erro=>{
+        console.log("Erro: ", erro); 
+        this.msg.presentAlert("IH MANÉ","Erro no cadastro!")
+       }
+    )
   }
 
 }

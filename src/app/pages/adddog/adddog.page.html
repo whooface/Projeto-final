@@ -5,10 +5,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-item lines="none">
-    <img src="assets/perfil.png" (click)="escolherfoto()" *ngIf="!dog.foto">
-    <img [src]="dog.foto" (click)="escolherfoto()" *ngIf="dog.foto">
-  </ion-item>
 
 
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
@@ -24,12 +20,12 @@
 
   <ion-item>
     <ion-label position="floating">Idade:</ion-label>
-    <ion-input type="password" name="password" [(ngModel)] = "dog.idade" required></ion-input>
+    <ion-input type="text" name="idade" [(ngModel)] = "dog.idade" required></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Descrição:</ion-label>
-    <ion-input type="password" name="password" [(ngModel)] = "dog.descricao" required></ion-input>
+    <ion-input type="text" name="descricao" [(ngModel)] = "dog.descricao" required></ion-input>
   </ion-item>
   
   <!-- <ion-text color="danger" *ngIf="s.invalid && s.dirty">Senha muito curta !!</ion-text>
