@@ -7,18 +7,7 @@
     
       <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
 
-        <section id="b" class="inputs">
-          
-              <ion-label position="floating"><strong>E-mail</strong></ion-label>
-              <ion-input style="background-color: rgba(224, 224, 224, 0.349);border: 1px rgb(255, 255, 134);border-radius: 8px;" type="email" name="email" [(ngModel)] = "email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
-            
-          <br>
-            
-              <ion-label position="floating"><strong>Senha</strong></ion-label>
-              <ion-input style="background-color: rgba(224, 224, 224, 0.349);border: 1px rgb(255, 255, 134);border-radius: 8px;" type="password" name="password" [(ngModel)] = "senha" required minlength="6" #s="ngModel"></ion-input>
-            
-              <ion-button style="margin-top:20px" type="submit" [disabled]="fc.invalid" expand="block" (click)="login()">Entrar</ion-button>
-          </section>
+      
 
   <section style="padding: 5em 0 3em;">
       <section class="top-buttons">
@@ -38,5 +27,19 @@
       </section>
       
   </ion-content>
+
+
+<div id="b" class="inputs">
+          
+    <ion-label position="floating"><strong>E-mail</strong></ion-label>
+    <ion-input style="background-color: rgba(224, 224, 224, 0.349);border: 1px rgb(255, 255, 134);border-radius: 8px;" type="email" name="email" [(ngModel)] = "email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+  
+<br>
+  
+    <ion-label position="floating"><strong>Senha</strong></ion-label>
+    <ion-input style="background-color: rgba(224, 224, 224, 0.349);border: 1px rgb(255, 255, 134);border-radius: 8px;" type="password" name="password" [(ngModel)] = "senha" required minlength="6" #s="ngModel"></ion-input>
+  
+    <ion-button style="margin-top:20px" type="submit" [disabled]="fc.invalid" expand="block" (click)="login()">Entrar</ion-button>
+</div>
   
   
