@@ -27,10 +27,11 @@ export class DogService {
         nome: dog.nome,
         descricao: dog.descricao,
         especie: dog.especie,
-        foto: dog.foto,
+        // foto: dog.foto,
         status: true,
         verificado: false,
         idade: dog.idade,
+        tempo: dog.tempo,
       });
     }
 

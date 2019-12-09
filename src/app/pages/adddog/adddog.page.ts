@@ -1,7 +1,6 @@
 import { DogService } from './../../service/dog.service';
 import { Dog } from './../../model/dog';
 import { MensagemService } from './../../service/mensagem.service';
-import { User } from './../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -16,6 +15,8 @@ import { ActionSheetController } from '@ionic/angular';
 export class AdddogPage implements OnInit {
 
   protected dog: Dog = new Dog;
+  private pets: Array<Object> = []
+
 
   constructor(
     private dogService : DogService,
@@ -23,7 +24,25 @@ export class AdddogPage implements OnInit {
     private router:Router,
     private camera:Camera,
     public actionSheetController: ActionSheetController,
-  ) { }
+  ) { 
+    this.pets = [
+      {
+       especie: "Canina",
+       sexo : "Masculino",
+       tempo: "Ano",
+       
+      }
+      ,
+      {
+       especie: "Felino",
+       sexo : "Feminino",
+       tempo: "Meses"
+       
+      },
+     
+    ]
+  
+  }
 
   ngOnInit() {
   }
@@ -46,5 +65,10 @@ export class AdddogPage implements OnInit {
        }
     )
   }
+
+
+
+
+
 
 }
