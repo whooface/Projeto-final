@@ -1,6 +1,8 @@
 import { DogService } from './../../service/dog.service';
 import { Dog } from './../../model/dog';
 import { Component, OnInit } from '@angular/core';
+import { stringify } from 'querystring';
+
 
 
 @Component({
@@ -10,24 +12,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdddogPage implements OnInit {
   protected dog = new Dog
+  private pets: Array<Object> = []
 
   constructor(
     protected dogService:DogService
-  ) { }
-
-  dogs: any[] =[
-    { id:1,
-      porte:'Pequeno'
-    },
-    {id:2,
-      porte:'Médio'
-    },
-    {id:3,
-      porte:'Grande'
-    }
-  ];
-
-  ngOnInit() {
+  ) { 
+    this.pets = [
+      {
+       especie: "Canina"
+       
+      }
+      ,
+      {
+       especie: "Felino"
+      },
+     
+    ]
   }
 
+  
+  ngOnInit() {
+  }
+  
+
+  onSubmit(form){
+    console.log(this.dog.especie,
+      this.dog.nome)
+  }
 }

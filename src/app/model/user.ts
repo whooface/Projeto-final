@@ -5,4 +5,6 @@ export class User {
     senha:string;
     foto:string;
     ativo:boolean = true;
+    lat:number;
+    lng:number;
 }

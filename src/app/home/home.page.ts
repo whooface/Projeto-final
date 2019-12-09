@@ -28,11 +28,13 @@ export class HomePage {
         res => {
           if (res == null) {
             this.user = new User;
-            if(login.displayName != null ){
-              this.user.nome = login.displayName
-              this.user.foto = login.photoURL
-              this.user.email = login.email
-            }
+          if(login.displayName != null){
+            this.user.foto = login.photoURL
+            this.user.nome = login.displayName
+
+          }
+          this.router.navigate([''])  
+          
           } else {
             this.user = res
             this.user.email = login.email

@@ -1,9 +1,14 @@
 export class Dog {
-    nome: string;
-    idade: number;
-    porte: string;
+    dono: string; //{this.afAuth}
+    nome:string;
+    // raça:string;
+    especie: string;   //string ou number
+    sexo:string;
+    //foto : [];
+    status : boolean = true; //true = em busca de adoção //false = adotado
+    verificado : boolean = false; //false = nao liberado / true = liberado
+    idade:number;
     descricao:string;
-    motivo: string;
-    especie: string;
-    foto: string;
+
+    //novos campos
 }
