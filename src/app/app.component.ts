@@ -20,6 +20,11 @@ export class AppComponent {
       title: 'Adicionar Usuários',
       url: '/adduser',
       icon: 'list'
+    },
+    {
+      title: 'Doação de Pet',
+      url:'/adddog',
+      icon:'paw'
     }
   ];
 

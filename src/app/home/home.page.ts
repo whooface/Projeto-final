@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { User } from './../model/user';
 import { Component } from '@angular/core';
@@ -13,7 +14,8 @@ export class HomePage {
   protected user :User = new User
 
   constructor(
-    protected userService:UserService
+    protected userService:UserService,
+    private router: Router
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
     // console.log(this.userService.afAuth.user)
@@ -26,10 +28,20 @@ export class HomePage {
         res => {
           if (res == null) {
             this.user = new User;
+            if(login.displayName != null ){
+              this.user.nome = login.displayName
+              this.user.foto = login.photoURL
+              this.user.email = login.email
+            }
           } else {
             this.user = res
+            this.user.email = login.email
           }
-          this.user.email = login.email
+          console.log(this.user)
+        },
+        erro => {
+          console.log(erro)
+          this.router.navigate(['/login'])
         }
       )
     }

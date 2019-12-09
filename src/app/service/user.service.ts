@@ -1,4 +1,3 @@
-
 import { User } from './../model/user';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';

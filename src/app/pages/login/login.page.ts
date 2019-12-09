@@ -8,6 +8,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -47,14 +48,19 @@ export class LoginPage implements OnInit {
   }
   loginGoogle(){
     if(!this.platform.is("cordova")){
-     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()); 
+     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
+       res =>{
+         this.router.navigate([''])
+       }
+     );
+
     }
     else{
       this.googlePlus.login({})
       .then(res => 
         this.router.navigate([''])
       )
-      .catch(err => console.error(err));}
+      .catch(error => console.error(error));}
   }
 
   logout(){

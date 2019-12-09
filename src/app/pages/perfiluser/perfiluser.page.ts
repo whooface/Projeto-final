@@ -26,6 +26,11 @@ export class PerfiluserPage implements OnInit {
         res => {
           if (res == null) {
             this.user = new User;
+            if(login.displayName != null ){
+              this.user.nome = login.displayName
+              this.user.foto = login.photoURL
+              this.user.email = login.email
+            }
           } else {
             this.user = res
             this.user.email = login.email

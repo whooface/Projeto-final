@@ -1,3 +1,6 @@
+import { Dog } from './../model/dog';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +8,14 @@ import { Injectable } from '@angular/core';
 })
 export class DogService {
 
-  constructor() { }
+  constructor(
+    private firebd:AngularFireDatabase,
+    public afAuth:AngularFireAuth
+  ) { }
+
+  
+      
+    add(dog:Dog){
+    
+    }
 }
