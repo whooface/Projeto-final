@@ -1,6 +1,6 @@
 ion-content{
     --background:url(/assets/doggo-portrait.jpg) 0 0/100% 100% no-repeat;
-   z-index: 0;
+   
 }
 
 ion-button{
@@ -10,20 +10,10 @@ ion-button{
 
 .inputs{
     margin: auto;
-    margin-top: 20vh;
-    margin-left: 5vh;
-    height: 50vh;
     width: 80%;
     padding-top: 5em;
-    display: none;
-    z-index: 2000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #ffff;
-    //display: flex;
-    justify-content: center;
-    align-items:  center;
+    transition: all 2s linear;
+    visibility: hidden;
 }
 
 .top-buttons{
