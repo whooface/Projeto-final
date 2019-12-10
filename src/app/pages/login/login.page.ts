@@ -4,9 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
+
 
 
 @Component({
@@ -26,17 +27,22 @@ export class LoginPage implements OnInit {
     private msg:MensagemService,
     private googlePlus: GooglePlus,
     private platform:Platform,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {
     this.localAtual(),
     this.hide()
     
+    
   }
   onSubmit(fc){
 
 
+  }
+  ionViewWillEnter(){
+   this.menu.enable(false);
   }
 
   loginGoogle() {
@@ -86,13 +92,13 @@ export class LoginPage implements OnInit {
      });
   }
   show(){
-    
-    //document.getElementById('b').style.visibility = "visible";
-    if(document.getElementById('b').style.visibility == "hidden"){
-      document.getElementById('b').style.visibility = "visible";
-    }else{
+     if(document.getElementById("b").style.visibility == "hidden"){
+      document.getElementById("b").style.visibility = "visible"
+     } else{
       document.getElementById('b').style.visibility = "hidden"
-    }
+      
+     }
+     
   }
   hide(){
     document.getElementById('b').style.visibility = "hidden";

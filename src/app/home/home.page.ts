@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './../service/user.service';
 import { User } from './../model/user';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +15,15 @@ protected user:User = new User
 
 
   constructor(
-    protected userservice:UserService
+    protected userservice:UserService,
+    private menu: MenuController
   ) {
     console.log(this.userservice.afAuth.auth.currentUser)
     // console.log(this.userservice.afAuth.user)
   }
 
   ionViewWillEnter() {
+    this.menu.enable(true);
     let login = this.userservice.afAuth.auth.currentUser;
     if (login) {
       this.userservice.get().subscribe(
