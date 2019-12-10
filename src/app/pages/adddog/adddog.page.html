@@ -39,7 +39,7 @@
         <ion-col>
             <ion-item>
                 <ion-label position="floating" ><strong>Tempo:</strong></ion-label>
-                <ion-select name="tempo" [(ngModel)]="dog.tempo" >
+                <ion-select name="tempo" [( ngModel)]="dog.tempo" >
                   <ion-select-option *ngFor="let p of pets" >{{p.tempo}}</ion-select-option>
                 </ion-select>
               </ion-item> 

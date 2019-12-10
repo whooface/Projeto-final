@@ -1,16 +1,33 @@
-// ion-page.login{
-//     background-image: url('../../../assets/wallpaper.jpg;')
-// }
+ion-content{
+    --background:url(/assets/doggo-portrait.jpg) 0 0/100% 100% no-repeat;
+   
+}
 
-// ion-page.login > ion-content{
-//   background-color: transparent;
-// }
+ion-button{
+    width: 66%;
+    margin:auto;
+}
 
+.inputs{
+    margin: auto;
+    width: 80%;
+    padding-top: 7em;
+    display: none;
+    
+}
+.container{
+    margin: auto;
+    width: 80%;
+    padding-top: 7em;
+    height: 186px;
+}
 
-// TENTATIVA 2
+.top-buttons{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
-// ion-app.md [padding] {
-//     padding: 0px;
-//     background-image: url('../../../assets/img/wallpaper.jpg');
-//     background-size: cover;
-// }
+.bottom-buttons{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
