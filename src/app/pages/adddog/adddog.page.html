@@ -1,37 +1,71 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>adddog</ion-title>
+    <ion-title style="text-align: center;"><strong>Novo Pet</strong></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
-    <ion-item>
-      <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" name="nome" [(ngModel)] = "dog.nome" required></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Especie</ion-label>
-      <ion-select name="especie" [(ngModel)]="dog.especie">
-        <ion-select-option *ngFor="let p of pets" >{{p.especie}}</ion-select-option>
-      </ion-select>
-    </ion-item>
+<ion-card>
+<form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
 
-    <ion-item>
-      <ion-label position="floating">Descrição</ion-label>
-      <ion-input type="text" name="descricao" [(ngModel)]="dog.descricao" required minlength="6">
-      </ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label position="floating"><strong>Nome:</strong></ion-label>
+    <ion-input type="text" name="nome" [(ngModel)] = "dog.nome" required></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Idade</ion-label>
-      <ion-input type="text" name="idade" maxlength="2" required pattern="/^0|[1-9]\d*$/"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label position="floating"><strong>Espécie:</strong></ion-label>
+    <ion-select name="especie" [(ngModel)]="dog.especie">
+      <ion-select-option *ngFor="let p of pets" >{{p.especie}}</ion-select-option>
+    </ion-select>
+  </ion-item>
 
-    <section>
-      <ion-button type="submit" expand="full" [disabled]="fc.invalid ">Cadastrar</ion-button>
-      <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
-    </section>
-  </form>
+  <ion-item>
+    <ion-label position="floating"><strong>Sexo:</strong></ion-label>
+    <ion-select name="sexo" [(ngModel)]="dog.sexo">
+      <ion-select-option *ngFor="let p of pets" >{{p.sexo}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-grid>
+      <ion-row>
+        <ion-col>
+            <ion-item>
+                <ion-label position="floating" ><strong>Idade:</strong></ion-label>
+                <ion-input type="text" name="idade" [(ngModel)] = "dog.idade" required maxlength="2"></ion-input>
+              </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
+                <ion-label position="floating" ><strong>Tempo:</strong></ion-label>
+                <ion-select name="tempo" [(ngModel)]="dog.tempo" >
+                  <ion-select-option *ngFor="let p of pets" >{{p.tempo}}</ion-select-option>
+                </ion-select>
+              </ion-item> 
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  
+  <ion-item>
+    <ion-label position="floating"><strong>Descrição:</strong></ion-label>
+    <ion-textarea type="text" name="descricao" [(ngModel)] = "dog.descricao" required></ion-textarea>
+  </ion-item>
+
+  <!-- <ion-text color="danger" *ngIf="s.invalid && s.dirty">Senha muito curta !!</ion-text>
+  <ion-item>
+    <ion-label position="floating">Confirmar Senha</ion-label>
+    <ion-input type="password" name="confpassword" (ngModel) = "confpassword" required minlength="6" #c="ngModel"></ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="s.value != c.value">As senhas não coincidem!!</ion-text> -->
+
+  <section>
+    <br>
+    <ion-button type="submit" expand="block" style="width: 18em; margin: auto;" >Cadastrar</ion-button>
+    <br>
+    <ion-button type="reset" expand="block" style="width: 18em; margin: auto;"  color="danger" routerLink="/login" >Cancelar</ion-button>
+    <br>
+  </section>
+</form>
+</ion-card>
 </ion-content>
