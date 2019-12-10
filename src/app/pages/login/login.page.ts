@@ -1,12 +1,14 @@
 import { MensagemService } from './../../service/mensagem.service';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
+import * as $ from "jquery";
 
 
 @Component({
@@ -26,19 +28,20 @@ export class LoginPage implements OnInit {
     private msg:MensagemService,
     private googlePlus: GooglePlus,
     private platform:Platform,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private menu : MenuController
   ) { }
 
   ngOnInit() {
-    this.localAtual(),
-    this.hide()
+    this.localAtual()
+    this.menu.enable(false)
+
     
   }
   onSubmit(fc){
 
-
   }
-
+  
   loginGoogle() {
     if (!this.platform.is("cordova")) {
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
@@ -62,7 +65,7 @@ export class LoginPage implements OnInit {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha).then(
       res => {
         this.msg.dismissLoading()
-        this.router.navigate([''])
+        this.router.navigate(['home'])
       },
       err => {
         console.log(err);
@@ -85,17 +88,21 @@ export class LoginPage implements OnInit {
        console.log('Error getting location', error);
      });
   }
+
   show(){
-    
-    //document.getElementById('b').style.visibility = "visible";
-    if(document.getElementById('b').style.visibility == "hidden"){
-      document.getElementById('b').style.visibility = "visible";
-    }else{
-      document.getElementById('b').style.visibility = "hidden"
-    }
+    $(document).ready(function(){
+      $('.balao').fadeOut(800)
+      $('.inputs').fadeIn(500)
+  });
+  
+   
   }
-  hide(){
-    document.getElementById('b').style.visibility = "hidden";
+  sair(){
+    $(document).ready(function(){
+      $('.balao').fadeIn(800)
+      $('.inputs').fadeOut(500)
+  });
   }
+  
 
 }
