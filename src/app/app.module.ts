@@ -18,6 +18,8 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import {GuardService} from './service/guard.service'
+import { Network } from '@ionic-native/network/ngx';
 
 
 @NgModule({
@@ -34,6 +36,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    [GuardService],
+    Network,
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera, GooglePlus, Geolocation, AndroidPermissions
   ],
