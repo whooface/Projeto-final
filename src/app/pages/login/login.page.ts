@@ -89,6 +89,8 @@ export class LoginPage implements OnInit {
      });
   }
 
+  
+// CSS
   show(){
     $(document).ready(function(){
       $('.balao').fadeOut(800)

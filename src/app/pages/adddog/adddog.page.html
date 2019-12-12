@@ -8,6 +8,20 @@
 
 <ion-card>
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+  <br><br>
+    <ion-item lines="none" class="fotos">
+        <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!dog.fotos">
+        <img [src]="dog.fotos[0]" (click)="escolherFoto()" *ngIf="dog.fotos">
+      </ion-item>
+      <!-- //fotos[fotos.legth -1] -->
+    <br><br>  
+    
+  <ion-slides pager="true" [options]="slideOpts" *ngIf="dog.fotos">
+      <ion-slide *ngFor="let foto of dog.fotos; let i=index" class="fotos">
+        <img src="{{foto}}" (click)="removerFoto(i)">
+      </ion-slide>
+    </ion-slides>
+
 
   <ion-item>
     <ion-label position="floating"><strong>Nome:</strong></ion-label>
@@ -39,7 +53,7 @@
         <ion-col>
             <ion-item>
                 <ion-label position="floating" ><strong>Tempo:</strong></ion-label>
-                <ion-select name="tempo" [( ngModel)]="dog.tempo" >
+                <ion-select name="tempo" [(ngModel)]="dog.tempo" >
                   <ion-select-option *ngFor="let p of pets" >{{p.tempo}}</ion-select-option>
                 </ion-select>
               </ion-item> 
@@ -52,15 +66,6 @@
     <ion-textarea type="text" name="descricao" [(ngModel)] = "dog.descricao" required></ion-textarea>
   </ion-item>
 
-  <!-- <ion-text color="danger" *ngIf="s.invalid && s.dirty">Senha muito curta !!</ion-text>
-
-
-  <ion-item>
-    <ion-label position="floating">Confirmar Senha</ion-label>
-    <ion-input type="password" name="confpassword" (ngModel) = "confpassword" required minlength="6" #c="ngModel"></ion-input>
-  </ion-item>
-
-  <ion-text color="danger" *ngIf="s.value != c.value">As senhas não coincidem!!</ion-text> -->
 
   <section>
     <br>
@@ -70,6 +75,8 @@
     <br>
   </section>
 </form>
+
+
 </ion-card>
 </ion-content>
 
