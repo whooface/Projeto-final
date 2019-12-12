@@ -76,7 +76,7 @@ export class LoginPage implements OnInit {
       res => {
         this.msg.dismissLoading()
         console.log(this.router.url)
-        this.router.navigate(['home'])
+        this.router.navigate([''])
       },
       err => {
         console.log(err);
