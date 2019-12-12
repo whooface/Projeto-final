@@ -31,7 +31,8 @@ export class DogService {
         status: true,
         verificado: false,
         idade: dog.idade,
-        tempo: dog.tempo,
+        // tempo: dog.tempo,
+        genero: dog.genero
       });
     }
 

@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Camera } from '@ionic-native/camera/ngx';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 //Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -35,7 +36,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera, GooglePlus, Geolocation, AndroidPermissions
+    Camera, GooglePlus, Geolocation, AndroidPermissions, DatePicker,
   ],
   bootstrap: [AppComponent]
 })

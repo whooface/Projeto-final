@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UserService } from './../service/user.service';
 import { User } from './../model/user';
 import { MenuController } from '@ionic/angular';
+import { Dog } from '../model/dog';
+import { DogService } from '../service/dog.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +12,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage {
 protected user:User = new User
+protected dog:Dog
 
 
 

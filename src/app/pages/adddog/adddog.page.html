@@ -37,12 +37,20 @@
 
   <ion-item>
     <ion-label position="floating"><strong>Sexo:</strong></ion-label>
-    <ion-select name="sexo" [(ngModel)]="dog.sexo">
+    <ion-select name="genero" [(ngModel)]="dog.genero">
       <ion-select-option *ngFor="let p of pets" >{{p.sexo}}</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-grid>
+  <!--  -->
+  <ion-item>
+    <ion-label><strong>Qual a Data de Nascimento?</strong></ion-label>
+    <ion-datetime displayFormat="YYYY, MMMM" monthNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Novembro, Dezembro, ' [(ngModel)]="dog.idade" name="idade"></ion-datetime>
+  </ion-item>
+  <!--  -->
+
+
+  <!-- <ion-grid>
       <ion-row>
         <ion-col>
             <ion-item>
@@ -59,7 +67,7 @@
               </ion-item> 
         </ion-col>
       </ion-row>
-  </ion-grid>
+  </ion-grid> -->
   
   <ion-item>
     <ion-label position="floating"><strong>Descrição:</strong></ion-label>
@@ -71,6 +79,8 @@
     <br>
     <ion-button type="submit" expand="block" style="width: 18em; margin: auto;" >Cadastrar</ion-button>
     <br>
+    <!-- <ion-button type="button" expand="block" style="width: 18em; margin: auto;" (click)="PegaData()" >PegaData</ion-button>
+    <br> -->
     <ion-button type="reset" expand="block" style="width: 18em; margin: auto;"  color="danger" routerLink="/login" >Cancelar</ion-button>
     <br>
   </section>
