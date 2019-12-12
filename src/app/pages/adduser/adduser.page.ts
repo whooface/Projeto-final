@@ -27,7 +27,6 @@ export class AdduserPage implements OnInit {
   ngOnInit() {
 
   }
-
   onSubmit(form){
     console.log(this.user);
     this.msg.presentLoading()
@@ -35,23 +34,22 @@ export class AdduserPage implements OnInit {
       res=>{
         //console.log("Cadastrado!", res);
         this.msg.dismissLoading()
-        this.msg.presentAlert("DAAALE","Cadastado com sucesso!")
+        this.msg.presentAlert("Bem Vindo","Cadastado com sucesso!")
         this.user = new User;
         form.reset();
-        this.msg.dismissLoading()
-        this.router.navigate(['']);
+        this.router.navigate(['home']);
       },
        erro=>{
-        console.log("Erro: ", erro);
-        this.msg.dismissLoading() 
-        this.msg.presentAlert("IH MANÉ","Erro no cadastro!")
+        console.log("Erro: ", erro); 
+        this.msg.dismissLoading()
+        this.msg.presentAlert("Ops!","Erro ao cadastrar!")
        }
     )
   }
   tirarFoto(){
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      quality: 50,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -121,45 +119,7 @@ export class AdduserPage implements OnInit {
     await actionSheet.present();
   }
 
-
-
-  tirarfoto(){
-    const options: CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
     
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-     this.user.foto = base64Image;
-    }, (err) => {
-     // Handle error
-    });
-  }
-
-    pegarfoto(){
-    const options: CameraOptions = {
-      quality: 50,
-      //Galeria
-      sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-     this.user.foto = base64Image;
-    }, (err) => {
-     // Handle error
-    });
-  }
 
 }
 

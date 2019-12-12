@@ -18,7 +18,8 @@ export class UserService {
         res=>{
           user.senha = null;
           user.email = null;
-          return this.firedb.object("usuarios/" + res.user.uid).set(user).then().catch(
+          user.ativo = true;
+          return this.firedb.object("user/" + res.user.uid).set(user).then().catch(
             ()=>{
               this.afAuth.auth.currentUser.delete()
             });//apagar user

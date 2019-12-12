@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-usuario</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Novo Usuário</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -36,7 +39,7 @@
 
   <section>
     <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
-    <ion-button type="reset" expand="full" color="danger" routerLink="/home">Cancelar</ion-button>
+    <ion-button type="reset" expand="full" (click)="sair()" color="danger">Cancelar</ion-button>
   </section>
 </form>
 </ion-content>

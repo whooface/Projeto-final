@@ -22,7 +22,7 @@ export class MensagemService {
 
     await alert.present();
   }
-
+  
   async presentLoading() {
     const loading = await this.loadingController.create({
       //message: 'Hellooo',

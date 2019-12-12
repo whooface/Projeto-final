@@ -23,15 +23,17 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Cadastra-se Seu Pet',
-      url:'/adddog',
-      icon:'paw'
+      title: 'Mapa',
+      url: '/googlemaps',
+      icon: 'map'
     },
     {
-      title:'maps',
-      url:'/googlemaps',
-      icon:'map'
+      title:'Cadastrar seu Pet',
+      url:'/adddog',
+      icon:'paw'
+
     }
+
 
   ];
 
@@ -39,14 +41,18 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private androidPermissions: AndroidPermissions
+    private androidPermissions: AndroidPermissions,
+
   ) {
+    
     this.initializeApp();
-    this.permitir();
+    this.permitir()
+    
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      //this.statusBar.styleDefault();
       this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashScreen.hide();
       
@@ -61,5 +67,8 @@ export class AppComponent {
       result => console.log('Has permission?',result.hasPermission),
       err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.LOCATION)
     );
+    
+    
+
   }
 }

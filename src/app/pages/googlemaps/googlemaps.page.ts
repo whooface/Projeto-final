@@ -10,7 +10,6 @@ import {
   Environment
 } from '@ionic-native/google-maps';
 
-
 @Component({
   selector: 'app-googlemaps',
   templateUrl: './googlemaps.page.html',
@@ -18,16 +17,18 @@ import {
 })
 export class GooglemapsPage implements OnInit {
 
-  map: GoogleMap;
   constructor() { }
 
   ngOnInit() {
     this.loadMap()
   }
 
+
+
+  map: GoogleMap;
+
   loadMap() {
 
-    // This code is necessary for browser
 
     let mapOptions: GoogleMapOptions = {
       camera: {
@@ -55,5 +56,5 @@ export class GooglemapsPage implements OnInit {
       alert('clicked');
     });
   }
-}
 
+}
