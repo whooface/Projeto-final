@@ -19,9 +19,9 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Adicionar Usuários',
-      url: '/adduser',
-      icon: 'list'
+      title: 'Adicionar Pet',
+      url: '/adddog',
+      icon: 'paw'
     },
     {
       title: 'Mapa',
