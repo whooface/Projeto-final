@@ -1,48 +1,45 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-    <ion-title>Novo Usuário</ion-title>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item lines="none">
+  <div class="container">
+    <div style="text-align: center;">
     <img src="assets/perfil.png" (click)="escolherfoto()" *ngIf="!user.foto">
     <img [src]="user.foto" (click)="escolherfoto()" *ngIf="user.foto">
-  </ion-item>
+    </div>
 
 
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
-  <ion-item>
-    <ion-label position="floating">Nome</ion-label>
-    <ion-input type="text" name="nome" [(ngModel)] = "user.nome" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">E-mail</ion-label>
-    <ion-input type="email" name="email" [(ngModel)] = "user.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Senha</ion-label>
-    <ion-input type="password" name="password" [(ngModel)] = "user.senha" required minlength="6" #s="ngModel"></ion-input>
-  </ion-item>
   
-  <ion-text color="danger" *ngIf="s.invalid && s.dirty">Senha muito curta !!</ion-text>
+    <ion-label position="floating"><strong>Nome</strong></ion-label>
+    <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius:  9px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="text" name="nome" [(ngModel)] = "user.nome" required></ion-input>
+  
+<br>
+  
+    <ion-label position="floating"><strong>E-mail</strong></ion-label>
+    <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius:  9px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="email" name="email" [(ngModel)] = "user.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+  
+<br>
+  
+    <ion-label position="floating"><strong>Senha</strong></ion-label>
+    <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius:  9px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="password" name="password" [(ngModel)] = "user.senha" required minlength="6" #s="ngModel"></ion-input>
+  
+  
+  <ion-text color="danger" *ngIf="s.invalid && s.dirty"><strong>Senha muito curta !!!</strong>></ion-text>
 
+<br>
+  
+    <ion-label position="floating"><strong>Confirmar Senha</strong></ion-label>
+    <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius:  9px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="password" name="confpassword" (ngModel) = "confpassword" required minlength="6" #c="ngModel"></ion-input>
+  
 
-  <ion-item>
-    <ion-label position="floating">Confirmar Senha</ion-label>
-    <ion-input type="password" name="confpassword" (ngModel) = "confpassword" required minlength="6" #c="ngModel"></ion-input>
-  </ion-item>
-
-  <ion-text color="danger" *ngIf="s.value != c.value">As senhas não coincidem!!</ion-text>
-
+  <ion-text color="danger" *ngIf="s.value != c.value"><strong>As senhas não coincidem !!!</strong></ion-text>
+<br>
   <section>
-    <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
-    <ion-button type="reset" expand="full" (click)="sair()" color="danger">Cancelar</ion-button>
+    <ion-button type="submit" expand="block" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
+    <br>
+    <ion-button type="reset" expand="block" (click)="sair()" color="danger">Cancelar</ion-button>
   </section>
 </form>
+</div>
 </ion-content>
