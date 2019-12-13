@@ -1,7 +1,9 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from './../model/user';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ export class UserService {
   constructor(
     private firedb : AngularFireDatabase,
     public afAuth : AngularFireAuth,
+    public fireds: AngularFirestore
   ) { }
 
   add(user:User){
@@ -58,5 +61,16 @@ export class UserService {
   logout(){
     this.afAuth.auth.signOut()
   }
+
+  gelAll() {
+    return this.fireds.collection<User>("user", ref => ref.where('ativo', '==', true)).snapshotChanges()
+      .pipe(
+        map(dados =>
+          dados.map(d => ({ key: d.payload.doc.id, ...d.payload.doc.data() }))
+          //dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
+        )
+      )
+}
+
 }
 

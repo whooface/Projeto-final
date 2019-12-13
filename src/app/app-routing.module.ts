@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'perfildog', loadChildren: './pages/perfildog/perfildog.module#PerfildogPageModule', canActivate:[GuardService] },
   { path: 'perfiluser', loadChildren: './pages/perfiluser/perfiluser.module#PerfiluserPageModule', canActivate:[GuardService] },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'googlemaps', loadChildren: './pages/googlemaps/googlemaps.module#GooglemapsPageModule', canActivate:[GuardService] }
+  { path: 'googlemaps', loadChildren: './pages/googlemaps/googlemaps.module#GooglemapsPageModule', canActivate:[GuardService] },  { path: 'chat', loadChildren: './pages/chat/chat.module#ChatPageModule' }
+
 
 
 ];

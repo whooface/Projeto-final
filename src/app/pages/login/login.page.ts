@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
         .then(res => {
           console.log(res)
-          this.router.navigate([''])
+          this.router.navigate(['home'])
         })
         .catch(err => console.error(err))
     } else {

@@ -32,6 +32,12 @@ export class AppComponent {
       url:'/adddog',
       icon:'paw'
 
+    },
+    {
+      title:'Match',
+      url:'/chat',
+      icon:'add'
+
     }
 
 
