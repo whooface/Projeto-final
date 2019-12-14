@@ -1,44 +1,33 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button color="dark"></ion-menu-button>
-        </ion-buttons>
-    <ion-title>Elegance</ion-title>
-    <ion-buttons slot="end">
-        <ion-icon name="more" class="fontSize"></ion-icon>
-      </ion-buttons>
-    <ion-buttons slot="end" padding-start>
-        <ion-icon name="add"  class="fontSize"></ion-icon>
-      </ion-buttons>
+    <ion-item>
+      <ion-avatar class="avatar">
+        <img src="assets/perfil.png" *ngIf="!user.foto">
+        <img [src]="user.foto" *ngIf="user.foto">
+      </ion-avatar>
+      <b>
+        <ion-label id="lheader" style="padding-left: 2vh;padding-bottom: 2vh;font-size: 3vh;">{{user.nome}}</ion-label>
+      </b>
+    </ion-item>
   </ion-toolbar>
+
+
 </ion-header>
 
 <ion-content>
-  <ion-list no-padding >
-    <ion-item *ngFor="let chat of chatData"  lines="none">
-      <div class="borderBottomLine"></div>
-      <div class="listSection">
-        <div class="UserimgSection">
-          <ion-avatar class="chatImage" slot="start">
-            <ion-img [src]="chat.image"></ion-img>
-            <span class="onlineOffline_icon" [ngStyle]="{'background-color':(chat.status === 'online'? '#4cd137' : '#c23616')}"></span>
-          </ion-avatar>
-        </div>
-        <div class="usernameSection" padding-start padding>
-          <h5>
-            <ion-icon *ngIf="chat.group" name="people" color="medium"></ion-icon>
-            <ion-icon name="microphone" *ngIf="chat.broadcast" color="medium"></ion-icon>
-             {{chat.name}}
-            </h5>
-          <p class="descText" no-margin no-padding>{{chat.description}}</p>
-        </div>
-      </div>
-      <div slot="end" class="lastSection">
-        <ion-note *ngIf="chat.badge || !chat.time" class="sendTime">{{chat.sendTime}}</ion-note>
-          <ion-badge slot="end" class="userBadge" *ngIf="chat.badge">{{chat.badge}}</ion-badge>
-          <ion-note slot="end" *ngIf="chat.time">{{chat.time}}</ion-note>
-      </div>
-      
-    </ion-item>
-  </ion-list>
+
+
+  <ion-item *ngFor="let a of amigos" routerLink="/bate-papo">
+    <ion-avatar class="fotoChat"><img [src]="a.foto"></ion-avatar>
+    <ion-label class="chatNome" style="padding-bottom:15px;">
+      {{a.nome}}
+      <p>Online</p>
+    </ion-label>
+    
+    
+
+  </ion-item>
+
+
+
 </ion-content>

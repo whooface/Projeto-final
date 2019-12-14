@@ -11,7 +11,7 @@ import { map } from "rxjs/operators";
 export class UserService {
 
   constructor(
-    private firedb : AngularFireDatabase,
+    public firedb : AngularFireDatabase,
     public afAuth : AngularFireAuth,
     public fireds: AngularFirestore
   ) { }
@@ -46,6 +46,17 @@ export class UserService {
     return this.firedb.object<User>("usuarios/"+ user.uid).valueChanges();
   }
 
+  // getAll(){
+  //   return this.firedb.list<User>("usuarios").snapshotChanges()
+  //   .pipe(
+  //     map(dados =>
+  //       dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
+        
+  //     )
+  //   )
+  //  }
+
+
   //varivel com dois U
   update(user:User){
     let uuser = this.afAuth.auth.currentUser;
@@ -62,11 +73,11 @@ export class UserService {
     this.afAuth.auth.signOut()
   }
 
-  gelAll() {
-    return this.fireds.collection<User>("user", ref => ref.where('ativo', '==', true)).snapshotChanges()
+  getAll() {
+    return this.firedb.list<User>("usuarios").snapshotChanges()
       .pipe(
         map(dados =>
-          dados.map(d => ({ key: d.payload.doc.id, ...d.payload.doc.data() }))
+          dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
           //dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
         )
       )
