@@ -8,10 +8,23 @@
 
 <ion-content>
 
-  <ion-item >
+  <ion-item>
     <ion-label position="stacked">Nome Completo</ion-label>
     <ion-input required value="{{user.nome}}" type="text"></ion-input>
       
   </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input required value="{{user.email}}" type="text" readonly></ion-input>
+      
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Senha</ion-label>
+    <ion-input required value="{{user.email}}" type="text" readonly></ion-input>
+      
+  </ion-item>
+  <ion-item *ngFor="let user of array">
+  <label>{{user.nome}}</label>
+</ion-item>
     
 </ion-content>

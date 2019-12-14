@@ -8,6 +8,8 @@ import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { MenuController } from '@ionic/angular';
 import * as $ from "jquery";
+import { UserService } from 'src/app/service/user.service';
+import {  User  } from '../../model/user'
 
 
 @Component({
@@ -21,7 +23,7 @@ export class LoginPage implements OnInit {
   protected senha:string=null;
   
   
-
+  protected user:User = new User
   constructor(
     private afAuth : AngularFireAuth,
     private router:Router,
@@ -30,6 +32,7 @@ export class LoginPage implements OnInit {
     private platform:Platform,
     private geolocation: Geolocation,
     private menu : MenuController,
+    private userService : UserService
    
   ) { }
 
@@ -56,6 +59,12 @@ export class LoginPage implements OnInit {
     if (!this.platform.is("cordova")) {
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
         .then(res => {
+          if(this.userService.get() != null){
+             let ok = this.afAuth.auth.currentUser
+            this.user.nome = ok.displayName
+            this.user.foto = ok.photoURL
+            this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
+          }
           console.log(res)
           this.router.navigate([''])
         })
@@ -63,6 +72,12 @@ export class LoginPage implements OnInit {
     } else {
       this.googlePlus.login({})
         .then(res => {
+           if(this.userService.get() != null){
+             let ok = this.afAuth.auth.currentUser
+            this.user.nome = ok.displayName
+            this.user.foto = ok.photoURL
+            this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
+          }
           console.log(res)
           this.router.navigate([''])
         })

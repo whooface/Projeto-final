@@ -7,7 +7,7 @@ import { User } from './../../model/user';
   styleUrls: ['./updateuser.page.scss'],
 })
 export class UpdateuserPage implements OnInit {
-
+   private array = [];
   constructor(
     private userService: UserService
   ) { }
@@ -19,7 +19,15 @@ export class UpdateuserPage implements OnInit {
       res=>{
         this.user = res
       })
+      this.userService.getAll().subscribe(
+        res=>{
+          this.array = res
+          console.log(this.array)
+        }
+      )
+     
     }
+    
   }
 
 
