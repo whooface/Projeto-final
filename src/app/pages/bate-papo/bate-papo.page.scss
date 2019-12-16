@@ -1,0 +1,19 @@
+ion-content{
+    --ion-background-color:rgb(55, 169, 245);
+    height: 200vh;
+}
+ion-card{
+    background-color: #fff;
+}
+.alturaPage{
+    height: 32em;
+}
+.test{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 34em;
+    width: 100%;
+    background: red;
+    z-index: 9;
+  }

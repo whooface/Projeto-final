@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>bate-papo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="alturaPage">
+    <ion-card style="width: 50%; margin-bottom: 5vh;">
+    <div>
+      <ion-label>Ruan</ion-label>
+    </div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti magni ad repudiandae error vero inventore quibusdam deserunt! Iure voluptates id ex quae at, quam, aliquam distinctio doloremque voluptate exercitationem dolore?</p>
+  </ion-card>
+</div>
+  
+  <ion-item slot="fixed" class="test" >
+  <ion-textarea style= "border-style: solid; border-width: 0.5px; border-radius: 30px; padding:1px 1px 1px 15px; height: 3em;" placeholder="digita ae fdp" (ngModel)="msg" #m="ngModel"></ion-textarea>
+  <ion-button type="submit"[disabled]="m.valeu == m.undefined "><ion-icon name="send"></ion-icon></ion-button>
+</ion-item>
+</ion-content>
