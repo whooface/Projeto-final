@@ -14,14 +14,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-    constructor(
+    public chatData:Array<any>;
+    protected user: User = new User;
+  
+  
+  
+  
+  constructor(
       
     public firedb: AngularFireDatabase,
     public afAuth: AngularFireAuth,
     protected userService: UserService,
+
     ) {}
 
-    public chatData:Array<any>;
+
+    
   
     ngOnInit() {
       this.chatData = [{
