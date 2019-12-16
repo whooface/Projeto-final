@@ -4,6 +4,9 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import {  UserService } from '../app/service/user.service';
+import { User } from './model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -33,10 +36,15 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private androidPermissions: AndroidPermissions
+    private androidPermissions: AndroidPermissions,
+    private userService: UserService,
+    private router: Router
   ) {
+    
     this.initializeApp();
+    //this.verificar()
     this.permitir()
+    
   }
 
   initializeApp() {
@@ -58,5 +66,13 @@ export class AppComponent {
     
     
 
+  }
+  verificar(){
+    if(this.userService.afAuth.auth.currentUser == null){
+       this.router.navigate(['login'])
+    }
+    else{
+      this.router.navigate(['home'])
+    }
   }
 }

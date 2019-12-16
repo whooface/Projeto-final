@@ -116,6 +116,9 @@ export class AdduserPage implements OnInit {
     });
     await actionSheet.present();
   }
+  sair(){
+    this.router.navigate(["/login"])
+  }
   
 
 }

@@ -42,7 +42,7 @@
 
   <section>
     <ion-button type="submit" expand="full" [disabled]="fc.invalid || s.value != c.value">Cadastrar</ion-button>
-    <ion-button type="reset" routerLink="/login" expand="full" color="danger">Cancelar</ion-button>
+    <ion-button type="reset" expand="full" (click)="sair()" color="danger">Cancelar</ion-button>
   </section>
 </form>
 </ion-content>

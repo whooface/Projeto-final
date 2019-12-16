@@ -16,14 +16,14 @@ protected user:User = new User
 
   constructor(
     protected userservice:UserService,
-    private menu: MenuController
+    private menu : MenuController
   ) {
     console.log(this.userservice.afAuth.auth.currentUser)
     // console.log(this.userservice.afAuth.user)
   }
 
   ionViewWillEnter() {
-    this.menu.enable(true);
+    this.menu.enable(true)
     let login = this.userservice.afAuth.auth.currentUser;
     if (login) {
       this.userservice.get().subscribe(
