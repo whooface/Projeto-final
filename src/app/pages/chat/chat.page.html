@@ -18,7 +18,10 @@
 
 
   <ion-item *ngFor="let a of amigos" routerLink="/bate-papo">
-    <ion-avatar class="fotoChat"><img [src]="a.foto"></ion-avatar>
+    <ion-avatar class="fotoChat">
+      <img src="assets/perfil.png" *ngIf="!user.foto">
+      <img [src]="a.foto" *ngIf="user.foto">
+    </ion-avatar>
     <ion-label class="chatNome" style="padding-bottom:15px;">
       {{a.nome}}
       <p>Online</p>

@@ -7,4 +7,5 @@ export class User {
     ativo:boolean = true;
     lat:number;
     lng:number;
+    status:boolean = false;
 }

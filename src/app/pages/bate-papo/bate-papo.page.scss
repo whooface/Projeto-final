@@ -3,7 +3,7 @@ ion-content{
     height: 200vh;
 }
 ion-card{
-    background-color: #fff;
+    background-color:rgb(190, 241, 190);
 }
 .alturaPage{
     height: 32em;
@@ -12,8 +12,11 @@ ion-card{
     position: absolute;
     left: 0;
     right: 0;
-    top: 34em;
+    top: 92%;
     width: 100%;
-    background: red;
     z-index: 9;
+    --ion-background-color:transparent;
+    
+    
+
   }
