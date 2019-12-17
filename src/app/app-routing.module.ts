@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'perfiluser', loadChildren: './pages/perfiluser/perfiluser.module#PerfiluserPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'googlemaps', loadChildren: './pages/googlemaps/googlemaps.module#GooglemapsPageModule', canActivate:[GuardService] },
-  { path: 'updateuser', loadChildren: './pages/updateuser/updateuser.module#UpdateuserPageModule' }
+  { path: 'updateuser', loadChildren: './pages/updateuser/updateuser.module#UpdateuserPageModule' },  { path: 'trocar-senha', loadChildren: './pages/trocar-senha/trocar-senha.module#TrocarSenhaPageModule' }
+
 
 
 
