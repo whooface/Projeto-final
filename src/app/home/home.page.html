@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title style="text-align: center;">
+    <ion-title>
      <strong>Home</strong>
     </ion-title>
     <ion-title slot="end">
@@ -21,16 +21,30 @@
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Nome do Projeto</ion-card-subtitle>
-        <ion-card-title>Bem vindo ao "Nome Do Projeto"</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem velit alias hic quibusdam eaque reprehenderit possimus, eum omnis, odio sint asperiores tempora nemo sunt architecto, totam amet exercitationem qui quo?</p>
-      </ion-card-content>
-    </ion-card>
+
+<ion-slides [options]="SliderConfig">
+
+  <ion-slide>
+
+
+<ion-card class="welcome-card">
+    <img src="/assets/shapes.svg" alt="" />
+    <ion-card-header>
+      <ion-card-subtitle>Nome do Pet</ion-card-subtitle>
+      <ion-card-title>Descrição do Pet</ion-card-title>
+    
+    <ion-card-content>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem velit alias hic quibusdam eaque reprehenderit possimus, eum omnis, odio sint asperiores tempora nemo sunt architecto, totam amet exercitationem qui quo?</p>
+    </ion-card-content>
+  </ion-card-header>
+  </ion-card> 
+
+
+  </ion-slide>
+
+  </ion-slides>
+
+    
     <ion-list lines="none">
       <ion-list-header>
         <ion-label>Resources</ion-label>
