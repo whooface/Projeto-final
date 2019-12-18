@@ -22,6 +22,17 @@ export class MensagemService {
 
     await alert.present();
   }
+
+  async presentAlertSenha(titulo:string, texto:string){
+    const alertSenha = await this.alertController.create({
+      header: titulo,
+      //subHeader: 'Subtitle',
+      message: texto,
+      buttons: ['Não','Sim']
+    });
+
+    await alertSenha.present();
+  }
   async presentLoading() {
     const loading = await this.LoadingController.create({
       // message: 'Hellooo',
