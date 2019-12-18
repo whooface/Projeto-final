@@ -9,10 +9,10 @@
   
   <ion-content>
     <ion-list>
-          <ion-item lines="none">
-              <img src="assets/perfil.png" *ngIf="!user.foto">
-              <img [src]="user.foto" *ngIf="user.foto">
-          </ion-item>
+            <div style="text-align: center;">
+                    <img src="assets/perfil.png" (click)="escolherfoto()" *ngIf="!user.foto">
+                    <img [src]="user.foto" (click)="escolherfoto()" *ngIf="user.foto">
+                    </div>
         <ion-item>
             <h1><strong>{{user.nome}}</strong></h1>
         </ion-item>
