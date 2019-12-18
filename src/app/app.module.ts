@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Camera } from '@ionic-native/camera/ngx';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 //Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -40,7 +41,7 @@ import { Network } from '@ionic-native/network/ngx';
     Network,
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera, GooglePlus, Geolocation, AndroidPermissions
+    Camera, GooglePlus, Geolocation, AndroidPermissions, DatePicker,
   ],
   bootstrap: [AppComponent]
 })
