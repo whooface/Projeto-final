@@ -3,3 +3,13 @@
   overflow: hidden;
 }
 
+ion-toolbar{
+  --color: white ;
+  --ion-background-color: var(--ion-color-blue_e);
+
+}
+
+ion-chip{
+  border: solid #5493c1 1px;
+  background-color: #3977a4;
+}

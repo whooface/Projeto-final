@@ -1,11 +1,14 @@
 <ion-header>
     <ion-toolbar>
-        <ion-item>
-            <ion-avatar class="avatar">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+        <ion-item>          
+         <b><ion-label id="lheader" style="font-size: 3vh;">{{user.nome}}</ion-label></b>
+         <ion-avatar slot="end" class="avatar">
                 <img src="assets/perfil.png" *ngIf="!user.foto">
                 <img [src]="user.foto" *ngIf="user.foto">
             </ion-avatar>
-         <b><ion-label id="lheader" style="padding-left: 2vh;padding-bottom: 2vh;font-size: 3vh;">{{user.nome}}</ion-label></b>
         </ion-item>
     </ion-toolbar>
 
@@ -49,11 +52,11 @@
 
       <ion-item (click)="sair()">
         <ion-avatar slot="start">
-         <ion-icon class="icon" name="person"></ion-icon>
+         <ion-icon class="icon" name="exit"></ion-icon>
         </ion-avatar>
         <ion-label>
-          <h3>Meus Dados</h3>
-          <p>Configure seu perfil</p>
+          <h3>Sair</h3>
+          <p>Sair de seu perfil</p>
         </ion-label>
       </ion-item>
   
