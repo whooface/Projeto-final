@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 //Firebase
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -24,6 +24,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import {GuardService} from './service/guard.service'
 import { Network } from '@ionic-native/network/ngx';
 
+//Socket.io
+import{SocketIoModule,SocketIoConfig} from 'ngx-socket-io';
+const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
 
 
 
@@ -37,7 +40,8 @@ import { Network } from '@ionic-native/network/ngx';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    SocketIoModule.forRoot(config)
     ],
   providers: [
     StatusBar,

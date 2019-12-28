@@ -5,18 +5,40 @@
 </ion-header>
 
 <ion-content>
-  <div  class="alturaPage">
-    <ion-card id="lado" style="width: 50%; margin-bottom: 5vh;display: block;float: left;" *ngFor="let e of chat.entrada">
-    <div>
-      <ion-label>Ruan</ion-label>
-    </div>
-    <p>{{e}}</p>
-  </ion-card>
-</div>
-  
-  <ion-item slot="fixed" class="test">
-  <ion-input style= "border-style: solid; background-color:#fff; border-color: rgb(173, 191, 207); border-width: 0.5px; border-radius: 30px; padding:1px 1px 1px 15px; height: 2em;" placeholder="digita ae fdp" 
-  [(ngModel)]="entrada"></ion-input>
-  <ion-button type="submit" (click)="enviar()"><ion-icon name="send"></ion-icon></ion-button>
-</ion-item>
+  <ion-grid>
+    <ion-text color="medium" text-center>
+     
+    </ion-text>
+    <ion-row *ngFor="let message of mensagens">
+ 
+      <ion-col size="9" *ngIf="message.user !== currentUser" class="message other-message">
+        <b>{{ message.user }}</b><br>
+        <span>{{ message.msg }}</span>
+        <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
+      </ion-col>
+ 
+      <ion-col offset="3" size="9" *ngIf="message.user === currentUser"  class="message my-message">
+        <b>{{ message.user }}</b><br>
+        <span>{{ message.msg }}</span>
+        <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
+      </ion-col>
+ 
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row align-items-center>
+      <ion-col size="10">
+        <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="mensagem"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" [disabled]="mensagem === ''" class="msg-btn"
+          (click)="enviarMsg()">
+          <ion-icon name="ios-send" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

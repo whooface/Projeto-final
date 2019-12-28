@@ -1,14 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-item>
-      <ion-avatar class="avatar">
-        <img src="assets/perfil.png" *ngIf="!user.foto">
-        <img [src]="user.foto" *ngIf="user.foto">
-      </ion-avatar>
-      <b>
-        <ion-label id="lheader" style="padding-left: 2vh;padding-bottom: 2vh;font-size: 3vh;">{{user.nome}}</ion-label>
-      </b>
-    </ion-item>
+    <ion-title style="text-align: center;"><strong>Lista de Match's</strong></ion-title>
   </ion-toolbar>
 
 
