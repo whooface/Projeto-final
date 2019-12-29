@@ -3,6 +3,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -41,7 +42,8 @@ const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    HttpClientModule
     ],
   providers: [
     StatusBar,

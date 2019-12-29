@@ -13,17 +13,17 @@ ion-content{
   }
    
   .my-message {
-    background: var(--ion-color-tertiary);
-    color: #fff;
+    background:var(--ion-color-chat-saida);
+    color: rgb(53, 52, 52);
   }
    
   .other-message {
-    background: var(--ion-color-secondary);
-    color: #fff;
+    background: var(--ion-color-light);
+    color: rgb(53, 52, 52);
   }
    
   .time {
-    color: #dfdfdf;
+    color: #817e7e;
     float: right;
     font-size: small;
   }

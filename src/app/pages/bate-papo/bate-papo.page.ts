@@ -8,6 +8,7 @@ import { ToastController } from '@ionic/angular';
 
 
 
+
 @Component({
   selector: 'app-bate-papo',
   templateUrl: './bate-papo.page.html',
@@ -16,7 +17,7 @@ import { ToastController } from '@ionic/angular';
 export class BatePapoPage implements OnInit {
   
   protected chat: Chat = new Chat;
-  private user: User = new User
+  protected user: User = new User
   
   
   currentUser =''
@@ -32,15 +33,16 @@ export class BatePapoPage implements OnInit {
 
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
+
+
     this.socket.connect();
 
+    let nome = this.userService.afAuth.auth.currentUser.displayName;
     
-    let nome = this.user.email
-    
-    this.user = new User
-    
+   
     let name = `${nome}`
+    
     this.currentUser = name;
 
      this.socket.emit('set-name', name);
@@ -81,4 +83,5 @@ export class BatePapoPage implements OnInit {
  ionViewWillLeave(){
    this.socket.disconnect();
  }
+ 
 }
