@@ -23,7 +23,7 @@ export class GuardService implements CanActivate{
       return true
    }
    else{
-     this.router.navigate([''])
+     this.router.navigate(['/login'])
      console.log(this.router.url)
      return false
    }

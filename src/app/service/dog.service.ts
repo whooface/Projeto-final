@@ -1,3 +1,4 @@
+import { User } from './../model/user';
 import { Dog } from './../model/dog';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
@@ -26,11 +27,12 @@ export class DogService {
         nome: dog.nome,
         descricao: dog.descricao,
         especie: dog.especie,
-        // foto: dog.foto,
+        fotos: dog.fotos,
         status: true,
         verificado: false,
         idade: dog.idade,
-        tempo: dog.tempo,
+        // tempo: dog.tempo,
+        genero: dog.genero
       });
     }
 
@@ -45,7 +47,7 @@ export class DogService {
     return this.firebs.object("user/"+ uuser.uid).update(dog);
   }
   //varivel com dois U
-  delete(dog:Dog){
+  delete(user:User){
     let uid = this.afAuth.auth.currentUser;
     this.afAuth.auth.currentUser.delete()
     return this.firebs.object("user/"+ uid).update({ativo: false});

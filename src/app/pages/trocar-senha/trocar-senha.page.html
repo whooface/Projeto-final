@@ -1,0 +1,37 @@
+<ion-header> 
+   
+  <ion-toolbar >
+    <ion-icon routerLink="/updateuser" slot="start" style="margin-left: 2vh;" name="return-left"></ion-icon> 
+    <ion-title style="margin-left: 10vh;font-size: 2vh;"><strong>ALTERAR SENHA</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div class="center">
+<ion-card>
+  
+  <ion-item>
+    <ion-label position="stacked"><strong>Senha Atual</strong></ion-label>
+    <ion-icon style="padding-top: 10px;" name="eye" id="eyeS" slot="end" (click)="visualizarSenha('senha','eyeS')"></ion-icon>
+    <ion-input required value="" type="password" id="senha"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked"><strong>Nova Senha</strong></ion-label>
+    <ion-icon style="padding-top: 10px;" [(ngModel)]="senha" id="eyeNS" name="eye" (click)="visualizarSenha('nSenha','eyeNS')" slot="end"></ion-icon>
+    <ion-input  required value="" type="password" id="nSenha"></ion-input>
+  </ion-item>
+
+  
+  <ion-item>
+    <ion-label position="stacked"><strong>Confirmar Senha</strong></ion-label>
+    <ion-icon style="padding-top: 10px;" id="eyeCS" name="eye" (click)="visualizarSenha('cnSenha','eyeCS')" slot="end"></ion-icon>
+    <ion-input  required value="" type="password" id="cnSenha"></ion-input>
+  </ion-item>
+</ion-card>
+
+<ion-button (onclick)="alterarSenha()"style="width: 66%; margin: auto;" expand="block">Alterar Senha</ion-button>
+
+</div>
+</ion-content>

@@ -4,8 +4,9 @@ import { MensagemService } from './../../service/mensagem.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ActionSheetController } from '@ionic/angular';
-
+import { ActionSheetController, ToastController } from '@ionic/angular';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
+const data = new Date();
 
 @Component({
   selector: 'app-adddog',
@@ -24,18 +25,20 @@ export class AdddogPage implements OnInit {
     private router:Router,
     private camera:Camera,
     public actionSheetController: ActionSheetController,
+    private datePicker: DatePicker,
+    public toastCtrl:ToastController
   ) { 
     this.pets = [
       {
        especie: "Canina",
-       sexo : "Masculino",
+       sexo : "Macho",
        tempo: "Ano",
        
       }
       ,
       {
        especie: "Felino",
-       sexo : "Feminino",
+       sexo : "Fêmea",
        tempo: "Meses"
        
       },
@@ -45,10 +48,11 @@ export class AdddogPage implements OnInit {
   }
 
   ngOnInit() {
+    this.showToast('Toque abaixo para adicionar uma foto!')
   }
- 
+
   onSubmit(form){
-    console.log(this.dog);
+    //console.log(this.user);
     this.msg.presentLoading()
     this.dogService.add(this.dog).then(
       res=>{
@@ -57,15 +61,139 @@ export class AdddogPage implements OnInit {
         this.msg.presentAlert("DAAALE","Cadastado com sucesso!")
         this.dog = new Dog;
         form.reset();
-        this.msg.dismissLoading()
         this.router.navigate(['']);
       },
        erro=>{
-        console.log("Erro: ", erro);
-        this.msg.dismissLoading() 
+        console.log("Erro: ", erro); 
         this.msg.presentAlert("IH MANÉ","Erro no cadastro!")
        }
     )
+  }
+
+    //Fotos ------------------------------------------  
+    tirarFoto() {
+      const options: CameraOptions = {
+        quality: 50,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+  
+      this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        if (this.dog.fotos == null) {
+          this.dog.fotos = []
+        }
+        this.dog.fotos.push(base64Image);
+      }, (err) => {
+        // Handle error
+      });
+    }
+  
+    pegarFoto() {
+      const options: CameraOptions = {
+        quality: 50,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+  
+      this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        if (this.dog.fotos == null) {
+          this.dog.fotos = []
+        }
+        this.dog.fotos.push(base64Image);
+      }, (err) => {
+        // Handle error
+      });
+    }
+  
+    async escolherFoto() {
+      const actionSheet = await this.actionSheetController.create({
+        header: 'Escolhar Opção',
+        buttons: [
+          {
+            text: 'Camera',
+            icon: 'camera',
+            handler: () => {
+              this.tirarFoto()
+            }
+          },
+          {
+            text: 'Galeria',
+            icon: 'photos',
+            handler: () => {
+              this.pegarFoto()
+            }
+          },
+          {
+            text: 'Remover Foto',
+            icon: 'qr-scanner',
+            handler: () => {
+              this.dog.fotos = null;
+            }
+          },
+          {
+            text: 'Cancelar',
+            icon: 'close',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }]
+      });
+      await actionSheet.present();
+    }
+  
+    async removerFoto(index) {
+      const alert = await this.msg.alertController.create({
+        header: 'Confirmar!',
+        message: 'Deseja apagar a ' + (index + 1) + 'ª foto?',
+        buttons: [
+          {
+            text: 'Sim',
+            handler: () => {
+              this.dog.fotos.splice(index, 1)
+              if (this.dog.fotos[0] == null)
+                this.dog.fotos = null
+            }
+          },
+          {
+            text: 'Não',
+            role: 'cancel',
+            cssClass: 'secondary',
+          }
+        ]
+      })
+      await alert.present()
+    }
+    
+    PegaData(){
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => console.log('Got date: ', date),
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+  //mesagem de foto
+
+  async showToast(msg) {
+    const toast = await this.toastCtrl.create({
+      message: msg ,
+      duration: 3000,
+      position: 'top',
+    });
+    toast.present();
   }
 
 }

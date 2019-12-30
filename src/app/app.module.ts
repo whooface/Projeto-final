@@ -1,3 +1,4 @@
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { Network } from '@ionic-native/network/ngx';
 
 //Socket.io
 import{SocketIoModule,SocketIoConfig} from 'ngx-socket-io';
+import { from } from 'rxjs';
 const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
 
 
@@ -52,7 +54,7 @@ const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
     Network,
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera, GooglePlus, Geolocation, AndroidPermissions
+    Camera, GooglePlus, Geolocation, AndroidPermissions, DatePicker,
   ],
   bootstrap: [AppComponent]
 })
