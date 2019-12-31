@@ -1,14 +1,23 @@
-  
-.welcome-card{
+
+////////////////////////////////////////////////////  TELA MEDIA ////////////////////////////////////////////////////
+@media (min-width: 375px) and (max-width:425px) {
+  .welcome-card img{
+  background-position: center;
+  background-size: cover; 
+  height: auto;
+  max-height: 500px; 
   width: 100%;
-  max-height: 50em;
-  
-  
+}
+.welcome-card{
+  height: auto;
 }
 
 ion-chip{
   border: solid #1cc291 1px;
   background-color: #03a575;
+}
+ion-content{
+ 
 }
 
 .slide-square{
@@ -19,31 +28,247 @@ ion-chip{
 }
 #slider {
   height:70px;
-  width:100%;
-  overflow:hidden;
+  background: #03a575;
 }
 
 .slide {
   height:70px;
-  width: 100%;
-  float:left;
+  width: auto;
   text-align:center;
+}
+.slide img{
+  width: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 .nomeDog{
   color:#fff; 
   text-shadow: 5px 5px 5px rgb(0, 0, 0);
   z-index: 9999; 
   position:absolute; 
-  top:22em; 
+  top:19em; 
   left:1em;
-  font-size: 16pt;
+  font-size: 16pt ;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color:rgb(205, 218, 230);
 }
 .idadeDog{ 
   color:#fff; 
   text-shadow: 5px 5px 5px rgb(75, 74, 74);
   z-index: 9999; 
   position:absolute; 
-  top:29em; 
+  top:25em; 
   left:1em;
   font-size: 13pt;
+  
+ }
 }
+ 
+/////////////////////////////////////////////////////// TELA PEQUENO ////////////////////////////////////////////
+
+
+
+@media (min-width: 320px) and (max-width:375px) {
+  .welcome-card img{
+  background-position: center;
+  background-size: cover; 
+  height: auto;
+  max-height: 500px; 
+  width: 100%;
+}
+.welcome-card{
+  height: auto;
+}
+
+ion-chip{
+  border: solid #1cc291 1px;
+  background-color: #03a575;
+}
+ion-content{
+ 
+}
+
+.slide-square{
+  width: 80%;
+  height: 150px;
+  margin: auto;
+  border: solid black 1px;
+}
+#slider {
+  height:70px;
+  background: #03a575;
+}
+
+.slide {
+  height:70px;
+  width: auto;
+  text-align:center;
+}
+.slide img{
+  width: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.nomeDog{
+  color:#fff; 
+  text-shadow: 5px 5px 5px rgb(0, 0, 0);
+  z-index: 9999; 
+  position:absolute; 
+  top:19em; 
+  left:1em;
+  font-size: 16pt ;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color:rgb(205, 218, 230);
+}
+.idadeDog{ 
+  color:#fff; 
+  text-shadow: 5px 5px 5px rgb(75, 74, 74);
+  z-index: 9999; 
+  position:absolute; 
+  top:25em; 
+  left:1em;
+  font-size: 13pt;
+  
+ }
+}
+ ////////////////////////////////////////////////////////////TELA GRANDE//////////////////////////////////////////////////
+ @media (min-width: 425px) and (max-width:768px) {
+  .welcome-card img{
+  background-position: center;
+  background-size: cover; 
+  height: auto;
+  max-height: 500px; 
+  width: 100%;
+}
+.welcome-card{
+  height: auto;
+}
+
+ion-chip{
+  border: solid #1cc291 1px;
+  background-color: #03a575;
+}
+ion-content{
+ 
+}
+
+.slide-square{
+  width: 80%;
+  height: 150px;
+  margin: auto;
+  border: solid black 1px;
+}
+#slider {
+  height:70px;
+  background: #03a575;
+}
+
+.slide {
+  height:70px;
+  width: auto;
+  text-align:center;
+}
+.slide img{
+  width: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.nomeDog{
+  color:#fff; 
+  text-shadow: 5px 5px 5px rgb(0, 0, 0);
+  z-index: 9999; 
+  position:absolute; 
+  top:19em; 
+  left:1em;
+  font-size: 16pt ;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color:rgb(205, 218, 230);
+}
+.idadeDog{ 
+  color:#fff; 
+  text-shadow: 5px 5px 5px rgb(75, 74, 74);
+  z-index: 9999; 
+  position:absolute; 
+  top:25em; 
+  left:1em;
+  font-size: 13pt;
+  
+ }
+ 
+}
+
+////////////////////////////////////////////// TELA DE TABLET ////////////////////////////////////////////////////
+@media (min-width:425) and (max-width:768px) {
+  .welcome-card img{
+  background-position: center;
+  background-size: cover; 
+  height: auto;
+   
+  width: 100%;
+}
+.welcome-card{
+  height: auto;
+  width: auto;
+}
+
+ion-chip{
+  border: solid #1cc291 1px;
+  background-color: #03a575;
+}
+ion-content{
+ 
+}
+
+.slide-square{
+  width: 80%;
+  height: 150px;
+  margin: auto;
+  border: solid black 1px;
+}
+#slider {
+  height:70px;
+  background: #03a575;
+}
+
+.slide {
+  height:70px;
+  width: auto;
+  text-align:center;
+}
+.slide img{
+  width: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.nomeDog{
+  color:#fff; 
+  text-shadow: 5px 5px 5px rgb(0, 0, 0);
+  z-index: 9999; 
+  position:absolute; 
+  top:19em; 
+  left:1em;
+  font-size: 16pt ;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color:rgb(205, 218, 230);
+}
+.idadeDog{ 
+  color:#fff; 
+  text-shadow: 5px 5px 5px rgb(75, 74, 74);
+  z-index: 9999; 
+  position:absolute; 
+  top:25em; 
+  left:1em;
+  font-size: 13pt;
+  
+ }
+}
+
+

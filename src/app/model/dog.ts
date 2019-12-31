@@ -9,7 +9,7 @@ export class Dog {
     idade: string;
     descricao:string;
     // data:Date;
-    sexo:string;
+    genero:string;
 
     //novos campos
 

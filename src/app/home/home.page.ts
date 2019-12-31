@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
-
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { UserService } from './../service/user.service';
 import { User } from './../model/user';
 import { MenuController } from '@ionic/angular';
@@ -37,7 +36,7 @@ protected user:User = new User
       //set each slide width
       $('.slide').width(w);
       //set the container width to fix the animation and make it look sliding
-      $('#slide-container').width(w + l)
+      $('#slider').width(w + l)
       
       function slider() {
           $('.slide:first-child').animate({
@@ -53,14 +52,23 @@ protected user:User = new User
   });
 
   $(document).ready(function(){
-    $('#descricao').fadeOut()
+    $('.descricao').fadeOut()
   })
 
   }
 
   openDescricao(){
-    
+      $(document).ready(function () {
+        console.log('test')
+        $('.descricao').fadeIn('slow')
+        $('.test').animate({scrollTop:$(document).height()}, 1000);
+        
+      }) 
+
   }
+
+
+
 
   ionViewWillEnter() {
     this.menu.enable(true)
@@ -82,6 +90,7 @@ protected user:User = new User
         },
         erro => {
           console.log(erro)
+        
           this.router.navigate(['/login'])
         }
       )

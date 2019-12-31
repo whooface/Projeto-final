@@ -1,11 +1,8 @@
-<ion-header>
+<ion-header class="test">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      <strong>Home</strong>
-    </ion-title>
     <ion-title slot="end">
       <ion-icon name="person" routerLink="/login" *ngIf="!userService.afAuth.auth.currentUser"></ion-icon>
       <ion-chip *ngIf="userService.afAuth.auth.currentUser" routerLink="/perfiluser">
@@ -20,42 +17,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content  style="height: auto;">
 
-  <ion-slides [options]="SliderConfig">
-
+  <ion-slides pager="true" [options]="slideOpts">
     <ion-slide>
-      <ion-card class="welcome-card" style="height:auto;">
-        <img src="/assets/shapes.svg" alt="" />
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col  size-xs="12" size-sm="12" size-md="12" size-lg="12">
+            <ion-card  (click)="openDescricao()" class="welcome-card">
+              
+              <img src="/assets/shapes.svg" alt=""  />
+              
+                <img src="assets/doggo-portrait.jpg">
+            
+              <div class="nomeDog">
+                <strong>
+                  Bernardão
+                </strong>
+              </div>
+              <div class="idadeDog">
+                <ion-icon name="locate"></ion-icon>
+                3 km de onde você esta!
+              </div>
+              <ion-card-subtitle class="descricao"><strong>Descrição</strong></ion-card-subtitle>
+              <p class="descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste enim numquam voluptate aliquid et, facere, nihil nesciunt necessitatibus ea recusandae quis odio libero. Voluptatum ut vitae mollitia nobis deleniti esse.</p>
+            </ion-card>
 
-        <ion-item>
-          <img src="assets/doggo-portrait.jpg">
-        </ion-item>
-        <div class="nomeDog">
-          <strong>
-            Bernardão
-          </strong>
-        </div>
-        <div class="idadeDog"><ion-icon name="locate"></ion-icon> 
-          3 km de onde você esta!
-        </div>
-      </ion-card>
 
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
     </ion-slide>
-
   </ion-slides>
 
 
 </ion-content>
-<ion-footer>
-  <div id="slider">
-    <div id="slider-container">
-      <ion-button class="slide">PROPAGANDAS 1</ion-button>
-      <ion-button class="slide">PROPAGANDAS 2</ion-button>
-      <ion-button class="slide">PROPAGANDAS 3</ion-button>
-      <ion-button class="slide">PROPAGANDAS 4</ion-button>
-      <ion-button class="slide">PROPAGANDAS 5</ion-button>
-      <ion-button class="slide">PROPAGANDAS 6</ion-button>
-    </div>
-  </div>
+<ion-footer id="slider"style="width: 100%;">
+      <img src="assets/propaganda.png" class="slide">
+      <img src="assets/propaganda2.png" class="slide">
 </ion-footer>
