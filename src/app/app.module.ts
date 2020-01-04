@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import{PhotoViewer} from '@ionic-native/photo-viewer/ngx'
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -26,6 +27,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import {GuardService} from './service/guard.service'
 import { Network } from '@ionic-native/network/ngx';
 
+
 //Socket.io
 import{SocketIoModule,SocketIoConfig} from 'ngx-socket-io';
 import { from } from 'rxjs';
@@ -45,7 +47,7 @@ const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
     AngularFireAuthModule,
     AngularFirestoreModule,
     SocketIoModule.forRoot(config),
-    HttpClientModule
+    HttpClientModule,
     ],
   providers: [
     StatusBar,
@@ -54,7 +56,9 @@ const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
     Network,
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera, GooglePlus, Geolocation, AndroidPermissions, DatePicker,
+    Camera, GooglePlus, Geolocation, AndroidPermissions, DatePicker,PhotoViewer
+    
+    
   ],
   bootstrap: [AppComponent]
 })

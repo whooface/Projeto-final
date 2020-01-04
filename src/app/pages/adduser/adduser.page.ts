@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-adduser',
   templateUrl: './adduser.page.html',
@@ -119,6 +120,9 @@ export class AdduserPage implements OnInit {
     await actionSheet.present();
   }
 
+    sair(){
+      this.router.navigate(['login'])
+    }
     
 
 }

@@ -1,10 +1,15 @@
+import { Dog } from './../model/dog';
 import { Router } from '@angular/router';
 import { Component} from '@angular/core';
 import { UserService } from './../service/user.service';
 import { User } from './../model/user';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+
+
 
 declare var $:any
+
 
 @Component({
   selector: 'app-home',
@@ -13,19 +18,38 @@ declare var $:any
 })
 export class HomePage {
 protected user:User = new User
+private images: string[] = [];
+
 
 
 
   constructor(
     protected userService:UserService,
     private menu : MenuController,
-    private router: Router
+    private router: Router,
+    public viewer: PhotoViewer,
+    public platForm:Platform
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
     // console.log(this.userService.afAuth.user)
+    this.platForm.ready().then(()=>{
+      this.images = [
+        'assets/fundo.jpg',
+        'assets/fundo.jpg',
+        'assets/fundo.jpg',
+        'assets/fundo.jpg',
+        'assets/fundo.jpg'
+      ]
+    })
+
   }
 
   ngOnInit(){
+
+    $(document).ready(function(){
+      $('.descricao').hide()
+    })
+
     $(document).ready(function () {
       //you can set this, as long as it's not greater than the slides length
       var show = 1;
@@ -49,26 +73,41 @@ protected user:User = new User
       //use setInterval to do the timed execution and animation
       var timer = setInterval(slider, 5000);
 
-  });
 
-  $(document).ready(function(){
-    $('.descricao').fadeOut()
-  })
+
+  });
 
   }
 
   openDescricao(){
       $(document).ready(function () {
-        console.log('test')
-        $('.descricao').fadeIn('slow')
-        $('.test').animate({scrollTop:$(document).height()}, 1000);
-        
+          $('.foto').fadeOut('fast')
+          $('.descricao').slideDown()
+          $('.nomeDog').hide()
+          $('.localDog').hide()
+          $('.welcome-card').animate({
+            marginTop:"+=50px"
+          },2000)
+          $('.album').fadeOut()  
       }) 
-
   }
 
+  openFoto(){
+    $(document).ready(function (){
+      $('.foto').slideDown('fast')
+      $('.descricao').fadeOut()
+      $('.album').fadeIn()
+      $('.nomeDog').fadeIn()
+      $('.localDog').fadeIn()
+      $('.welcome-card').animate({
+        marginTop:"-=50px"
+      },1000)
+    })
+  }
 
-
+  zoomFoto(url){
+    this.viewer.show(url,"",{share:true});
+  }
 
   ionViewWillEnter() {
     this.menu.enable(true)
@@ -95,5 +134,6 @@ protected user:User = new User
         }
       )
     }
+   
   }
 }
