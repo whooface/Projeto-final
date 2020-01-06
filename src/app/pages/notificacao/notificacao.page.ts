@@ -11,7 +11,6 @@ export class NotificacaoPage implements OnInit {
 
   constructor(
     public toastController: ToastController,
-    protected user:User = new User,
     protected userService:UserService
   ) { }
 
