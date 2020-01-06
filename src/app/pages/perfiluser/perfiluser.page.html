@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+        <ion-item>          
+         <b><ion-label id="lheader" style="font-size: 3vh;">{{user.nome}}</ion-label></b>
+         <ion-avatar slot="end" class="avatar">
+                <img src="assets/perfil.png" *ngIf="!user.foto">
+                <img [src]="user.foto" *ngIf="user.foto">
+            </ion-avatar>
+        </ion-item>
+    </ion-toolbar>
+
+
+  </ion-header>
+  
+  <ion-content>
+      
+      <ion-item  routerLink="/notificacao">
+        <ion-avatar slot="start">
+            <ion-icon class="icon" name="notifications"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Notificações</h3>
+          <p>Central de notificações</p>
+          
+        </ion-label>
+     
+      </ion-item>
+    <ion-item routerLink="/updateuser">
+        <ion-avatar slot="start">
+         <ion-icon class="icon" name="person"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Meus Dados</h3>
+          <p>Configure seu perfil</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item >
+        <ion-avatar slot="start">
+            <ion-icon class="icon" name="paw"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Meus Pets</h3>
+          <p>Gerencie seus pets</p>
+          
+        </ion-label>
+     
+      </ion-item>
+
+      <ion-item (click)="sair()">
+        <ion-avatar slot="start">
+         <ion-icon class="icon" name="exit"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Sair</h3>
+          <p>Sair de seu perfil</p>
+        </ion-label>
+      </ion-item>
+  
+  
+  </ion-content>
+  

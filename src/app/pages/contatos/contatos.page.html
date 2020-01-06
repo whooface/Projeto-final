@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;"><strong>Lista de Match's</strong></ion-title>
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+
+
+  <ion-item *ngFor="let a of contatos" routerLink="/bate-papo">
+    <ion-avatar class="fotoChat">
+      <img src="assets/perfil.png" *ngIf="!user.foto">
+      <img [src]="a.foto" *ngIf="user.foto">
+    </ion-avatar>
+    <ion-label class="chatNome" style="padding-bottom:15px;">
+      {{a.nome}}
+      <p>Online</p>
+    </ion-label>
+    
+    
+
+  </ion-item>
+
+
+
+</ion-content>

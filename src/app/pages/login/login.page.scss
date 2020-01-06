@@ -1,0 +1,33 @@
+ion-content{
+    --background:url(/assets/doggo-portrait.jpg) 0 0/100% 100% no-repeat;
+   
+}
+
+ion-button{
+    width: 66%;
+    margin:auto;
+}
+
+.inputs{
+    margin: auto;
+    width: 80%;
+    padding-top: 7em;
+    display: none;
+    
+}
+.container{
+    margin: auto;
+    width: 80%;
+    padding-top: 7em;
+    height: 186px;
+}
+
+.top-buttons{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.bottom-buttons{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
