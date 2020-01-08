@@ -27,6 +27,11 @@ export class AppComponent {
       title: 'Mapa',
       url: '/googlemaps',
       icon: 'map'
+    },
+    {
+      title: 'Contatos',
+      url: '/contatos',
+      icon: 'plus'
     }
   ];
 

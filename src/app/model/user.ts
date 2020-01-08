@@ -1,3 +1,4 @@
+import {Chat} from '../model/chat'
 export class User {
 
     nome:string;
@@ -5,6 +6,9 @@ export class User {
     senha:string;
     foto:string;
     ativo:boolean = true;
+    contatos:Array<Chat> = [];
+    notificacoes:Array<Object> = [];
     lat:number;
     lng:number;
+    
 }

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 const data = new Date();
 
 @Component({
@@ -24,6 +25,7 @@ export class AdddogPage implements OnInit {
     private router:Router,
     private camera:Camera,
     public actionSheetController: ActionSheetController,
+    private datePicker: DatePicker
   ) { 
     this.pets = [
       {
@@ -45,13 +47,15 @@ export class AdddogPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(data.getTime())
+    
   }
 
 
   onSubmit(form){
+    console.log(this.dog.genero);
     //console.log(this.user);
     this.msg.presentLoading()
+   
     this.dogService.add(this.dog).then(
       res=>{
         //console.log("Cadastrado!", res);
@@ -171,9 +175,17 @@ export class AdddogPage implements OnInit {
       })
       await alert.present()
     }
-  
-
-
+    
+    PegaData(){
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => console.log('Got date: ', date),
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
 
 
 }
