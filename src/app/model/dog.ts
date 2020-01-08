@@ -8,8 +8,9 @@ export class Dog {
     idade: string;
     tempo: string;
     descricao:string;
-    // data:date;
+    // data:Date;
     // genero:string; boolean
 
     //novos campos
+
 }

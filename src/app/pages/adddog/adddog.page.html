@@ -1,9 +1,87 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>adddog</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+      <ion-title slot="start"><strong>Novo Pet</strong></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+  <div class="container">
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <br>
+    <div style="text-align: center;" class="fotos">
+      
+          <img src="assets/perfil.png" (click)="escolherFoto()" *ngIf="!dog.fotos">
+          <img [src]="dog.fotos[0]" (click)="escolherFoto()" *ngIf="dog.fotos">
 
-<ion-content>
-
-</ion-content>
+        <!-- //fotos[fotos.legth -1] -->
+      </div>
+      <br>  
+      
+    <ion-slides pager="true" [options]="slideOpts" *ngIf="dog.fotos">
+        <ion-slide *ngFor="let foto of dog.fotos; let i=index" class="fotos">
+          <img src="{{foto}}" (click)="removerFoto(i)">
+        </ion-slide>
+      </ion-slides>
+  
+  
+    <ion-item>
+      <ion-label position="floating"><strong>Nome:</strong></ion-label>
+      <ion-input type="text" name="nome" [(ngModel)] = "dog.nome" required></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating"><strong>Espécie:</strong></ion-label>
+      <ion-select name="especie" [(ngModel)]="dog.especie">
+        <ion-select-option *ngFor="let p of pets" >{{p.especie}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating"><strong>Sexo:</strong></ion-label>
+      <ion-select name="sexo" [(ngModel)]="dog.sexo">
+        <ion-select-option *ngFor="let p of pets" >{{p.sexo}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+              <ion-item>
+                  <ion-label position="floating" ><strong>Idade:</strong></ion-label>
+                  <ion-input type="text" name="idade" [(ngModel)] = "dog.idade" required maxlength="2"></ion-input>
+                </ion-item>
+          </ion-col>
+          <ion-col>
+              <ion-item>
+                  <ion-label position="floating" ><strong>Tempo:</strong></ion-label>
+                  <ion-select name="tempo" [(ngModel)]="dog.tempo" >
+                    <ion-select-option *ngFor="let p of pets" >{{p.tempo}}</ion-select-option>
+                  </ion-select>
+                </ion-item> 
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    
+    <ion-item>
+      <ion-label position="floating"><strong>Descrição:</strong></ion-label>
+      <ion-textarea type="text" name="descricao" [(ngModel)] = "dog.descricao" required></ion-textarea>
+    </ion-item>
+  
+  
+    <section>
+      <br>
+      <ion-button type="submit" expand="block" style="width: 18em; margin: auto;" >Cadastrar</ion-button>
+      <br>
+      <ion-button type="reset" expand="block" style="width: 18em; margin: auto;"  color="danger" routerLink="/home" >Cancelar</ion-button>
+      <br>
+    </section>
+  </form>
+  
+  
+  </div>
+  </ion-content>
+  

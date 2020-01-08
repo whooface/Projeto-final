@@ -1,14 +1,15 @@
 import { MensagemService } from './../../service/mensagem.service';
-import { Router } from '@angular/router';
+import { Router  } from '@angular/router';
 import { Component, OnInit, Sanitizer } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Platform} from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { ModalController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import * as $ from "jquery";
+import { UserService } from 'src/app/service/user.service';
+import {  User  } from '../../model/user'
 
 
 
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
   protected email:string=null;
   protected senha:string=null;
   
-
+  
+  protected user:User = new User
   constructor(
     private afAuth : AngularFireAuth,
     private router:Router,
@@ -30,15 +32,25 @@ export class LoginPage implements OnInit {
     private googlePlus: GooglePlus,
     private platform:Platform,
     private geolocation: Geolocation,
-    private menu : MenuController
+    private menu : MenuController,
+    private userService : UserService
+   
   ) { }
 
   ngOnInit() {
-    this.localAtual()
-    this.menu.enable(false)
+  
+  }
 
-    
-    
+  ionViewWillEnter(){
+    $(document).ready(function(){
+      $(".inputs").hide()
+      $(".balao").show()
+    })
+    this.email = ""
+    this.senha = ""
+    //this.localAtual()
+    this.menu.enable(false)
+    //console.log(this.afAuth.auth.currentUser)
   }
   onSubmit(fc){
 
@@ -48,6 +60,12 @@ export class LoginPage implements OnInit {
     if (!this.platform.is("cordova")) {
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
         .then(res => {
+          if(this.userService.get() != null){
+             let ok = this.afAuth.auth.currentUser
+            this.user.nome = ok.displayName
+            this.user.foto = ok.photoURL
+            this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
+          }
           console.log(res)
           this.router.navigate([''])
         })
@@ -55,6 +73,12 @@ export class LoginPage implements OnInit {
     } else {
       this.googlePlus.login({})
         .then(res => {
+           if(this.userService.get() != null){
+             let ok = this.afAuth.auth.currentUser
+            this.user.nome = ok.displayName
+            this.user.foto = ok.photoURL
+            this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
+          }
           console.log(res)
           this.router.navigate([''])
         })
@@ -67,7 +91,8 @@ export class LoginPage implements OnInit {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha).then(
       res => {
         this.msg.dismissLoading()
-        this.router.navigate(['home'])
+        console.log(this.router.url)
+        this.router.navigate([''])
       },
       err => {
         console.log(err);
@@ -76,6 +101,7 @@ export class LoginPage implements OnInit {
       }
     )
   }
+
 
   logout(){
     this.afAuth.auth.signOut().then(

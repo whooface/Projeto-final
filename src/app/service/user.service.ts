@@ -3,6 +3,7 @@ import { User } from './../model/user';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from "rxjs/operators"
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,24 @@ export class UserService {
     console.log(user);
     return this.firedb.object<User>("user/"+ user.uid).valueChanges();
   }
+  addGoogle(user:User,uid){
+    user.senha = null;
+    user.email = null;
+    user.ativo = true;
+    this.firedb.object("user/" + uid).set(user)
+
+  }
+
+  getAll(){
+   
+    
+    return this.firedb.list<User>("user").snapshotChanges()
+    .pipe(
+      map(dados =>
+        dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
+      )
+    )
+}
 
   //varivel com dois U
   update(user:User){

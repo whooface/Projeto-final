@@ -1,6 +1,23 @@
-img{
+.teste{
     margin:auto;
     width: 80%;
     border-radius: 50%;
     height: 250px;
+}
+
+.avatar{
+    width : 6vh;
+    height: 6vh ;
+    margin-left: 1h;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+
+.icon{
+  height: 40px !important;
+  width: 40px !important;
+}
+
+#lheader:first-letter{
+    text-transform: capitalize;
 }

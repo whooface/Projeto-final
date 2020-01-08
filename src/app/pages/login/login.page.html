@@ -1,43 +1,41 @@
 <ion-header>
    
-  </ion-header>
+</ion-header>
+
+<ion-content>
+
   
-  <ion-content>
-  
-    
-      <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
-      <div class="container">
-        <section  class="inputs">
+    <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+    <div class="container">
+      <section  class="inputs">
+        
+            <ion-label position="floating"><strong>E-mail</strong></ion-label>
+            <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius:  9px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="email" name="email" [(ngModel)] = "email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
           
-              <ion-label position="floating"><strong>E-mail</strong></ion-label>
-              <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius:  9px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="email" name="email" [(ngModel)] = "email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
-            
-          <br>
-            
-              <ion-label position="floating"><strong>Senha</strong></ion-label>
-              <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius: 8px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="password" name="password" [(ngModel)] = "senha" required minlength="6" #s="ngModel"></ion-input>
-            
-              <ion-button style="margin-top:20px" type="submit" [disabled]="fc.invalid" expand="block" (click)="login()">Entrar</ion-button>
-              <ion-button style="margin-top:20px" type="submit" color="danger" expand="block" (click)="sair()">Retornar</ion-button>
-          </section>
-        </div>
-  <section class="balao" style="padding: 5em 0 3em;">
-      <section class="top-buttons">
-        <ion-button type="submit" expand="block" id="login" (click)="show()">Login</ion-button>
+        <br>
+          
+            <ion-label position="floating"><strong>Senha</strong></ion-label>
+            <ion-input style="background-color: rgba(224, 224, 224, 0.8);border-radius: 8px;border: solid rgba(0, 0, 0, 0.205) 1px;" type="password" name="password" [(ngModel)] = "senha" required minlength="6" #s="ngModel"></ion-input>
+          
+            <ion-button style="margin-top:20px" type="submit" [disabled]="fc.invalid" expand="block" (click)="login()">Entrar</ion-button>
+            <ion-button style="margin-top:20px" type="submit" color="danger" expand="block" (click)="sair()">Retornar</ion-button>
         </section>
-        <section  class="top-buttons">
-        <ion-button (click)="loginGoogle()" type="reset" expand="block" color="danger" >Entrar Pelo Google</ion-button>
-    </section>
-        <!-- <section class="top-buttons">
-        <ion-button type="reset" expand="block" color="danger" routerLink="/home">Cancelar</ion-button>
-      </section> -->
-    </section>
-    </form>
+      </div>
+<section class="balao" style="padding: 5em 0 3em;">
+    <section class="top-buttons">
+      <ion-button type="submit" expand="block" id="login" (click)="show()">Login</ion-button>
+      </section>
+      <section  class="top-buttons">
+      <ion-button (click)="loginGoogle()" type="reset" expand="block" color="danger" >Entrar Pelo Google</ion-button>
+  </section>
+      <!-- <section class="top-buttons">
+      <ion-button type="reset" expand="block" color="danger" routerLink="/home">Cancelar</ion-button>
+    </section> -->
+  </section>
+  </form>
+  
+  <section class="balao" >
+      <ion-button type="submit" expand="block" color="success" routerLink="/adduser">Cadastrar</ion-button>
+  </section>
     
-    <section class="balao" >
-        <ion-button type="submit" expand="block" color="success" routerLink="/adduser">Novo Cadastrar</ion-button>
-    </section>
-      
-  </ion-content>
-  
-  
+</ion-content>
