@@ -19,6 +19,7 @@ export class UserService {
   add(user:User){
       return this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.senha).then(
         res=>{
+          console.log(res)
           user.senha = null;
           user.email = null;
           //user.ativo = true;

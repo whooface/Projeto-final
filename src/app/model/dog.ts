@@ -1,5 +1,6 @@
-export class Dog {
 
+export class Dog {
+    
     dono: string; //{this.afAuth}
     nome:string
     pedidos:Array<Object> = []

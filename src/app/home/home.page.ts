@@ -7,7 +7,8 @@ import { Dog} from '../model/dog'
 import { Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-import {MensagemService} from '../service/mensagem.service'
+import { AlertController } from '@ionic/angular';
+import { MensagemService } from '../service/mensagem.service'
 
 declare var $:any
 
@@ -29,7 +30,9 @@ private images: string[] = [];
     private DogService : DogService,
     private router: Router,
     public viewer: PhotoViewer,
-    public platForm:Platform
+    public platForm:Platform,
+    public alert: AlertController,
+    public msg: MensagemService
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
     // console.log(this.userservice.afAuth.user)
@@ -45,18 +48,34 @@ private images: string[] = [];
 
   }
 
-  enviarSolicitacao(uidDog,dog){
-    ///Adcionar novos pedidos
-    this.dog = new Dog
-    delete dog.key;
-    this.dog = dog;
-    let id = this.userService.afAuth.auth.currentUser.uid
-    this.dog.pedidos.push({idUser:id,status:false})
-    this.DogService.update(this.dog,uidDog).then(
-      res=>{
-        alert("FOI")
-      }
-    )
+  async enviarSolicitacao(uidDog,dog){
+    const alert = await this.alert.create({
+      header: 'Enviar pedido de adoção',
+      message: 'Deseja enviar uma solicitação de adoção?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+        }, {
+          text: 'Sim',
+          handler: () => {
+            this.dog = new Dog
+            delete dog.key;
+            this.dog = dog;
+            let id = this.userService.afAuth.auth.currentUser.uid
+            this.dog.pedidos.push({idUser:id,status:false})
+            this.DogService.update(this.dog,uidDog).then(
+              res=>{
+                this.msg.presentAlert('Solicitação enviada!',"Sua solicitação foi enviado com sucesso!")
+              }
+            )
+          }
+        }
+      ]
+    });
+  
+await alert.present();
+ 
   }
 
   ngOnInit(){

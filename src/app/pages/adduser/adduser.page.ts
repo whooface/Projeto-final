@@ -26,9 +26,10 @@ export class AdduserPage implements OnInit {
   ngOnInit() {
   }
   onSubmit(form){
-    console.log(this.user);
+    this.msg.presentLoading()
     this.userService.add(this.user).then(
       res=>{
+        console.log(res)
         //console.log("Cadastrado!", res);
         this.msg.dismissLoading()
         this.msg.presentAlert("Bem Vindo","Cadastrado com sucesso!")
