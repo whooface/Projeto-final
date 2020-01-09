@@ -6,6 +6,6 @@ export class Pedidos {
     senha:string;
     foto:string;
     ativo:boolean = true;
-    contatos:Array<Chat> = []
+    
     
 }
