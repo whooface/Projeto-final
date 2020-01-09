@@ -1,10 +1,8 @@
-import { UserService } from './../../service/user.service';
 import { User } from './../../model/user';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { UserService } from './../../service/user.service';
+import { Chat } from './../../model/chat';
 import { Component, OnInit } from '@angular/core';
-
+import { Socket } from 'ngx-socket-io';
 
 
 
@@ -14,46 +12,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-  protected user: User = new User; 
-  public amigos: Array<any> = [] ;
+  protected user: User = new User 
+  protected chat: Chat = new Chat;
+  
+  public entrada : string; 
   
   constructor(
-      
-    public firedb: AngularFireDatabase,
-    public afAuth: AngularFireAuth,
-    protected userService: UserService,
+    protected  userService : UserService,
+    private io:Socket
+  
 
-    ) {}
+  ) { }
 
-    ngOnInit() {
-    }
-    ionViewWillEnter() {
-      let login = this.userService.afAuth.auth.currentUser;
-      if (login) {
-        this.userService.get().subscribe(
-          res => {
-            if (res == null) {
-              this.user = new User;
-              if(login.displayName != null) {
-                this.user.foto = login.photoURL
-                this.user.nome = login.displayName
-              }
-            } else {
-              this.user = res
-            }
-              
-          },
-          erro => {
-            
-          }
-        )
-      }
-      //função para puxar todos os users
-      this.userService.getAll().subscribe(
-        res=>{
-          this.amigos = res
-        }
-      )
-    }
-
+  ngOnInit() {
+    this.io.connect()
+    
+    
   }
+
+ enviar(){
+    this.io.emit("msg",`O usuario ${this.userService.afAuth.auth.currentUser.email} enviou uma mensagem!`)
+   
+  
+}
+}

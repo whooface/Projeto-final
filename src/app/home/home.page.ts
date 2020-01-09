@@ -1,12 +1,14 @@
-import { Dog } from './../model/dog';
-import { Router } from '@angular/router';
-import { Component} from '@angular/core';
+
+import { Component } from '@angular/core';
 import { UserService } from './../service/user.service';
-import { User } from './../model/user';
+import { User } from '../model/user';
+import { DogService } from '../service/dog.service'
+import { Dog} from '../model/dog'
+import { Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-
-
+import { AlertController } from '@ionic/angular';
+import { MensagemService } from '../service/mensagem.service'
 
 declare var $:any
 
@@ -18,20 +20,22 @@ declare var $:any
 })
 export class HomePage {
 protected user:User = new User
+protected dog:Dog;
+protected dogArray = []
 private images: string[] = [];
-
-
-
 
   constructor(
     protected userService:UserService,
     private menu : MenuController,
+    private DogService : DogService,
     private router: Router,
     public viewer: PhotoViewer,
-    public platForm:Platform
+    public platForm:Platform,
+    public alert: AlertController,
+    public msg: MensagemService
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
-    // console.log(this.userService.afAuth.user)
+    // console.log(this.userservice.afAuth.user)
     this.platForm.ready().then(()=>{
       this.images = [
         'assets/fundo.jpg',
@@ -44,11 +48,38 @@ private images: string[] = [];
 
   }
 
-  ngOnInit(){
+  async enviarSolicitacao(uidDog,dog){
+    const alert = await this.alert.create({
+      header: 'Enviar pedido de adoção',
+      message: 'Deseja enviar uma solicitação de adoção?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+        }, {
+          text: 'Sim',
+          handler: () => {
+            this.dog = new Dog
+            delete dog.key;
+            this.dog = dog;
+            let id = this.userService.afAuth.auth.currentUser.uid
+            this.dog.pedidos.push({idUser:id,status:false})
+            this.DogService.update(this.dog,uidDog).then(
+              res=>{
+                this.msg.presentAlert('Solicitação enviada!',"Sua solicitação foi enviado com sucesso!")
+              }
+            )
+          }
+        }
+      ]
+    });
+  
+await alert.present();
+ 
+  }
 
-    $(document).ready(function(){
-      $('.descricao').hide()
-    })
+  ngOnInit(){
+   
 
     $(document).ready(function () {
       //you can set this, as long as it's not greater than the slides length
@@ -78,38 +109,56 @@ private images: string[] = [];
   });
 
   }
+ 
 
   openDescricao(){
-      $(document).ready(function () {
-          $('.foto').fadeOut('fast')
-          $('.descricao').slideDown()
-          $('.nomeDog').hide()
-          $('.localDog').hide()
-          $('.welcome-card').animate({
-            marginTop:"+=50px"
-          },2000)
-          $('.album').fadeOut()  
-      }) 
-  }
+    $(document).ready(function () {
+        $('.foto').fadeOut('fast')
+        $('.descricao').slideDown()
+        $('.nomeDog').hide()
+        $('.localDog').hide()
+        $('.welcome-card').animate({
+          marginTop:"+=50px"
+        },2000)
+        $('.album').fadeOut()  
+    }) 
+}
 
-  openFoto(){
-    $(document).ready(function (){
-      $('.foto').slideDown('fast')
-      $('.descricao').fadeOut()
-      $('.album').fadeIn()
-      $('.nomeDog').fadeIn()
-      $('.localDog').fadeIn()
-      $('.welcome-card').animate({
-        marginTop:"-=50px"
-      },1000)
-    })
-  }
+openFoto(){
+  $(document).ready(function (){
+    $('.foto').slideDown('fast')
+    $('.descricao').fadeOut()
+    $('.album').fadeIn()
+    $('.nomeDog').fadeIn()
+    $('.localDog').fadeIn()
+    $('.welcome-card').animate({
+      marginTop:"-=50px"
+    },1000)
+  })
+}
 
-  zoomFoto(url){
-    this.viewer.show(url,"",{share:true});
-  }
+zoomFoto(url){
+  this.viewer.show(url,"",{share:true});
+}
+
+
+
 
   ionViewWillEnter() {
+
+    this.DogService.getAll().subscribe(
+      res=> {
+        this.dogArray = []
+        //For para apenas mostrar os pet que nao sao do usuario na tela principal
+        for(let i = 0;i < res.length;i++){
+          if(res[i].dono != this.userService.afAuth.auth.currentUser.uid){
+            this.dogArray.push(res[i])
+          }
+        }
+        
+      }
+    )
+
     this.menu.enable(true)
     let login = this.userService.afAuth.auth.currentUser;
     if (login) {
@@ -136,4 +185,10 @@ private images: string[] = [];
     }
    
   }
+
+  ngOnDestroy(){
+    console.log("destruiu")
+    
+  }
+
 }

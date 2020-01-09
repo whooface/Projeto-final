@@ -26,16 +26,15 @@ export class AdduserPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
   }
   onSubmit(form){
-    console.log(this.user);
     this.msg.presentLoading()
     this.userService.add(this.user).then(
       res=>{
+        console.log(res)
         //console.log("Cadastrado!", res);
         this.msg.dismissLoading()
-        this.msg.presentAlert("Bem Vindo","Cadastado com sucesso!")
+        this.msg.presentAlert("Bem Vindo","Cadastrado com sucesso!")
         this.user = new User;
         form.reset();
         this.router.navigate(['home']);
@@ -47,7 +46,7 @@ export class AdduserPage implements OnInit {
        }
     )
   }
-  tirarFoto(){
+  tirarfoto(){
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -65,7 +64,8 @@ export class AdduserPage implements OnInit {
     });
   }
 
-  pegarFoto(){
+
+    pegarfoto(){
     const options: CameraOptions = {
       quality: 100,
       sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -91,14 +91,14 @@ export class AdduserPage implements OnInit {
         text: 'Tirar Foto',
         icon: 'camera',
         handler: () => {
-          this.tirarFoto()
+          this.tirarfoto()
         }
       }, 
       {
         text: 'Galeria',
         icon: 'photos',
         handler: () => {
-          this.pegarFoto()
+          this.pegarfoto()
         }
       },
       {
@@ -119,11 +119,10 @@ export class AdduserPage implements OnInit {
     });
     await actionSheet.present();
   }
-
-    sair(){
-      this.router.navigate(['login'])
-    }
-    
+  sair(){
+    this.router.navigate(["/login"])
+  }
+  
 
 }
 

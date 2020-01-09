@@ -4,7 +4,7 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
         <ion-item>          
-         <b><ion-label id="lheader" style="font-size: 3vh; color: #fff;">{{user.nome}}</ion-label></b>
+         <b><ion-label id="lheader" style="font-size: 3vh;">{{user.nome}}</ion-label></b>
          <ion-avatar slot="end" class="avatar">
                 <img src="assets/perfil.png" *ngIf="!user.foto">
                 <img [src]="user.foto" *ngIf="user.foto">
@@ -17,7 +17,7 @@
   
   <ion-content>
       
-      <ion-item >
+      <ion-item  routerLink="/notificacao">
         <ion-avatar slot="start">
             <ion-icon class="icon" name="notifications"></ion-icon>
         </ion-avatar>

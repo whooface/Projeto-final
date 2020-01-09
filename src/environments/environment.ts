@@ -5,14 +5,13 @@
 export const environment = {
   production: false,
     firebaseConfig : {
-      apiKey: "AIzaSyDRgt783f2hoEiRj1qZR-XUQ_VVCkpz05c",
-      authDomain: "luaa-ae755.firebaseapp.com",
-      databaseURL: "https://luaa-ae755.firebaseio.com",
-      projectId: "luaa-ae755",
-      storageBucket: "luaa-ae755.appspot.com",
-      messagingSenderId: "1026007957278",
-      appId: "1:1026007957278:web:68a360e18f1211ea04d30f",
-      measurementId: "G-BDCT6LT4RV"
+      apiKey: "AIzaSyA28lf2eAzFajDzNLgY99BfvJ83a41ksOw",
+      authDomain: "ionic-whooface-3a438.firebaseapp.com",
+      databaseURL: "https://ionic-whooface-3a438.firebaseio.com",
+      projectId: "ionic-whooface-3a438",
+      storageBucket: "ionic-whooface-3a438.appspot.com",
+      messagingSenderId: "141510784382",
+      appId: "1:141510784382:web:a7841646a07fa84d372f2f"
   }
 };
 

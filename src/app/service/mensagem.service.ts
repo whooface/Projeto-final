@@ -9,7 +9,7 @@ export class MensagemService {
 
   constructor(
     public alertController: AlertController,
-    public loadingController: LoadingController
+    public LoadingController: LoadingController
   ) { }
 
   async presentAlert(titulo:string, texto:string){
@@ -34,9 +34,10 @@ export class MensagemService {
     await alertSenha.present();
   }
   async presentLoading() {
-    const loading = await this.loadingController.create({
-      //message: 'Hellooo',
-      //duration: 2000
+    const loading = await this.LoadingController.create({
+      // message: 'Hellooo',
+      // duration: 2000
+      spinner:"dots"
     });
     await loading.present();
 
@@ -45,6 +46,7 @@ export class MensagemService {
     console.log('Loading dismissed!');
   }
   async dismissLoading(){
-    await this.loadingController.dismiss();
+    await this.LoadingController.dismiss();
   }
+
 }

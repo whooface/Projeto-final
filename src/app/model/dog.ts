@@ -1,7 +1,9 @@
-export class Dog {
 
+export class Dog {
+    
     dono: string; //{this.afAuth}
-    nome:string;
+    nome:string
+    pedidos:Array<Object> = []
     especie: string;  
     fotos : string[];
     status : boolean = true; //true = em busca de adoção    //false = adotado

@@ -4,7 +4,7 @@ import { MensagemService } from './../../service/mensagem.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ActionSheetController, ToastController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 const data = new Date();
 
@@ -25,8 +25,7 @@ export class AdddogPage implements OnInit {
     private router:Router,
     private camera:Camera,
     public actionSheetController: ActionSheetController,
-    private datePicker: DatePicker,
-    public toastCtrl:ToastController
+    private datePicker: DatePicker
   ) { 
     this.pets = [
       {
@@ -48,10 +47,12 @@ export class AdddogPage implements OnInit {
   }
 
   ngOnInit() {
-    this.showToast('Toque abaixo para adicionar uma foto!')
+    
   }
 
+
   onSubmit(form){
+    console.log(this.dog.genero);
     //console.log(this.user);
     this.msg.presentLoading()
     this.dogService.add(this.dog).then(
@@ -185,15 +186,5 @@ export class AdddogPage implements OnInit {
     );
   }
 
-  //mesagem de foto
-
-  async showToast(msg) {
-    const toast = await this.toastCtrl.create({
-      message: msg ,
-      duration: 3000,
-      position: 'top',
-    });
-    toast.present();
-  }
 
 }

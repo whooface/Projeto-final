@@ -1,5 +1,22 @@
-
 ////////////////////////////////////////////////////  TELA MEDIA ////////////////////////////////////////////////////
+.descricao{
+  display:none;
+}
+#teste{
+  height: 45px !important;
+  width: 45px !important; 
+  margin-right: 0px !important;
+  padding-top: 22,5px;
+  background-color: green;
+  display: block;
+}
+#notificacao{
+  width: 25px !important;
+  height: 15px !important;
+  position: absolute;
+  bottom: 5px;
+  left: 20px !important; 
+}
 @media (min-width: 375px) and (max-width:425px) {
   .welcome-card img{
   background-position: center;
@@ -262,5 +279,3 @@ ion-chip{
   
  }
 }
-
-

@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import{PhotoViewer} from '@ionic-native/photo-viewer/ngx'
+import {PhotoViewer} from '@ionic-native/photo-viewer/ngx'
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -15,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
 
 //Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -28,11 +29,8 @@ import {GuardService} from './service/guard.service'
 import { Network } from '@ionic-native/network/ngx';
 
 
-//Socket.io
-import{SocketIoModule,SocketIoConfig} from 'ngx-socket-io';
-import { from } from 'rxjs';
-const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
-
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 
 @NgModule({
@@ -42,12 +40,12 @@ const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
   BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    SocketIoModule.forRoot(config),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    SocketIoModule.forRoot(config),
-    HttpClientModule,
+    
     ],
   providers: [
     StatusBar,
@@ -57,8 +55,6 @@ const config: SocketIoConfig = {url:'http://localhost:3001', options: {} };
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera, GooglePlus, Geolocation, AndroidPermissions, DatePicker,PhotoViewer
-    
-    
   ],
   bootstrap: [AppComponent]
 })

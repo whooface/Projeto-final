@@ -2,5 +2,9 @@
     background-color: rgb(201, 0, 0) !important
 }
 
-
+ion-toolbar{
+    --color: white ;
+    --ion-background-color: var(--ion-color-blue_e);
+  
+  }
   

@@ -9,29 +9,32 @@
 <ion-content>
   
   <div class="center">
+<form #fSenha="ngForm" (ngSubmit)="alterarSenha(fSenha)">
 <ion-card>
-  
+
   <ion-item>
     <ion-label position="stacked"><strong>Senha Atual</strong></ion-label>
-    <ion-icon style="padding-top: 10px;" name="eye" id="eyeS" slot="end" (click)="visualizarSenha('senha','eyeS')"></ion-icon>
-    <ion-input required value="" type="password" id="senha"></ion-input>
+    <ion-icon  class="icon" name="eye" style="padding-top: 10px;" id="eyeS" slot="end" (click)="visualizarSenha('senha','eyeS')"></ion-icon>
+    <ion-input required value=""  name="senha" [(ngModel)]="senha" type="password" id="senha" required minlength="6" #s="ngModel"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked"><strong>Nova Senha</strong></ion-label>
-    <ion-icon style="padding-top: 10px;" [(ngModel)]="senha" id="eyeNS" name="eye" (click)="visualizarSenha('nSenha','eyeNS')" slot="end"></ion-icon>
-    <ion-input  required value="" type="password" id="nSenha"></ion-input>
+    <ion-icon   class="icon"  name="eye" style="padding-top: 10px;"  id="eyeNS"  (click)="visualizarSenha('nSenha','eyeNS')" slot="end"></ion-icon>
+    <ion-input  required value=""  name="nSenha" [(ngModel)]="nSenha"  type="password" id="nSenha" required minlength="6" #nS="ngModel"></ion-input>
+    <ion-text color="danger" *ngIf="nS.invalid && nS.dirty"><strong>Senha muito curta !!!</strong></ion-text>
   </ion-item>
 
   
   <ion-item>
     <ion-label position="stacked"><strong>Confirmar Senha</strong></ion-label>
-    <ion-icon style="padding-top: 10px;" id="eyeCS" name="eye" (click)="visualizarSenha('cnSenha','eyeCS')" slot="end"></ion-icon>
-    <ion-input  required value="" type="password" id="cnSenha"></ion-input>
+    <ion-icon class="icon" name="eye" style="padding-top: 10px;" id="eyeCS"  (click)="visualizarSenha('cnSenha','eyeCS')" slot="end"></ion-icon>
+    <ion-input  required value="" name="cnSenha" [(ngModel)]="cnSenha" type="password" id="cnSenha" required  #cnS="ngModel"></ion-input>
+    <ion-text color="danger" *ngIf="nS.value != cnS.value && cnS.dirty"><strong>As senhas não coincidem !!!</strong></ion-text>
   </ion-item>
 </ion-card>
 
-<ion-button (onclick)="alterarSenha()"style="width: 66%; margin: auto;" expand="block">Alterar Senha</ion-button>
-
+<ion-button [disabled]="fSenha.invalid || nS.value != cnS.value" type="submit" style="width: 66%; margin: auto;" expand="block">Alterar Senha</ion-button>
+</form>  
 </div>
 </ion-content>

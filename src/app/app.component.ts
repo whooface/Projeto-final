@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -18,21 +19,19 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'Adicionar Pet',
+      url: '/adddog',
+      icon: 'paw'
+    },
+    {
       title: 'Mapa',
       url: '/googlemaps',
       icon: 'map'
     },
     {
-      title:'Cadastrar seu Pet',
-      url:'/adddog',
-      icon:'paw'
-
-    },
-    {
-      title:'Match',
-      url:'/chat',
-      icon:'add'
-
+      title: 'Contatos',
+      url: '/contatos',
+      icon: 'plus'
     }
 
 

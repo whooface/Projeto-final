@@ -1,10 +1,10 @@
-import { Platform } from '@ionic/angular';
 import { MensagemService } from './../../service/mensagem.service';
 import { Router  } from '@angular/router';
 import { Component, OnInit, Sanitizer } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { MenuController } from '@ionic/angular';
 import * as $ from "jquery";
@@ -59,12 +59,30 @@ export class LoginPage implements OnInit {
     if (!this.platform.is("cordova")) {
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
         .then(res => {
-          if(this.userService.get() != null){
-             let ok = this.afAuth.auth.currentUser
-            this.user.nome = ok.displayName
-            this.user.foto = ok.photoURL
-            this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
-          }
+          
+          this.userService.get().subscribe(
+            res=>{
+              console.log(res)
+               if(res === null){
+                console.log("if aqui")
+                let userAuth = this.afAuth.auth.currentUser
+                this.user.nome = userAuth.displayName
+                this.user.foto = userAuth.photoURL
+                this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
+               }
+               else{
+                 console.log("else krl")
+                let userAuth = this.afAuth.auth.currentUser
+                this.user.nome = userAuth.displayName
+                this.user.foto = userAuth.photoURL
+               }
+                console.log(res)
+                //console.log(res.contatos)
+                console.log(this.afAuth.auth.currentUser.uid)
+            }
+          )
+          
+            
           console.log(res)
           this.router.navigate(['home'])
         })
@@ -72,19 +90,36 @@ export class LoginPage implements OnInit {
     } else {
       this.googlePlus.login({})
         .then(res => {
-           if(this.userService.get() != null){
-             let ok = this.afAuth.auth.currentUser
-            this.user.nome = ok.displayName
-            this.user.foto = ok.photoURL
-            this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
-          }
+      
+          this.userService.get().subscribe(
+            res=>{
+              console.log(res)
+               if(res === null){
+                console.log("if aqui")
+                let userAuth = this.afAuth.auth.currentUser
+                this.user.nome = userAuth.displayName
+                this.user.foto = userAuth.photoURL
+                this.userService.addGoogle(this.user,this.afAuth.auth.currentUser.uid) 
+               }
+               else{
+                 console.log("else krl")
+                let userAuth = this.afAuth.auth.currentUser
+                this.user.nome = userAuth.displayName
+                this.user.foto = userAuth.photoURL
+               }
+                console.log(res)
+                //console.log(res.contatos)
+                console.log(this.afAuth.auth.currentUser.uid)
+            }
+          )
+          
+            
           console.log(res)
           this.router.navigate([''])
         })
         .catch(err => console.error(err))
+      }
     }
-  }
-
   login() {
     this.msg.presentLoading()
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha).then(
@@ -101,6 +136,7 @@ export class LoginPage implements OnInit {
     )
   }
   
+
 
   logout(){
     this.afAuth.auth.signOut().then(
@@ -130,5 +166,7 @@ export class LoginPage implements OnInit {
       $('.inputs').fadeOut(500)
   });
   }
+  
+
 }
     
