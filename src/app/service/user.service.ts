@@ -75,6 +75,7 @@ export class UserService {
     return this.firedb.object<User>("user/"+ user.uid).valueChanges();
   }
 
+
   getGoogle(id){
     return this.firedb.object<User>("user/"+ id,
     ).valueChanges();

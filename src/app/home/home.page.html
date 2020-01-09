@@ -11,7 +11,7 @@
       <ion-icon name="person" routerLink="/login" *ngIf="!userService.afAuth.auth.currentUser"></ion-icon>
       <ion-chip *ngIf="userService.afAuth.auth.currentUser" routerLink="/perfiluser">
         <ion-avatar>
-          <img src="assets/perfil.png" *ngIf="!user.foto">
+          <img src="assets/profile.png" *ngIf="!user.foto">
           <img [src]="user.foto" *ngIf="user.foto">
         </ion-avatar>
         <ion-label>{{user.nome}}</ion-label>
@@ -23,7 +23,7 @@
 
 <ion-content style="height: auto;">
 
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides  [options]="slideOpts">
     <ion-slide *ngFor="let i of dogArray">
       <ion-grid fixed>
         <ion-row>
