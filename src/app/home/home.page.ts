@@ -9,6 +9,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { AlertController } from '@ionic/angular';
 import { MensagemService } from '../service/mensagem.service'
+import { Pedidos } from '../model/pedidos';
 
 declare var $:any
 
@@ -22,6 +23,7 @@ export class HomePage {
 protected user:User = new User
 protected dog:Dog;
 protected dogArray = []
+protected pedido = new Pedidos;
 private images: string[] = [];
 
   constructor(
@@ -49,6 +51,7 @@ private images: string[] = [];
   }
 
   async enviarSolicitacao(uidDog,dog){
+    
     const alert = await this.alert.create({
       header: 'Enviar pedido de adoção',
       message: 'Deseja enviar uma solicitação de adoção?',
@@ -59,13 +62,21 @@ private images: string[] = [];
         }, {
           text: 'Sim',
           handler: () => {
+            let data = new Date()
+            this.msg.presentLoading()
             this.dog = new Dog
+            this.pedido = new Pedidos
+            let id = this.userService.afAuth.auth.currentUser.uid
+            this.pedido.idUser = id
+            this.pedido.status = false;
+            this.pedido.data = data.getTime()
             delete dog.key;
             this.dog = dog;
-            let id = this.userService.afAuth.auth.currentUser.uid
-            this.dog.pedidos.push({idUser:id,status:false})
+            
+            this.dog.pedidos.push(this.pedido)
             this.DogService.update(this.dog,uidDog).then(
               res=>{
+                this.msg.dismissLoading()
                 this.msg.presentAlert('Solicitação enviada!',"Sua solicitação foi enviado com sucesso!")
               }
             )
@@ -154,7 +165,17 @@ zoomFoto(url){
         //For para apenas mostrar os pet que nao sao do usuario na tela principal
         for(let i = 0;i < res.length;i++){
           if(res[i].dono != this.userService.afAuth.auth.currentUser.uid){
-            this.dogArray.push(res[i])
+            console.log(res[i])
+            console.log(res[i].pedidos.length)
+            for(let a = 0; a < res[i].pedidos.length; a ++){
+              console.log(res[i].pedidos[a].idUser)
+              if(res[i].pedidos == [] 
+                || res[i].pedidos[a].idUser == this.userService.afAuth.auth.currentUser.uid ){
+                console.log(res[i].pedidos[a])
+                this.dogArray.push(res[i])
+              }
+            }
+            
           }
         }
         

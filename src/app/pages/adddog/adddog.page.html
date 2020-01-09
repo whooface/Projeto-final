@@ -77,11 +77,11 @@
 
   <section>
     <br>
-    <ion-button type="submit" expand="block" style="width: 18em; margin: auto;" >Cadastrar</ion-button>
+    <ion-button type="submit" expand="block"  [disabled]="fc.invalid || dog.fotos == null" style="width: 18em; margin: auto;" >Cadastrar</ion-button>
     <br>
     <!-- <ion-button type="button" expand="block" style="width: 18em; margin: auto;" (click)="PegaData()" >PegaData</ion-button>
     <br> -->
-    <ion-button type="reset" expand="block" style="width: 18em; margin: auto;"  color="danger" routerLink="/login" >Cancelar</ion-button>
+    <ion-button type="reset" expand="block" style="width: 18em; margin: auto;"  color="danger" routerLink="/home" >Cancelar</ion-button>
     <br>
   </section>
 </form>

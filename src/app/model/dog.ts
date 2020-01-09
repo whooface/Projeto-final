@@ -1,9 +1,9 @@
-
+import {Pedidos} from '../model/pedidos'
 export class Dog {
     
     dono: string; //{this.afAuth}
     nome:string
-    pedidos:Array<Object> = []
+    pedidos:Array<Pedidos> = []
     especie: string;  
     fotos : string[];
     status : boolean = true; //true = em busca de adoção    //false = adotado

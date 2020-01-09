@@ -1,4 +1,5 @@
 import {Chat} from '../model/chat'
+import {Notificacao} from '../model/notificacao'
 export class User {
 
     nome:string;
@@ -7,7 +8,7 @@ export class User {
     foto:string;
     ativo:boolean = true;
     contatos:Array<Chat> = [];
-    notificacoes:Array<Object> = [];
+    notificacoes:Array<Notificacao> = [];
     lat:number;
     lng:number;
     
