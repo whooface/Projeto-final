@@ -29,7 +29,6 @@ export class DogService {
         nome: dog.nome,
         descricao: dog.descricao,
         especie: dog.especie,
-        pedidos: dog.pedidos,
         fotos: dog.fotos,
         status: true,
         verificado: false,

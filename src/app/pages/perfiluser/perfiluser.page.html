@@ -6,7 +6,7 @@
         <ion-item>          
          <b><ion-label id="lheader" style="font-size: 3vh;">{{user.nome}}</ion-label></b>
          <ion-avatar slot="end" class="avatar">
-                <img src="assets/perfil.png" *ngIf="!user.foto">
+                <img src="assets/profile.png" *ngIf="!user.foto">
                 <img [src]="user.foto" *ngIf="user.foto">
             </ion-avatar>
         </ion-item>

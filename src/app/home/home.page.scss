@@ -149,7 +149,7 @@ ion-chip{
  }
 }
  ////////////////////////////////////////////////////////////TELA GRANDE//////////////////////////////////////////////////
- @media (min-width: 425px) and (max-width:768px) {
+ @media (min-width: 400px) and (max-width:768px) {
   .welcome-card img{
   background-position: center;
   background-size: cover; 
@@ -232,7 +232,6 @@ ion-chip{
   border: solid #1cc291 1px;
   background-color: #03a575;
 }
-
 
 .slide-square{
   width: 80%;

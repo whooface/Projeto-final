@@ -55,6 +55,7 @@ export class AdddogPage implements OnInit {
     console.log(this.dog.genero);
     //console.log(this.user);
     this.msg.presentLoading()
+   
     this.dogService.add(this.dog).then(
       res=>{
         //console.log("Cadastrado!", res);

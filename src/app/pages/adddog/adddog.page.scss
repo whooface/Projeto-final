@@ -10,7 +10,9 @@
       border-radius: 50%;
 }
 
-  
+.fotos-slide{
+    height: 100%;
+}
 #map_canvas{
     height: 300px;
     //width: 100%;
@@ -21,10 +23,3 @@
     width: 80%;
     height: 186px;
 }
-
-ion-toolbar{
-    --color: white ;
-    --ion-background-color: var(--ion-color-blue_e);
-  
-  }
-  

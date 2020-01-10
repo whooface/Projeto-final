@@ -75,6 +75,7 @@ export class UserService {
     return this.firedb.object<User>("user/"+ user.uid).valueChanges();
   }
 
+
   getGoogle(id){
     return this.firedb.object<User>("user/"+ id,
     ).valueChanges();
@@ -82,6 +83,7 @@ export class UserService {
   addGoogle(user:User,uid){
     user.senha = null;
     user.email = null;
+    user.interessado = []
     //user.ativo = true;
     
     this.firedb.object("user/" + uid).set(user)

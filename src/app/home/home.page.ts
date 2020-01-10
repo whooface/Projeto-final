@@ -9,6 +9,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { AlertController } from '@ionic/angular';
 import { MensagemService } from '../service/mensagem.service'
+import { ToastController } from '@ionic/angular';
 
 declare var $:any
 
@@ -32,7 +33,8 @@ private images: string[] = [];
     public viewer: PhotoViewer,
     public platForm:Platform,
     public alert: AlertController,
-    public msg: MensagemService
+    public msg: MensagemService,
+    public toast:ToastController
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
     // console.log(this.userservice.afAuth.user)
@@ -47,8 +49,31 @@ private images: string[] = [];
     })
 
   }
+  async presentToast() {
+    const toast = await this.toast.create({
+      message: 'Adcionado a lista de interesse!',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  favoritar(idDog){
+    if(this.user.interessado == null){
+      this.user.interessado = [idDog]
+    }
+    else{
+    this.user.interessado.push(idDog)
+    }
+    this.userService.update(this.user).then(
+      res=>{
+      this.presentToast()
+      }
+    )
+    
+  }
 
   async enviarSolicitacao(uidDog,dog){
+    
     const alert = await this.alert.create({
       header: 'Enviar pedido de adoção',
       message: 'Deseja enviar uma solicitação de adoção?',
@@ -59,16 +84,7 @@ private images: string[] = [];
         }, {
           text: 'Sim',
           handler: () => {
-            this.dog = new Dog
-            delete dog.key;
-            this.dog = dog;
-            let id = this.userService.afAuth.auth.currentUser.uid
-            this.dog.pedidos.push({idUser:id,status:false})
-            this.DogService.update(this.dog,uidDog).then(
-              res=>{
-                this.msg.presentAlert('Solicitação enviada!',"Sua solicitação foi enviado com sucesso!")
-              }
-            )
+           
           }
         }
       ]
@@ -147,6 +163,7 @@ zoomFoto(url){
 
 
   ionViewWillEnter() {
+    
 
     this.DogService.getAll().subscribe(
       res=> {
@@ -154,11 +171,13 @@ zoomFoto(url){
         //For para apenas mostrar os pet que nao sao do usuario na tela principal
         for(let i = 0;i < res.length;i++){
           if(res[i].dono != this.userService.afAuth.auth.currentUser.uid){
-            this.dogArray.push(res[i])
+            
+                this.dogArray.push(res[i])
+              }
+            }
+            
           }
-        }
         
-      }
     )
 
     this.menu.enable(true)
@@ -171,10 +190,12 @@ zoomFoto(url){
            if(login.displayName != null) {
             this.user.foto = login.photoURL
             this.user.nome = login.displayName
+           
           } 
         } else {
             this.user = res
             this.user.email = login.email
+           
           }
           console.log(this.user)
         },
@@ -185,6 +206,8 @@ zoomFoto(url){
         }
       )
     }
+    
+
   }
 
   ngOnDestroy(){

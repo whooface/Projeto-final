@@ -11,7 +11,7 @@
       <ion-icon name="person" routerLink="/login" *ngIf="!userService.afAuth.auth.currentUser"></ion-icon>
       <ion-chip *ngIf="userService.afAuth.auth.currentUser" routerLink="/perfiluser">
         <ion-avatar>
-          <img src="assets/perfil.png" *ngIf="!user.foto">
+          <img src="assets/profile.png" *ngIf="!user.foto">
           <img [src]="user.foto" *ngIf="user.foto">
         </ion-avatar>
         <ion-label>{{user.nome}}</ion-label>
@@ -23,7 +23,7 @@
 
 <ion-content style="height: auto;">
 
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides  [options]="slideOpts">
     <ion-slide *ngFor="let i of dogArray">
       <ion-grid fixed>
         <ion-row>
@@ -50,8 +50,12 @@
               
               </div>
             
-                <ion-button (click)=" enviarSolicitacao(i.key,i)" class="album" color="success" style="z-index: 9999; top: 320px; left: 38%; position: absolute;">
+                <ion-button (click)="enviarSolicitacao(i.key,i)" class="album" color="success" style="z-index: 9999; top: 320px; left: 25%; position: absolute;">
                   <ion-icon name="checkmark"></ion-icon>
+                </ion-button>
+                
+                <ion-button (click)="favoritar(i.key)" class="album"  color="danger" style="z-index: 9999; top: 320px; left: 50%; position: absolute;">
+                  <ion-icon  name="heart"></ion-icon>
                 </ion-button>
               
              
