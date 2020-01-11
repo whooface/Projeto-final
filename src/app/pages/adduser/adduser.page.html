@@ -4,7 +4,7 @@
 <ion-content>
   <div class="container">
     <div style="text-align: center;">
-    <img src="assets/perfil.png" (click)="escolherfoto()" *ngIf="!user.foto">
+    <img src="assets/profile.png" (click)="escolherfoto()" *ngIf="!user.foto" required>
     <img [src]="user.foto" (click)="escolherfoto()" *ngIf="user.foto">
     </div>
 

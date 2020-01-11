@@ -73,9 +73,9 @@ export class UserService {
   get(){
     let user = this.afAuth.auth.currentUser;
     console.log(user);
-    return this.firedb.object<User>("usuarios/"+ user.uid).valueChanges();
+    return this.firedb.object<User>("user/"+ user.uid).valueChanges();
   }
-  
+
 
   getGoogle(id){
     return this.firedb.object<User>("user/"+ id,
@@ -84,6 +84,7 @@ export class UserService {
   addGoogle(user:User,uid){
     user.senha = null;
     user.email = null;
+    user.interessado = []
     //user.ativo = true;
     
     this.firedb.object("user/" + uid).set(user)

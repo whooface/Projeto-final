@@ -11,7 +11,7 @@
       <ion-icon name="person" routerLink="/login" *ngIf="!userService.afAuth.auth.currentUser"></ion-icon>
       <ion-chip *ngIf="userService.afAuth.auth.currentUser" routerLink="/perfiluser">
         <ion-avatar>
-          <img src="assets/perfil.png" *ngIf="!user.foto">
+          <img src="assets/profile.png" *ngIf="!user.foto">
           <img [src]="user.foto" *ngIf="user.foto">
         </ion-avatar>
         <ion-label>{{user.nome}}</ion-label>
@@ -23,13 +23,13 @@
 
 <ion-content style="height: auto;">
 
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides  [options]="slideOpts">
     <ion-slide *ngFor="let i of dogArray">
       <ion-grid fixed>
         <ion-row>
           <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12">
-            <ion-button class="album" color="dark" style="z-index: 9999; top: 50px; left: 3%; position: absolute;">
-              <ion-icon name="camera"></ion-icon>
+            <ion-button (click)="favoritar(i.key)" class="album"  color="danger" style="z-index: 9999; top: 50px; left: 82%; position: absolute;">
+              <ion-icon  name="heart"></ion-icon>
             </ion-button>
             <!-- <ion-item *ngFor='let image of images'>
               <img src="{{image}}" (click)="zoomFoto(image)">
@@ -38,6 +38,7 @@
 
 
               <img (click)="openDescricao()" class="foto" [src]="i.fotos[0]">
+              <img src="assets/iconAdote.png" id="iconeA">
 
               <div class="nomeDog">
                 <strong>
@@ -50,11 +51,14 @@
               
               </div>
             
-                <ion-button (click)=" enviarSolicitacao(i.key,i)" class="album" color="success" style="z-index: 9999; top: 320px; left: 38%; position: absolute;">
+                <ion-button (click)="enviarSolicitacao(i.key,i)" class="album" color="success" style="z-index: 9999; top: 320px; left: 25%; position: absolute;">
                   <ion-icon name="checkmark"></ion-icon>
                 </ion-button>
-              
-             
+
+                <ion-button  class="album" color="danger" style="z-index: 9999; top: 320px; left: 50%; position: absolute;">
+                  <ion-icon name="remove"></ion-icon>
+                </ion-button>
+
 
               
               <ion-card-subtitle class="descricao"><strong>Descrição</strong></ion-card-subtitle>

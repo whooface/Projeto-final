@@ -17,6 +17,8 @@
   bottom: 5px;
   left: 20px !important; 
 }
+
+
 @media (min-width: 375px) and (max-width:425px) {
   .welcome-card img{
   background-position: center;
@@ -27,6 +29,14 @@
 }
 .welcome-card{
   height: auto;
+}
+#iconeA{
+  width: 300px; 
+  height:300px;
+  position: absolute;
+  z-index: 99999;
+  top:55px;
+  left: 5%;
 }
 
 ion-chip{
@@ -149,7 +159,7 @@ ion-chip{
  }
 }
  ////////////////////////////////////////////////////////////TELA GRANDE//////////////////////////////////////////////////
- @media (min-width: 425px) and (max-width:768px) {
+ @media (min-width: 400px) and (max-width:768px) {
   .welcome-card img{
   background-position: center;
   background-size: cover; 
@@ -232,7 +242,6 @@ ion-chip{
   border: solid #1cc291 1px;
   background-color: #03a575;
 }
-
 
 .slide-square{
   width: 80%;
