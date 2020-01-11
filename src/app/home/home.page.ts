@@ -58,12 +58,21 @@ private images: string[] = [];
   }
 
   favoritar(idDog){
+   let icon =  (<HTMLInputElement>document.getElementById("icon"))
+   if(icon.name == "heart"){
+     let index =  this.user.interessado.indexOf(idDog)
+     this.user.interessado.slice(index)
+    
+        
+  }
+  else{
     if(this.user.interessado == null){
       this.user.interessado = [idDog]
     }
     else{
     this.user.interessado.push(idDog)
     }
+  }
     this.userService.update(this.user).then(
       res=>{
       this.presentToast()
@@ -163,6 +172,7 @@ zoomFoto(url){
 
 
   ionViewWillEnter() {
+     
     
 
     this.DogService.getAll().subscribe(
@@ -188,6 +198,7 @@ zoomFoto(url){
           if (res == null) {
             this.user = new User
            if(login.displayName != null) {
+            this.user = res
             this.user.foto = login.photoURL
             this.user.nome = login.displayName
            
@@ -204,7 +215,9 @@ zoomFoto(url){
         
           this.router.navigate(['/login'])
         }
+        
       )
+      
     }
     
 

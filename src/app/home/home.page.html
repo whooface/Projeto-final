@@ -51,11 +51,16 @@
               </div>
             
                 <ion-button (click)="enviarSolicitacao(i.key,i)" class="album" color="success" style="z-index: 9999; top: 320px; left: 25%; position: absolute;">
-                  <ion-icon name="checkmark"></ion-icon>
+                  <ion-icon name="paw"></ion-icon>
                 </ion-button>
                 
                 <ion-button (click)="favoritar(i.key)" class="album"  color="danger" style="z-index: 9999; top: 320px; left: 50%; position: absolute;">
-                  <ion-icon  name="heart"></ion-icon>
+                  <ion-icon  id="icon" *ngIf="this.user.interessado == null || this.user.interessado.indexOf(i.key) == -1" name="heart-empty"></ion-icon>
+                  <ion-icon id="icon"  *ngIf="this.user.interessado == '' ||this.user.interessado.indexOf(i.key) >= 0" name="heart"></ion-icon>
+                  
+                  
+                 
+                
                 </ion-button>
               
              
