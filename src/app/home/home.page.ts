@@ -49,20 +49,31 @@ private images: string[] = [];
     })
 
   }
-  async presentToast() {
+  async presentToast(msg) {
     const toast = await this.toast.create({
-      message: 'Adcionado a lista de interesse!',
+      message: msg,
       duration: 2000
     });
     toast.present();
   }
 
   favoritar(idDog){
-   let icon =  (<HTMLInputElement>document.getElementById("icon"))
-   if(icon.name == "heart"){
-     let index =  this.user.interessado.indexOf(idDog)
-     this.user.interessado.slice(index)
     
+   console.log(idDog)
+   let icon =  (<HTMLInputElement>document.getElementById(idDog))
+   
+   console.log(icon)
+   console.log(icon.name)
+   if(icon.name == "heart"){
+     console.log(this.user.interessado.indexOf(idDog))
+     let index =  this.user.interessado.indexOf(idDog)
+     this.user.interessado.splice(index)
+     
+     this.userService.update(this.user).then(
+      res=>{
+      this.presentToast("Removemos da sua lista de interesse!")
+      }
+    )
         
   }
   else{
@@ -72,13 +83,13 @@ private images: string[] = [];
     else{
     this.user.interessado.push(idDog)
     }
-  }
+  
     this.userService.update(this.user).then(
       res=>{
-      this.presentToast()
+      this.presentToast("Adcionamos a sua lista de interesse!")
       }
     )
-    
+  }   
   }
 
   async enviarSolicitacao(uidDog,dog){
