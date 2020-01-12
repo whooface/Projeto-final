@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////  TELA MEDIA ////////////////////////////////////////////////////
-.descricao{
+.descricao,.icon1,.icon2,.icon3,.icon4,.icon5,.icon6{
   display:none;
 }
 #teste{
@@ -17,7 +17,60 @@
   bottom: 5px;
   left: 20px !important; 
 }
-
+/////icon 'cat'////
+.icon1 {
+  width: 160px !important; 
+  height:160px !important;
+  position: absolute;
+  z-index: 99999;
+  top:140px;
+  left: 2%;
+ 
+  
+}
+/////icon '+1 grande'//////
+.icon2{
+  width: 150px !important; 
+  height:150px !important;
+  position: absolute;
+  z-index: 99999;
+  top:10px;
+  left: 2%;
+  
+}
+/////icon '+1 medio'//////
+.icon3{
+  width: 100px !important; 
+  height:100px !important;
+  position: absolute;
+  z-index: 99999;
+  top:150px;
+  left: 75%;
+}
+.icon4{
+  width: 100px !important; 
+  height:100px !important;
+  position: absolute;
+  z-index: 99999;
+  top:350px;
+  left: 40%;
+}
+.icon5{
+  width: 70px !important; 
+  height:70px !important;
+  position: absolute;
+  z-index: 99999;
+  top:210px;
+  left: 20%;
+}
+.icon6{
+  width: 160px !important; 
+  height:160px !important;
+  position: absolute;
+  z-index: 99999;
+  top:140px;
+  left: 52%;
+}
 
 @media (min-width: 375px) and (max-width:425px) {
   .welcome-card img{
@@ -30,14 +83,7 @@
 .welcome-card{
   height: auto;
 }
-#iconeA{
-  width: 300px; 
-  height:300px;
-  position: absolute;
-  z-index: 99999;
-  top:55px;
-  left: 5%;
-}
+
 
 ion-chip{
   border: solid #1cc291 1px;

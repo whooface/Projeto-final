@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
-    canActivate:[GuardService]
+    
   },
   {
     path: 'list',
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'perfildog', loadChildren: './pages/perfildog/perfildog.module#PerfildogPageModule', canActivate:[GuardService] },
   { path: 'perfiluser', loadChildren: './pages/perfiluser/perfiluser.module#PerfiluserPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'googlemaps', loadChildren: './pages/googlemaps/googlemaps.module#GooglemapsPageModule', canActivate:[GuardService] },
+  { path: 'googlemaps', loadChildren: './pages/googlemaps/googlemaps.module#GooglemapsPageModule',  },
   { path: 'updateuser', loadChildren: './pages/updateuser/updateuser.module#UpdateuserPageModule' },
   { path: 'trocar-senha', loadChildren: './pages/trocar-senha/trocar-senha.module#TrocarSenhaPageModule' },
   { path: 'contatos', loadChildren: './pages/contatos/contatos.module#ContatosPageModule' },

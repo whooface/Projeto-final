@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { UserService } from './../service/user.service';
 import { User } from '../model/user';
@@ -47,7 +46,7 @@ private images: string[] = [];
         'assets/fundo.jpg'
       ]
     })
-
+    
   }
   async presentToast() {
     const toast = await this.toast.create({
@@ -74,7 +73,7 @@ private images: string[] = [];
 
   async enviarSolicitacao(uidDog,dog){
 
-    $('')
+   
     
     const alert = await this.alert.create({
       header: 'Enviar pedido de adoção',
@@ -86,7 +85,19 @@ private images: string[] = [];
         }, {
           text: 'Sim',
           handler: () => {
-           
+            $('.icon1').fadeIn(300)
+            $('.icon6').delay(600).fadeIn(300)
+            $('.icon2').delay(700).fadeIn(300)
+            $('.icon3').delay(800).fadeIn(300)
+            $('.icon4').delay(900).fadeIn(300)
+            $('.icon5').delay(1000).fadeIn(300)
+            
+            $('.icon1').delay(1200).fadeOut(300)
+            $('.icon2').delay(1200).fadeOut(300)
+            $('.icon3').delay(1200).fadeOut(300)
+            $('.icon4').delay(1200).fadeOut(300)
+            $('.icon5').delay(1200).fadeOut(300)
+            $('.icon6').delay(1200).fadeOut(300)
           }
         }
       ]
@@ -97,9 +108,10 @@ await alert.present();
   }
 
   ngOnInit(){
-   
+    
 
     $(document).ready(function () {
+     
       //you can set this, as long as it's not greater than the slides length
       var show = 1;
       //calculate each slides width depending on how many you want to show
@@ -163,6 +175,7 @@ zoomFoto(url){
 
 
   ionViewWillEnter() {
+    
     
 
     this.DogService.getAll().subscribe(
