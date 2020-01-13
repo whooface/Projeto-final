@@ -25,7 +25,7 @@ export class ContatosService {
  }
 
  getMyConversas(){
-    return this.firebs.list<Conversa>("user").snapshotChanges()
+    return this.firebs.list<Conversa>("conversas").snapshotChanges()
     
     .pipe(
       map(dados =>

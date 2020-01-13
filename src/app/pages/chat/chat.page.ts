@@ -45,6 +45,13 @@ export class ChatPage implements OnInit {
   }
 
   ionViewWillEnter(){
+
+    this.contatoService.getMyConversas().subscribe(
+      res=>{
+        console.log(res)
+      }
+    )
+    
     
     this.userService.get().subscribe(
       res=>{
@@ -59,6 +66,18 @@ export class ChatPage implements OnInit {
     this.modal.dismiss()
   }
   enviar(){
+    let data = new Date
+    this.conversa.idConversa  = data.getTime()
+    if(!this.conversa.users){
+      this.conversa.users = [this.dog.dono,this.userService.afAuth.auth.currentUser.uid]
+    }
+    else{
+      this.conversa.users.push(this.dog.dono,this.userService.afAuth.auth.currentUser.uid)
+    }
+    this.conversa.idDog = this.idDog
+    
+
+    this.contatoService.add(this.conversa).then()
     this.msg = new Mensagem
     this.remetente = this.user.nome
     this.msg.autor = this.userService.afAuth.auth.currentUser.uid.toString()
