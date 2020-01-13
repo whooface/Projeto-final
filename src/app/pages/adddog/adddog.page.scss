@@ -23,3 +23,16 @@
     width: 80%;
     height: 186px;
 }
+#fotos{
+    padding: 5px;
+    float: left;
+    transition: transform .2s;
+    width: 110px !important;
+    height: 110px !important;
+    display: flexbox;
+  }
+
+  #fotos:hover{
+    transform: scale(1.5) !important;
+  }
+  

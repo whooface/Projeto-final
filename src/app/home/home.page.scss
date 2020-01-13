@@ -2,6 +2,14 @@
 .descricao,.icon1,.icon2,.icon3,.icon4,.icon5,.icon6{
   display:none;
 }
+#iconPet{
+  position: absolute;
+  border-radius: 1000px !important;
+  width: 200px !important;
+  height: 220px !important;
+ 
+  top: 20px;
+}
 #teste{
   height: 45px !important;
   width: 45px !important; 

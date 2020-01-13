@@ -14,7 +14,7 @@
           <img src="assets/profile.png" *ngIf="!user.foto">
           <img [src]="user.foto" *ngIf="user.foto">
         </ion-avatar>
-        <ion-label>{{user.nome}}</ion-label>
+        <ion-label >{{nomeAbreviado}}</ion-label>
       </ion-chip>
 
     </ion-title>
@@ -28,22 +28,33 @@
       <ion-grid fixed>
         <ion-row>
           <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12">
-            <ion-button (click)="favoritar(i.key)" class="album"  color="danger" style="z-index: 9999; top: 50px; left: 82%; position: absolute;">
-              <ion-icon  name="heart"></ion-icon>
+            <ion-button  (click)="favoritar(i.key)" class="album"  color="danger" style="z-index: 9999; top: 50px; left: 82%; position: absolute;">
+              <ion-icon [id]="i.key" *ngIf="!this.user.interessado || this.user.interessado.indexOf(i.key) == -1" name="heart-empty" ></ion-icon>
+            
+              <ion-icon [id]="i.key" *ngIf="this.user.interessado && this.user.interessado.indexOf(i.key) >= 0" name="heart" ></ion-icon>
+          
             </ion-button>
+            
             <!-- <ion-item *ngFor='let image of images'>
               <img src="{{image}}" (click)="zoomFoto(image)">
             </ion-item> -->
             <ion-card class="welcome-card">
 
 
-              <img (click)="openDescricao()" class="foto" [src]="i.fotos[0]">
+              <img class="foto" (click)="abrirPerfil(i.key)" [src]="i.fotos[0]">
               <img src="assets/iconCat.png" class="icon1">
               <img src="assets/iconDog.png"class="icon6">
               <img src="assets/icon2.png" class="icon2">
               <img src="assets/icon2.png" class="icon3">
               <img src="assets/icon2.png" class="icon4">
               <img src="assets/icon2.png" class="icon5"> 
+
+              <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
+              <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
+              <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
+              <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
+              <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
+              <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
 
               
               <div class="nomeDog">
@@ -58,7 +69,7 @@
               </div>
             
                 <ion-button (click)="enviarSolicitacao(i.key,i)" class="album" color="success" style="z-index: 9999; top: 320px; left: 25%; position: absolute;">
-                  <ion-icon name="checkmark"></ion-icon>
+                  <ion-icon name="paw"></ion-icon>
                 </ion-button>
 
                 <ion-button  class="album" color="danger" style="z-index: 9999; top: 320px; left: 50%; position: absolute;">
@@ -66,13 +77,11 @@
                 </ion-button>
 
 
-              
-              <ion-card-subtitle class="descricao"><strong>Descrição</strong></ion-card-subtitle>
-              <ion-item class="descricao" (click)="openFoto()">
+             
 
-                <p class="descricao" style="text-align: justify;">{{i.descricao}}</p>
-              </ion-item>
+             
             </ion-card>
+
 
 
           </ion-col>
