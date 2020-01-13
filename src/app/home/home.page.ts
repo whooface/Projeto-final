@@ -117,6 +117,7 @@ private images: string[] = [];
         }, {
           text: 'Sim',
           handler: () => {
+            $('#bloqueio').fadeIn(0)
             $('.icon1').fadeIn(300)
             $('.icon6').delay(600).fadeIn(300)
             $('.icon2').delay(700).fadeIn(300)
@@ -130,6 +131,7 @@ private images: string[] = [];
             $('.icon4').delay(1200).fadeOut(300)
             $('.icon5').delay(1200).fadeOut(300)
             $('.icon6').delay(1200).fadeOut(300)
+            $('#bloqueio').fadeOut(2200)
             //temporizador dos audios
             setTimeout(() => {
               $('audio')[0].play();
