@@ -25,6 +25,7 @@ import { Network } from '@ionic-native/network/ngx';
 import{PhotoViewer} from '@ionic-native/photo-viewer/ngx'
 import { GaleriaDogPageModule } from '../app/pages/galeria-dog/galeria-dog.module'
 import { PerfildogPageModule } from '../app/pages/perfildog/perfildog.module'
+import {ChatPageModule} from '../app/pages/chat/chat.module'
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
@@ -43,7 +44,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AngularFireAuthModule,
     AngularFirestoreModule,
     GaleriaDogPageModule,
-    PerfildogPageModule
+    PerfildogPageModule,
+    ChatPageModule
+
     
     ],
   providers: [
