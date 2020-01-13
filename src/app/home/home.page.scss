@@ -149,12 +149,12 @@ ion-chip{
 
 
 
-@media (min-width: 320px) and (max-width:375px) {
+@media (min-width: 320px) and (max-width:400px) {
   .welcome-card img{
   background-position: center;
   background-size: cover; 
-  height: auto;
-  max-height: 500px; 
+  height: 35em;
+  max-height: 750px; 
   width: 100%;
 }
 .welcome-card{
