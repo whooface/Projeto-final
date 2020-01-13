@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-sliding id="teste" (ionSwipe)="teste()" *ngFor="let dog of dogs">
+  <ion-item-sliding id="teste"  *ngFor="let dog of dogs">
     <ion-item >
       <ion-thumbnail slot="start">
         <img [src]="dog.fotos[0]">
@@ -17,7 +17,7 @@
     </ion-item>
 
     <ion-item-options    side="end">
-      <ion-item-option (click)="presentModal()" color="primary">Alterar</ion-item-option>
+      <ion-item-option (click)="presentModal(dog.key)" color="primary">Alterar</ion-item-option>
       <ion-item-option  color="danger">Remover</ion-item-option>
     </ion-item-options>
   </ion-item-sliding>

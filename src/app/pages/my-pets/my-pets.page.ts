@@ -27,9 +27,12 @@ export class MyPetsPage implements OnInit {
     )
   }
 
-  async presentModal() {
+  async presentModal(i) {
     const modal = await this.modalController.create({
-      component: PerfildogPage
+      component: PerfildogPage,
+      componentProps:{
+        idDog:i
+      }
     });
     return await modal.present();
   }
