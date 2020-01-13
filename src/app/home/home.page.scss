@@ -2,6 +2,13 @@
 .descricao{
   display:none;
 }
+#bloqueio{
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  height: 100%;
+  width: 100%;
+}
 #iconPet{
   position: absolute;
   border-radius: 1000px !important;
