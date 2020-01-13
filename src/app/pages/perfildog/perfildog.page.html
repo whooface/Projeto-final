@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>perfildog</ion-title>
+    <ion-icon (click)="close()" slot="start" style="margin-left: 2vh;" name="return-left"></ion-icon> 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <div style="height: 180px; width: 100%;background-image: url('../../../assets/capa.png');background-size: cover;">
+      <ion-avatar id="avatar">
+        <img [src]="dog.fotos">
+      </ion-avatar>
+    </div>
+    <ion-card style="margin-top: 12px">
+        <p><ion-icon style="padding-left: 5px;" name="paw"></ion-icon>MEU NOME:  {{dog.nome}} </p>
+        <p><ion-icon style="padding-left: 5px;" name="paw"></ion-icon>MINHA IDADE </p>
+        <p><ion-icon style="padding-left: 5px;" name="paw"></ion-icon>MEU GENERO: {{dog.genero}} </p>
+    </ion-card>
+    <ion-card style="margin-top: 12px">
+      <p style="padding-left: 5px;">SOBRE MIM</p>
+        <p style="padding-left: 5px;">{{dog.descricao}}</p>
+  </ion-card>
+    <ion-card style="margin-top: 12px">
+      <p style="padding-left: 5px;">MINHAS FOTOS</p>
+      <ion-thumbnail id="fotos" (click)="abrirFoto(i)" *ngFor="let fotos of dog.fotos;let i = index">
+        <ion-img [src]="fotos"></ion-img>
+      </ion-thumbnail>
+  </ion-card>
 </ion-content>

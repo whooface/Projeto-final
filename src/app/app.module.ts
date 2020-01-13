@@ -23,6 +23,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import {GuardService} from './service/guard.service'
 import { Network } from '@ionic-native/network/ngx';
 import{PhotoViewer} from '@ionic-native/photo-viewer/ngx'
+import { GaleriaDogPageModule } from '../app/pages/galeria-dog/galeria-dog.module'
+import { PerfildogPageModule } from '../app/pages/perfildog/perfildog.module'
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
@@ -40,6 +42,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    GaleriaDogPageModule,
+    PerfildogPageModule
     
     ],
   providers: [

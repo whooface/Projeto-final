@@ -2,6 +2,14 @@
 .descricao{
   display:none;
 }
+#iconPet{
+  position: absolute;
+  border-radius: 1000px !important;
+  width: 200px !important;
+  height: 220px !important;
+ 
+  top: 20px;
+}
 #teste{
   height: 45px !important;
   width: 45px !important; 
@@ -17,6 +25,67 @@
   bottom: 5px;
   left: 20px !important; 
 }
+
+.icon1 {
+  display:none;
+  width: 160px !important; 
+  height:160px !important;
+  position: absolute;
+  z-index: 99999;
+  top:140px;
+  left: 2%;
+ 
+  
+}
+/////icon '+1 grande'//////
+.icon2{
+  display:none;
+  width: 150px !important; 
+  height:150px !important;
+  position: absolute;
+  z-index: 99999;
+  top:10px;
+  left: 2%;
+  
+}
+/////icon '+1 medio'//////
+.icon3{
+  display:none;
+  width: 100px !important; 
+  height:100px !important;
+  position: absolute;
+  z-index: 99999;
+  top:150px;
+  left: 75%;
+}
+.icon4{
+  display:none;
+  width: 100px !important; 
+  height:100px !important;
+  position: absolute;
+  z-index: 99999;
+  top:350px;
+  left: 40%;
+}
+.icon5{
+  display:none;
+  width: 70px !important; 
+  height:70px !important;
+  position: absolute;
+  z-index: 99999;
+  top:210px;
+  left: 20%;
+}
+.icon6{
+  display:none;
+  width: 160px !important; 
+  height:160px !important;
+  position: absolute;
+  z-index: 99999;
+  top:140px;
+  left: 52%;
+}
+
 @media (min-width: 375px) and (max-width:425px) {
   .welcome-card img{
   background-position: center;

@@ -156,7 +156,7 @@ export class AdddogPage implements OnInit {
     async removerFoto(index) {
       const alert = await this.msg.alertController.create({
         header: 'Confirmar!',
-        message: 'Deseja apagar a ' + (index + 1) + 'ª foto?',
+        message: 'Deseja remover esta foto?',
         buttons: [
           {
             text: 'Sim',

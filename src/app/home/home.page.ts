@@ -10,6 +10,8 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { AlertController } from '@ionic/angular';
 import { MensagemService } from '../service/mensagem.service'
 import { ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { PerfildogPage } from '../pages/perfildog/perfildog.page'
 
 declare var $:any
 
@@ -23,6 +25,7 @@ export class HomePage {
 protected user:User = new User
 protected dog:Dog;
 protected dogArray = []
+private nomeAbreviado:string = "";
 private images: string[] = [];
 
   constructor(
@@ -34,7 +37,8 @@ private images: string[] = [];
     public platForm:Platform,
     public alert: AlertController,
     public msg: MensagemService,
-    public toast:ToastController
+    public toast:ToastController,
+    private modal:ModalController
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
     // console.log(this.userservice.afAuth.user)
@@ -49,6 +53,14 @@ private images: string[] = [];
     })
 
   }
+  abrirPerfil(idDog){
+    this.modal.create({
+      component: PerfildogPage,
+      componentProps:{
+        idDog:idDog
+      }
+    }).then(modal => modal.present())
+  }
   async presentToast(msg) {
     const toast = await this.toast.create({
       message: msg,
@@ -61,6 +73,7 @@ private images: string[] = [];
     
    console.log(idDog)
    let icon =  (<HTMLInputElement>document.getElementById(idDog))
+ 
    
    console.log(icon)
    console.log(icon.name)
@@ -104,6 +117,38 @@ private images: string[] = [];
         }, {
           text: 'Sim',
           handler: () => {
+            $('.icon1').fadeIn(300)
+            $('.icon6').delay(600).fadeIn(300)
+            $('.icon2').delay(700).fadeIn(300)
+            $('.icon3').delay(800).fadeIn(300)
+            $('.icon4').delay(900).fadeIn(300)
+            $('.icon5').delay(1000).fadeIn(300)
+            
+            $('.icon1').delay(1200).fadeOut(300)
+            $('.icon2').delay(1200).fadeOut(300)
+            $('.icon3').delay(1200).fadeOut(300)
+            $('.icon4').delay(1200).fadeOut(300)
+            $('.icon5').delay(1200).fadeOut(300)
+            $('.icon6').delay(1200).fadeOut(300)
+            //temporizador dos audios
+            setTimeout(() => {
+              $('audio')[0].play();
+            }, 300);
+            setTimeout(() => {
+              $('audio')[1].play();
+            }, 600);
+            setTimeout(() => {
+              $('audio')[2].play();
+            }, 700);
+            setTimeout(() => {
+              $('audio')[3].play();
+            }, 800);
+            setTimeout(() => {
+              $('audio')[4].play();
+            }, 900);
+            setTimeout(() => {
+              $('audio')[5].play();
+            }, 1000);
            
           }
         }
@@ -156,7 +201,7 @@ await alert.present();
         $('.nomeDog').hide()
         $('.localDog').hide()
         $('.welcome-card').animate({
-          marginTop:"+=50px"
+          // marginTop:"+=50px"
         },2000)
         $('.album').fadeOut()  
     }) 
@@ -170,7 +215,7 @@ openFoto(){
     $('.nomeDog').fadeIn()
     $('.localDog').fadeIn()
     $('.welcome-card').animate({
-      marginTop:"-=50px"
+      // marginTop:"-=50px"
     },1000)
   })
 }
@@ -178,6 +223,10 @@ openFoto(){
 zoomFoto(url){
   this.viewer.show(url,"",{share:true});
 }
+
+
+
+
 
 
 
@@ -216,6 +265,7 @@ zoomFoto(url){
           } 
         } else {
             this.user = res
+            this.nomeAbreviado = this.user.nome.substr(0,this.user.nome.indexOf(" ")).toUpperCase()
             this.user.email = login.email
            
           }

@@ -8,18 +8,21 @@
 
 <ion-card>
 <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
-  <br><br>
-    <ion-item lines="none" class="fotos">
-        <img src="assets/profile.png" (click)="escolherFoto()" *ngIf="!dog.fotos" required>
-        <img [src]="dog.fotos[0]" (click)="escolherFoto()" *ngIf="dog.fotos" required>
-      </ion-item>
-      <!-- //fotos[fotos.legth -1] -->
-    <br>
-  <ion-slides pager="true" [options]="slideOpts" *ngIf="dog.fotos" style="width: 33%; height: 200px; border-top:1px solid #03a575;border-bottom:1px solid #03a575 ;">
-      <ion-slide *ngFor="let foto of dog.fotos; let i=index" class="fotos-slide">
-        <img src="{{foto}}" (click)="removerFoto(i)">
-      </ion-slide>
-    </ion-slides>
+
+ 
+    <ion-row>
+      
+      <ion-col col-6>
+        <ion-thumbnail *ngFor="let foto of dog.fotos; let i=index" id="fotos">
+          <ion-img src="{{foto}}" (click)="removerFoto(i)"></ion-img>
+        </ion-thumbnail>
+    
+        <ion-thumbnail (click)="escolherFoto()"  id="fotos" *ngIf="!dog.fotos || dog.fotos.length < 6">
+          <ion-img src="assets/plus.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      
+    </ion-row>
 
 
   <ion-item>
