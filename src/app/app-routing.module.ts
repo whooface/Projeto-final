@@ -29,7 +29,8 @@ const routes: Routes = [
   { path: 'trocar-senha', loadChildren: './pages/trocar-senha/trocar-senha.module#TrocarSenhaPageModule' },
   { path: 'contatos', loadChildren: './pages/contatos/contatos.module#ContatosPageModule' },
   { path: 'chat', loadChildren: './pages/chat/chat.module#ChatPageModule' },
-  { path: 'notificacao', loadChildren: './pages/notificacao/notificacao.module#NotificacaoPageModule' },  { path: 'galeria-dog', loadChildren: './pages/galeria-dog/galeria-dog.module#GaleriaDogPageModule' }
+  { path: 'notificacao', loadChildren: './pages/notificacao/notificacao.module#NotificacaoPageModule' },  { path: 'galeria-dog', loadChildren: './pages/galeria-dog/galeria-dog.module#GaleriaDogPageModule' },
+  { path: 'favoritos', loadChildren: './pages/favoritos/favoritos.module#FavoritosPageModule' }
 
 
 

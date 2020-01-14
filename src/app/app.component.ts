@@ -27,6 +27,11 @@ export class AppComponent {
       title: 'Contatos',
       url: '/contatos',
       icon: 'chatboxes'
+    },
+    {
+      title: 'Favoritos',
+      url: '/favoritos',
+      icon: 'heart'
     }
   ];
 
