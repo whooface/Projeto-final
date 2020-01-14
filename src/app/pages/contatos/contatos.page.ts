@@ -52,12 +52,12 @@ export class ContatosPage implements OnInit {
       //função para puxar todos os users
       this.userService.get().subscribe(
         res=>{
-          console.log(res.contatos)
-          for(let i = 0;i < res.contatos.length ;i++){
-            console.log("entro no for")
-            console.log(res.contatos[i])
-            this.userService.getUser(res.contatos[i].user).subscribe(
-              res=>{
+          //console.log(res.contatos)
+          //for(let i = 0;i < res.contatos.length ;i++){
+            //console.log("entro no for")
+            //console.log(res.contatos[i])
+            //this.userService.getUser(res.contatos[i].user).subscribe(
+              //res=>{
                 console.log(res)
                 this.contatos.push(res);
                 console.log(this.contatos)
@@ -69,7 +69,7 @@ export class ContatosPage implements OnInit {
           }
           
         }
-      )
-    }
+      //)
+    //}
 
-  }
+  //}

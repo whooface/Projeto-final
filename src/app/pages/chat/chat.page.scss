@@ -1,5 +1,6 @@
 ion-content{
-    --ion-background-color:rgb(55, 169, 245);
+   
+    --background: url('../../../assets/fundoChat.jpg')  no-repeat;
     height: 200vh;
 }
 
@@ -39,4 +40,15 @@ ion-content{
   .msg-btn {
     --padding-start: 0.5em;
     --padding-end: 0.5em;
+  }
+
+
+  #imgCard{
+    margin: 0 !important;
+    padding-left: 0px  !important;
+  
+    
+  }
+  #item{
+    --background: rgba(255, 255, 255,0.9);
   }

@@ -41,28 +41,7 @@ export class UserService {
     //return this.firedb.list("user").push(user);
   }
   
-  addConversa(user:User,chat:Chat){
-    let uuser = this.afAuth.auth.currentUser;
-    let data = new Date()
 
-    chat.idConversa = chat.user.substr(0,5) + data.getTime().toString()
-    
-    
-    this.get().subscribe(
-      res=>{
-        user.contatos =  res.contatos
-        console.log(res) 
-      }
-    )
-    if(user.contatos == null){
-        user.contatos = [chat]
-    }
-    else{
-      user.contatos.push(chat)
-    }
-   
-    return this.firedb.object("user/"+ uuser.uid + "/contatos").set(user.contatos);
-  }
 
   getUser(id){
     console.log(id)

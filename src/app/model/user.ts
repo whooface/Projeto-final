@@ -1,4 +1,4 @@
-import {Chat} from '../model/chat'
+import {Conversa} from '../model/conversa'
 import {Notificacao} from '../model/notificacao'
 export class User {
 
@@ -8,7 +8,7 @@ export class User {
     foto:string;
     ativo:boolean = true;
     interessado:Array<string> = [] 
-    contatos:Array<Chat> = [];
+    conversas:Array<Conversa> = [];
     notificacoes:Array<Notificacao> = [];
     lat:number;
     lng:number;
