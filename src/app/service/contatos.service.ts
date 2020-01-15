@@ -14,24 +14,30 @@ export class ContatosService {
     private auth:AngularFireAuth
   ) { }
 
-  add(conversa:Conversa){
-   
-  return this.firebs.object("conversas/" + conversa.idConversa).set(conversa)
+  add(conversa:Conversa,idConversa:string){
+ 
+
+  return this.firebs.object("/conversas/" + idConversa).set(conversa)
 
 }
  get(idConversa:number){
-  return this.firebs.object<Conversa>("conversas/" + idConversa).valueChanges()
+  return this.firebs.object<Conversa>("/conversas/" + idConversa).valueChanges()
 
  }
 
- getMyConversas(){
-    return this.firebs.list<Conversa>("conversas").snapshotChanges()
+ getMyConversas(idDog){
+    return this.firebs.list<Conversa>("/conversas/" , ref=> ref.orderByChild('idDog').equalTo(idDog)).snapshotChanges()
     
     .pipe(
       map(dados =>
         dados.map(d => ({ key: d.payload.key, ...d.payload.val() }))
       )
     )
+}
+update(conversa:Conversa,idConversa:string){
+  console.log(idConversa)
+
+  return this.firebs.object("conversas/"+ idConversa).update(conversa);
 }
 
  }

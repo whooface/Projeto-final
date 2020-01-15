@@ -23,6 +23,7 @@ export class ChatPage implements OnInit {
   public remetente:string;
   public conversa:Conversa = new Conversa;
   public idDog:string;
+  public idConversa:any;
   
   
   public entrada : string; 
@@ -38,6 +39,10 @@ export class ChatPage implements OnInit {
   ) { }
 
   ngOnInit() {
+ 
+   
+
+
   
     this.dog = this.nav.get('dog')
     this.idDog = this.nav.get('idDog')
@@ -45,44 +50,51 @@ export class ChatPage implements OnInit {
   }
 
   ionViewWillEnter(){
-
-    this.contatoService.getMyConversas().subscribe(
+    this.contatoService.getMyConversas(this.idDog).subscribe(
       res=>{
-        console.log(res)
+        console.log(res[0].users)
+        for(let i = 0;i < res.length;i++){
+          if(res[i].users  && res[i].users.indexOf(this.userService.afAuth.auth.currentUser.uid) != -1){
+              this.conversa = res[i]
+              this.idConversa = res[i].key
+          }
+        }
+        
       }
     )
-    
-    
-    this.userService.get().subscribe(
-      res=>{
-        this.user = res
         
-    }
-      )
-
   }
 
   closeModal(){
     this.modal.dismiss()
   }
   enviar(){
-    let data = new Date
-    this.conversa.idConversa  = data.getTime()
-    if(!this.conversa.users){
-      this.conversa.users = [this.dog.dono,this.userService.afAuth.auth.currentUser.uid]
+    if(!this.conversa.mensagens){
+      let data = new Date
+      this.conversa.idDog = this.idDog
+      this.conversa.users =  [this.userService.afAuth.auth.currentUser.uid,this.dog.dono]
+      this.conversa.mensagens = []
+      this.idConversa = data.getTime()
+      this.contatoService.add(this.conversa,this.idConversa).then()
+      console.log("crio uma nova conversa")
     }
-    else{
-      this.conversa.users.push(this.dog.dono,this.userService.afAuth.auth.currentUser.uid)
-    }
-    this.conversa.idDog = this.idDog
+     console.log(this.conversa)
     
-
-    this.contatoService.add(this.conversa).then()
+     console.log(this.conversa)
     this.msg = new Mensagem
     this.remetente = this.user.nome
     this.msg.autor = this.userService.afAuth.auth.currentUser.uid.toString()
     this.msg.mensagem = this.mensagem
-    this.mensagens.push(this.msg)
+    this.conversa.mensagens.push()
+    if(!this.conversa.mensagens){
+      this.conversa.mensagens = [this.msg]
+      console.log('if')
+    }else{
+      this.conversa.mensagens.push(this.msg)
+      console.log('else')
+    }
+    this.contatoService.update(this.conversa,this.idConversa) 
+  
     this.mensagem = ""
     
 }

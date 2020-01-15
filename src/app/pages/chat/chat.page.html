@@ -20,7 +20,7 @@
     <ion-text color="medium" text-center>
      
     </ion-text>
-    <ion-row *ngFor="let message of mensagens">
+    <ion-row *ngFor="let message of this.conversa.mensagens">
  
       <ion-col size="9" *ngIf="message.autor !==  this.userService.afAuth.auth.currentUser.uid;" class="message other-message">
         <b>{{ message.autor }}</b><br>
