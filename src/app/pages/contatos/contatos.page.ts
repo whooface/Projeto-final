@@ -19,6 +19,8 @@ import{ ConversaService} from '../../service/conversa.service'
 export class ContatosPage implements OnInit {
   protected user: User = new User; 
   public conversas: Array<any> = [] ;
+  public usuarios:Array<User>=  []
+
   
   constructor(
       
@@ -38,7 +40,21 @@ export class ContatosPage implements OnInit {
      this.conversaService.io.emit('getMyConversas',this.userService.afAuth.auth.currentUser.uid)
      this.conversaService.io.on('myConversas',(conversas)=>{
         this.conversas = conversas
+        for(let i = 0;i <this.conversas.length;i++){
+          for(let a = 0;a<this.conversas[i].users.length;a ++){
+              if(this.conversas[i].users[a] != this.userService.afAuth.auth.currentUser.uid){
+                  this.userService.getUser(this.conversas[i].users[a]).subscribe(
+                    res=>{
+                      this.usuarios.push(res)
+                    }
+                  )
+              }
+          }
+        }
+
      })
+     
+     
 
       
       let login = this.userService.afAuth.auth.currentUser;

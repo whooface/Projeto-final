@@ -6,7 +6,7 @@ io.on('connection',(io)=>{
     console.log(`Novo usuario conectado ${io.id}`)
     
     io.on('enviarMensagem',([msg,idConversa])=>{
-       io.broadcast.in(id).emit('mensagem', msg);
+       io.broadcast.in(idConversa).emit('mensagem', msg);
        resultado = conversas.find(obj => obj.idConversa == idConversa)
        resultado.mensagens.push(msg)
         //console.log(resultado.mensagens)
@@ -16,7 +16,7 @@ io.on('connection',(io)=>{
         io.join(idConversa)
         console.log(`${io.id} Entrou na sala ${idConversa}`)
     })
-    io.on('sairsALA', (idConversa)=>{
+    io.on('sairSala', (idConversa)=>{
         io.leave(idConversa);
         console.log(`${io.id} Saiu da sala ${idConversa}`)
     })

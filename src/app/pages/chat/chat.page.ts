@@ -21,10 +21,12 @@ export class ChatPage implements OnInit {
   protected dog;
   protected msg:Mensagem
   public mensagem:string = "";
-  public remetente:string;
+  public remetente:string = "Eu";
   public conversa:Conversa;
   public idDog:string;
   public idConversa:any;
+  public destinatario;
+  public user2: User = new User
 
   
   
@@ -71,15 +73,30 @@ export class ChatPage implements OnInit {
     
   }
 
-
+   
 
   ionViewWillEnter(){
+    console.log(this.remetente)
     if(!this.nav.get('home')){
+      
       this.conversaService.io.emit('entrarSala',this.conversa.idConversa)
+       for(let i = 0; i< this.conversa.users.length; i++){
+         if(this.conversa.users[i] != this.userService.afAuth.auth.currentUser.uid){
+            this.userService.getUser(this.conversa.users[i]).subscribe(
+              res=>{
+                this.user2 = new User
+                this.user2 = res
+                this.destinatario = this.user2.nome
+              }
+            )
+         }
+       }
+      
     }
     
 
   }
+  
   getMensagens(){
     let observable = new Observable(observer =>{
         this.conversaService.io.on('mensagem',(msg)=>{
@@ -106,17 +123,20 @@ export class ChatPage implements OnInit {
       this.conversa.users = [this.userService.afAuth.auth.currentUser.uid,this.dog.dono]
       this.conversa.mensagens = [this.msg]
       this.conversaService.novaConversa(this.conversa)
+      console.log(this.msg)
       this.conversaService.io.emit('entrarSala',this.conversa.idConversa)
       this.mensagem = ""
     }else{
 
       this.conversa.mensagens.push(this.msg)
+      this.conversaService.io.emit('enviarMensagem',[this.msg,this.conversa.idConversa])
       this.mensagem = ""
       
     }
     }
   ngOnDestroy(){
     this.conversaService.io.emit('sairSala',this.conversa.idConversa)
+    
   }
   }  
 
