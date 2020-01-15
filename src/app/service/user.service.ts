@@ -5,6 +5,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from "rxjs/operators"
 import {Chat} from '../model/chat'
+import { Conversa } from '../model/conversa'
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,22 @@ export class UserService {
     console.log(user);
     return this.firedb.object<User>("user/"+ user.uid).valueChanges();
   }
+  
+ novaConversa(conversa:Conversa,idUser:string){
+  
+  return this.firedb.object("user/" + idUser + "/conversas/" + conversa.idConversa).set(conversa)
 
+ } 
+ getMyConversas(){
+  let user = this.afAuth.auth.currentUser.uid
+  return this.firedb.list<Conversa>("user/" + user + "/conversas/").snapshotChanges()
+  .pipe(
+    map(dados =>
+      dados.map(d => ({ ...d.payload.val() }))
+    )
+  )
+
+ }
 
   getGoogle(id){
     return this.firedb.object<User>("user/"+ id,

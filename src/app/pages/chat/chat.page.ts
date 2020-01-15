@@ -7,7 +7,9 @@ import { Socket } from 'ngx-socket-io';
 import { ModalController,NavParams } from '@ionic/angular';
 import {Mensagem} from '../../model/mensagem'
 import { Conversa } from 'src/app/model/conversa';
-import { ContatosService } from '../../service/contatos.service'
+import { DogService } from '../../service/dog.service';
+import { ConversaService } from '../../service/conversa.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -16,86 +18,108 @@ import { ContatosService } from '../../service/contatos.service'
 })
 export class ChatPage implements OnInit {
   protected user: User = new User 
-  protected dog: Dog = new Dog;
+  protected dog;
   protected msg:Mensagem
-  private mensagens = []
-  public mensagem;
+  public mensagem:string = "";
   public remetente:string;
-  public conversa:Conversa = new Conversa;
+  public conversa:Conversa;
   public idDog:string;
   public idConversa:any;
+
   
   
   public entrada : string; 
   
   constructor(
     protected  userService : UserService,
-    private io:Socket,
     private modal:ModalController,
     private nav:NavParams,
-    private contatoService:ContatosService
+    private dogService:DogService,
+    private conversaService:ConversaService
+  
     
 
-  ) { }
-
-  ngOnInit() {
- 
-   
-
-
-  
-    this.dog = this.nav.get('dog')
-    this.idDog = this.nav.get('idDog')
-
-  }
-
-  ionViewWillEnter(){
-    this.contatoService.getMyConversas(this.idDog).subscribe(
-      res=>{
-        console.log(res[0].users)
-        for(let i = 0;i < res.length;i++){
-          if(res[i].users  && res[i].users.indexOf(this.userService.afAuth.auth.currentUser.uid) != -1){
-              this.conversa = res[i]
-              this.idConversa = res[i].key
-          }
-        }
-        
+  ) {
+    this.getMensagens().subscribe(
+      (res:any)=>{
+        this.conversa.mensagens.push(res)
       }
     )
-        
+   }
+
+  ngOnInit() {
+    
+    this.idDog = this.nav.get('idDog')
+    this.dogService.get(this.idDog).subscribe(
+      res=>{
+      this.dog = new Dog
+      console.log(this.dog)
+      console.log(res)
+      this.dog = res
+      }
+    )
+  
+    this.userService.get().subscribe(
+      res=>{
+        this.user = res
+      }
+    )
+    
+
+    console.log(this.dog)
+
+    
+  }
+
+
+
+  ionViewWillEnter(){
+    if(!this.nav.get('home')){
+      this.conversaService.io.emit('entrarSala',this.conversa.idConversa)
+    }
+    
+
+  }
+  getMensagens(){
+    let observable = new Observable(observer =>{
+        this.conversaService.io.on('mensagem',(msg)=>{
+          observer.next(msg);
+        })
+    })
+    return observable
+    
   }
 
   closeModal(){
     this.modal.dismiss()
   }
   enviar(){
-    if(!this.conversa.mensagens){
-      let data = new Date
-      this.conversa.idDog = this.idDog
-      this.conversa.users =  [this.userService.afAuth.auth.currentUser.uid,this.dog.dono]
-      this.conversa.mensagens = []
-      this.idConversa = data.getTime()
-      this.contatoService.add(this.conversa,this.idConversa).then()
-      console.log("crio uma nova conversa")
-    }
-     console.log(this.conversa)
-    
-     console.log(this.conversa)
     this.msg = new Mensagem
-    this.remetente = this.user.nome
-    this.msg.autor = this.userService.afAuth.auth.currentUser.uid.toString()
+    this.msg.autor = this.userService.afAuth.auth.currentUser.uid
     this.msg.mensagem = this.mensagem
-    this.conversa.mensagens.push()
-    if(!this.conversa.mensagens){
+
+    if(this.nav.get('home') && !this.conversa){
+      let data = new Date
+      this.conversa = new Conversa
+      this.conversa.idConversa = data.getTime().toString()
+      this.conversa.idDog = this.idDog
+      this.conversa.users = [this.userService.afAuth.auth.currentUser.uid,this.dog.dono]
       this.conversa.mensagens = [this.msg]
-      console.log('if')
+      this.conversaService.novaConversa(this.conversa)
+      this.conversaService.io.emit('entrarSala',this.conversa.idConversa)
+      this.mensagem = ""
     }else{
+
       this.conversa.mensagens.push(this.msg)
-      console.log('else')
+      this.mensagem = ""
+      
     }
-    this.contatoService.update(this.conversa,this.idConversa) 
-  
-    this.mensagem = ""
-    
-}
-}
+    }
+  ngOnDestroy(){
+    this.conversaService.io.emit('sairSala',this.conversa.idConversa)
+  }
+  }  
+
+
+
+

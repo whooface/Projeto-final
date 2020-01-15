@@ -4,7 +4,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
-
+import { ModalController } from '@ionic/angular';
+import { ChatPage} from '../chat/chat.page'
+import{ ConversaService} from '../../service/conversa.service'
 
 
 
@@ -16,19 +18,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContatosPage implements OnInit {
   protected user: User = new User; 
-  public contatos: Array<any> = [] ;
+  public conversas: Array<any> = [] ;
   
   constructor(
       
     public firedb: AngularFireDatabase,
     public afAuth: AngularFireAuth,
     protected userService: UserService,
+    protected conversaService:ConversaService,
+   
+    private modal:ModalController
 
     ) {}
 
     ngOnInit() {
     }
     ionViewWillEnter() {
+
+     this.conversaService.io.emit('getMyConversas',this.userService.afAuth.auth.currentUser.uid)
+     this.conversaService.io.on('myConversas',(conversas)=>{
+        this.conversas = conversas
+     })
+
+      
       let login = this.userService.afAuth.auth.currentUser;
       if (login) {
         this.userService.get().subscribe(
@@ -49,27 +61,15 @@ export class ContatosPage implements OnInit {
           }
         )
       }
-      //função para puxar todos os users
-      this.userService.get().subscribe(
-        res=>{
-          //console.log(res.contatos)
-          //for(let i = 0;i < res.contatos.length ;i++){
-            //console.log("entro no for")
-            //console.log(res.contatos[i])
-            //this.userService.getUser(res.contatos[i].user).subscribe(
-              //res=>{
-                console.log(res)
-                this.contatos.push(res);
-                console.log(this.contatos)
-              },
-              errr=>{
-              console.log(errr)
-              }
-              )
-          }
-          
+    }
+    chamarChat(i){
+  
+      this.modal.create({
+        component: ChatPage,
+        componentProps:{
+          conversa:i,
+          idDog:i.idDog
         }
-      //)
-    //}
-
-  //}
+      }).then(modal => modal.present())
+    }
+  }
