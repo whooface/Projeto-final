@@ -20,21 +20,23 @@
     <ion-text color="medium" text-center>
      
     </ion-text>
+    <div *ngIf="conversa">
     <ion-row *ngFor="let message of this.conversa.mensagens">
  
       <ion-col size="9" *ngIf="message.autor !==  this.userService.afAuth.auth.currentUser.uid;" class="message other-message">
-        <b>{{ message.autor }}</b><br>
+        <b>{{ destinatario}}</b><br>
         <span>{{ message.mensagem }}</span>
         <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
       </ion-col>
  
       <ion-col offset="3" size="9" *ngIf="message.autor ===  this.userService.afAuth.auth.currentUser.uid;"  class="message my-message">
-        <b>{{ this.remetente }}</b><br>
+        <b>{{ remetente }}</b><br>
         <span>{{ message.mensagem }}</span>
         <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
       </ion-col>
  
     </ion-row>
+    </div>
   </ion-grid>
 </ion-content>
 

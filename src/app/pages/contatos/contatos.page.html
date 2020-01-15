@@ -14,21 +14,20 @@
 
 <ion-content>
 
-
-  <ion-item *ngFor="let a of contatos" routerLink="/bate-papo">
+  
+  <ion-item *ngFor="let a of conversas;let index = index" (click)="chamarChat(a)" routerLink="/bate-papo">
     <ion-avatar class="fotoChat">
-      <img src="assets/profilee.png" *ngIf="!user.foto">
-      <img [src]="a.foto" *ngIf="user.foto">
+   
+      <img src="assets/profilee.png" *ngIf="!user.foto" >
+      <img [src]="usuarios[index].foto" *ngIf="user.foto">
     </ion-avatar>
     <ion-label class="chatNome" style="padding-bottom:15px;">
-      {{a.nome}}
-      <p>Online</p>
+      {{usuarios[index].nome}}
     </ion-label>
     
     
 
   </ion-item>
-
 
 
 </ion-content>

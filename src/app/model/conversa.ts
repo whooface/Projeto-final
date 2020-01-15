@@ -1,7 +1,8 @@
 import { Mensagem } from '../model/mensagem'
 
 export class Conversa {
+    idConversa:string
     idDog:string
-    users:string[] = []
-    mensagens:Array<Mensagem>
+    users:Array<string> = []
+    mensagens:Array<Mensagem> = []
 }

@@ -32,12 +32,9 @@ export class PerfildogPage implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      let dataDog = this.dataPipe.transform(this.dog.idade,'dd-MM-yyyy').substring(6,10)
+      let dataDog = this.dataPipe.transform(this.dog.idade,'dd-git MM-yyyy').substring(6,10)
       this.dataAt = this.dataPipe.transform(this.dataAt,'dd-MM-yyyy').substring(6.10)
       
-     
-      
-     
       console.log(typeof(dataDog))
       
       

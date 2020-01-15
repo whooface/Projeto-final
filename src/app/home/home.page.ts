@@ -12,6 +12,10 @@ import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { PerfildogPage } from '../pages/perfildog/perfildog.page'
 import { ChatPage} from '../pages/chat/chat.page'
+import { Socket } from 'ngx-socket-io';
+import { ConversaService} from '../service/conversa.service'
+import { Conversa} from '../model/conversa'
+
 
 declare var $:any
 
@@ -39,7 +43,9 @@ private images: string[] = [];
     public msg: MensagemService,
     public toast:ToastController,
     private modalPerfilDog:ModalController,
-    private modalChat:ModalController
+    private modalChat:ModalController,
+    private conversaService:ConversaService
+
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
     // console.log(this.userservice.afAuth.user)
@@ -60,7 +66,7 @@ private images: string[] = [];
     this.modalChat.create({
       component: ChatPage,
       componentProps:{
-        dog:pet,
+        home:true,
         idDog:pet.key
       }
     }).then(modal => modal.present())
@@ -170,7 +176,14 @@ private images: string[] = [];
 
 
   ngOnInit(){
-   
+    this.conversaService.io.connect()
+  
+    
+    
+    $(document).ready(function(){
+      //$('.descricao').hide()
+    })
+
     $(document).ready(function () {
      
       //you can set this, as long as it's not greater than the slides length
@@ -240,7 +253,8 @@ zoomFoto(url){
 
 
   ionViewWillEnter() {
-     
+  
+
     
     
 
