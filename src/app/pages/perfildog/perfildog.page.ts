@@ -13,7 +13,8 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class PerfildogPage implements OnInit {
-  
+    
+  private dog:Dog = new Dog;
 
   constructor(
     private rotaAtiva : ActivatedRoute,
@@ -25,20 +26,31 @@ export class PerfildogPage implements OnInit {
 
   ) { }
    private idDog:string;
-   private dog:Dog = new Dog;
+ 
    public dataAt:any = new Date()
-   private idadeDog = this.dog.idade
    
 
   ngOnInit() {
-    let anoAt
-    let anoDog
-    this.dataAt = this.dataPipe.transform(this.dataAt,'dd-MM-yyyy')
-    anoAt = this.dataAt.substring(6,10)
+    setTimeout(() => {
+      let dataDog = this.dataPipe.transform(this.dog.idade,'dd-MM-yyyy').substring(6,10)
+      this.dataAt = this.dataPipe.transform(this.dataAt,'dd-MM-yyyy').substring(6.10)
+      
+     
+      
+     
+      console.log(typeof(dataDog))
+      
+      
+    }, 5000);
+   
     
     
-    console.log(anoDog)
+    
 
+    
+    
+    
+    
 
    if(this.rotaAtiva.snapshot.params['id']){
     this.idDog = this.rotaAtiva.snapshot.params['id']
@@ -55,6 +67,11 @@ export class PerfildogPage implements OnInit {
      }
    )
   }
+  ionViewWillEnter(){
+    
+  }
+
+  
 
   close(){
     this.modal.dismiss()

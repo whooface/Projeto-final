@@ -11,6 +11,7 @@ import { MensagemService } from '../service/mensagem.service'
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { PerfildogPage } from '../pages/perfildog/perfildog.page'
+import { ChatPage} from '../pages/chat/chat.page'
 
 declare var $:any
 
@@ -37,7 +38,8 @@ private images: string[] = [];
     public alert: AlertController,
     public msg: MensagemService,
     public toast:ToastController,
-    private modal:ModalController
+    private modalPerfilDog:ModalController,
+    private modalChat:ModalController
   ) {
     console.log(this.userService.afAuth.auth.currentUser)
     // console.log(this.userservice.afAuth.user)
@@ -52,14 +54,31 @@ private images: string[] = [];
     })
     
   }
-  abrirPerfil(idDog){
-    this.modal.create({
-      component: PerfildogPage,
+
+  chamarChat(pet){
+  
+    this.modalChat.create({
+      component: ChatPage,
       componentProps:{
-        idDog:idDog
+        dog:pet,
+        idDog:pet.key
       }
     }).then(modal => modal.present())
   }
+  abrirPerfil(idDog){
+    this.msg.presentLoading()
+    setTimeout(() => { 
+      this.msg.dismissLoading()
+      this.modalPerfilDog.create({
+        component: PerfildogPage,
+        componentProps:{
+          idDog:idDog
+        }
+      }).then(modal => modal.present())
+    }, 3000 );
+    
+  }
+
   async presentToast(msg) {
     const toast = await this.toast.create({
       message: msg,
@@ -104,20 +123,9 @@ private images: string[] = [];
   }   
   }
 
-  async enviarSolicitacao(uidDog,dog){
-
-   
-    
-    const alert = await this.alert.create({
-      header: 'Enviar pedido de adoção',
-      message: 'Deseja enviar uma solicitação de adoção?',
-      buttons: [
-        {
-          text: 'Não',
-          role: 'cancel',
-        }, {
-          text: 'Sim',
-          handler: () => {
+  enviarSolicitacao(pet){
+  
+            $('#bloqueio').fadeIn(0)
             $('.icon1').fadeIn(300)
             $('.icon6').delay(600).fadeIn(300)
             $('.icon2').delay(700).fadeIn(300)
@@ -131,6 +139,7 @@ private images: string[] = [];
             $('.icon4').delay(1200).fadeOut(300)
             $('.icon5').delay(1200).fadeOut(300)
             $('.icon6').delay(1200).fadeOut(300)
+            $('#bloqueio').fadeOut(2600)
             //temporizador dos audios
             setTimeout(() => {
               $('audio')[0].play();
@@ -150,19 +159,18 @@ private images: string[] = [];
             setTimeout(() => {
               $('audio')[5].play();
             }, 1000);
-           
+            
+            setTimeout(()=>{
+              this.chamarChat(pet)
+            },2600)
+
           }
-        }
-      ]
-    });
-  
-await alert.present();
- 
-  }
+        
+
+
 
   ngOnInit(){
-    
-
+   
     $(document).ready(function () {
      
       //you can set this, as long as it's not greater than the slides length

@@ -4,10 +4,9 @@ export class Dog {
     nome:string
     especie: string;  
     fotos : string[];
-   
     status : boolean = true; //true = em busca de adoção    //false = adotado
     verificado : boolean = false; //false = nao liberado   //true = liberado
-    idade: string;
+    idade:number;
     descricao:string;
     // data:Date;
     genero:string;

@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'chat', loadChildren: './pages/chat/chat.module#ChatPageModule' },
   { path: 'notificacao', loadChildren: './pages/notificacao/notificacao.module#NotificacaoPageModule' },
   { path: 'galeria-dog', loadChildren: './pages/galeria-dog/galeria-dog.module#GaleriaDogPageModule' },
+  { path: 'favoritos', loadChildren: './pages/favoritos/favoritos.module#FavoritosPageModule' },
   { path: 'my-pets', loadChildren: './pages/my-pets/my-pets.module#MyPetsPageModule' }
 
 

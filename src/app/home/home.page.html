@@ -22,9 +22,9 @@
 </ion-header>
 
 <ion-content style="height: auto;">
-
+<div id="bloqueio"></div>
   <ion-slides  [options]="slideOpts">
-    <ion-slide *ngFor="let i of dogArray">
+    <ion-slide *ngFor="let i of dogArray;let index = index">
       <ion-grid fixed>
         <ion-row>
           <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12">
@@ -39,7 +39,7 @@
               <img src="{{image}}" (click)="zoomFoto(image)">
             </ion-item> -->
             <ion-card class="welcome-card">
-
+              
 
               <img class="foto" (click)="abrirPerfil(i.key)" [src]="i.fotos[0]">
               <img src="assets/iconCat.png" class="icon1">
@@ -48,7 +48,7 @@
               <img src="assets/icon2.png" class="icon3">
               <img src="assets/icon2.png" class="icon4">
               <img src="assets/icon2.png" class="icon5"> 
-
+               
               <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
               <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
               <audio class="audio"  src="../../assets/audio/effect.wav" preload="auto"></audio>
@@ -68,7 +68,7 @@
               
               </div>
             
-                <ion-button (click)="enviarSolicitacao(i.key,i)" class="buttons-verde" color="success" >
+                <ion-button (click)="enviarSolicitacao(i.key)" class="buttons-verde" color="success" >
                   <ion-icon name="paw"></ion-icon>
                 </ion-button>
 

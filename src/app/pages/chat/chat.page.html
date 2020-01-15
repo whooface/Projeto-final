@@ -1,25 +1,36 @@
 <ion-header>
   <ion-toolbar>
+    <ion-icon (click)="closeModal()" slot="start" style="margin-left: 2vh;" name="return-left"></ion-icon> 
     <ion-title>bate-papo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item no-padding id="item">
+    <ion-thumbnail id="imgCard" slot="start">
+      <img  [src]="dog.fotos[0]">
+    </ion-thumbnail>
+    <ion-label style="margin-top:0;padding-left: 20px;padding-top: 10px;">
+      <b><h3>{{dog.nome}}</h3></b>
+      <p>{{dog.descricao.substr(0,20)}}<b style="color:blue !important" *ngIf="dog.descricao.length > 2"></b> ver mais</p>
+    </ion-label>
+    
+  </ion-item>
   <ion-grid>
     <ion-text color="medium" text-center>
      
     </ion-text>
-    <ion-row *ngFor="let message of mensagens">
+    <ion-row *ngFor="let message of this.conversa.mensagens">
  
-      <ion-col size="9" *ngIf="message.user !== currentUser" class="message other-message">
-        <b>{{ message.user }}</b><br>
-        <span>{{ message.msg }}</span>
+      <ion-col size="9" *ngIf="message.autor !==  this.userService.afAuth.auth.currentUser.uid;" class="message other-message">
+        <b>{{ message.autor }}</b><br>
+        <span>{{ message.mensagem }}</span>
         <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
       </ion-col>
  
-      <ion-col offset="3" size="9" *ngIf="message.user === currentUser"  class="message my-message">
-        <b>{{ message.user }}</b><br>
-        <span>{{ message.msg }}</span>
+      <ion-col offset="3" size="9" *ngIf="message.autor ===  this.userService.afAuth.auth.currentUser.uid;"  class="message my-message">
+        <b>{{ this.remetente }}</b><br>
+        <span>{{ message.mensagem }}</span>
         <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
       </ion-col>
  
@@ -35,7 +46,7 @@
       </ion-col>
       <ion-col size="2">
         <ion-button expand="block" fill="clear" color="primary" [disabled]="mensagem === ''" class="msg-btn"
-          (click)="enviarMsg()">
+          (click)="enviar()">
           <ion-icon name="ios-send" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>

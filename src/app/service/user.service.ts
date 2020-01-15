@@ -42,28 +42,7 @@ export class UserService {
     //return this.firedb.list("user").push(user);
   }
   
-  addConversa(user:User,chat:Chat){
-    let uuser = this.afAuth.auth.currentUser;
-    let data = new Date()
 
-    chat.idConversa = chat.user.substr(0,5) + data.getTime().toString()
-    
-    
-    this.get().subscribe(
-      res=>{
-        user.contatos =  res.contatos
-        console.log(res) 
-      }
-    )
-    if(user.contatos == null){
-        user.contatos = [chat]
-    }
-    else{
-      user.contatos.push(chat)
-    }
-   
-    return this.firedb.object("user/"+ uuser.uid + "/contatos").set(user.contatos);
-  }
 
   getUser(id){
     console.log(id)
@@ -104,13 +83,13 @@ export class UserService {
   update(user:User){
     let uuser = this.afAuth.auth.currentUser;
     console.log(user);
-    return this.firedb.object("usuarios/"+ uuser.uid).update(user);
+    return this.firedb.object("user/"+ uuser.uid).update(user);
   }
   //varivel com dois U
   delete(user:User){
     let uid = this.afAuth.auth.currentUser;
     this.afAuth.auth.currentUser.delete()
-    return this.firedb.object("usuarios/"+ uid).update({ativo: false});
+    return this.firedb.object("user/"+ uid).update({ativo: false});
   }
   logout(){
     this.afAuth.auth.signOut()
