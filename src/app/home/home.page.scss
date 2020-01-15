@@ -291,7 +291,7 @@ ion-chip{
 }
 
 ////////////////////////////////////////////// TELA DE TABLET ////////////////////////////////////////////////////
-@media (min-width:425) and (max-width:768px) {
+@media (min-width:425px) and (max-width:800px) {
   .welcome-card img{
   background-position: center;
   background-size: cover; 
