@@ -1,6 +1,11 @@
-////////////////////////////////////////////////////  TELA MEDIA ////////////////////////////////////////////////////
 .descricao,.icon1,.icon2,.icon3,.icon4,.icon5,.icon6{
   display:none;
+}
+.iconFavorito{
+  z-index: 9999;
+  top: 50px;
+  left: 86%;
+  position: absolute
 }
 #iconPet{
   position: absolute;
@@ -81,18 +86,37 @@
   top:140px;
   left: 52%;
 }
-
-@media (min-width: 375px) and (max-width:425px) {
+////////////////////////////////////////////////////  TELA MEDIA ////////////////////////////////////////////////////
+@media (min-width: 350px) and (max-width:425px) {
   .welcome-card img{
   background-position: center;
   background-size: cover; 
   height: auto;
-  max-height: 400px; 
+  max-height: 690px; 
   width: 100%;
 }
 .welcome-card{
   height: auto;
 }
+.iconFavorito{
+  z-index: 9999;
+  top: 50px;
+  left: 86%;
+  position: absolute
+}
+.buttons-verde{
+  z-index: 9999; 
+  top: 320px; 
+  left: 28%; 
+  position: absolute;
+}
+.buttons-vermelho{
+  z-index: 9999; 
+  top: 320px; 
+  left: 54%; 
+  position: absolute;
+}
+
 
 
 ion-chip{
@@ -151,7 +175,7 @@ ion-chip{
 
 
 
-@media (min-width: 320px) and (max-width:400px) {
+@media (min-width: 320px) and (max-width:349px) {
   .welcome-card img{
   background-position: center;
   background-size: cover; 
@@ -162,7 +186,24 @@ ion-chip{
 .welcome-card{
   height: auto;
 }
-
+.iconFavorito{
+  z-index: 9999;
+  top: 50px;
+  left: 82%;
+  position: absolute
+}
+.buttons-verde{
+  z-index: 9999; 
+  top: 320px; 
+  left: 28%; 
+  position: absolute;
+}
+.buttons-vermelho{
+  z-index: 9999; 
+  top: 320px; 
+  left: 54%; 
+  position: absolute;
+}
 
 ion-chip{
   border: solid #1cc291 1px;
@@ -227,12 +268,28 @@ ion-chip{
 .welcome-card{
   height: auto;
 }
-
+.buttons-verde{
+  z-index: 9999; 
+  top: 320px; 
+  left: 32%; 
+  position: absolute;
+}
+.buttons-vermelho{
+  z-index: 9999; 
+  top: 320px; 
+  left: 62%; 
+  position: absolute;
+}
 ion-chip{
   border: solid #1cc291 1px;
   background-color: #03a575;
 }
-
+.iconFavorito{
+  z-index: 9999;
+  top: 50px;
+  left: 86%;
+  position: absolute
+}
 
 .slide-square{
   width: 80%;
@@ -282,7 +339,7 @@ ion-chip{
 }
 
 ////////////////////////////////////////////// TELA DE TABLET ////////////////////////////////////////////////////
-@media (min-width:425) and (max-width:768px) {
+@media (min-width:768px) and (max-width:850px) {
   .welcome-card img{
   background-position: center;
   background-size: cover; 
@@ -293,6 +350,12 @@ ion-chip{
 .welcome-card{
   height: auto;
   width: auto;
+}
+.iconFavorito{
+  z-index: 9999;
+  top: 50px;
+  left: 93%;
+  position: absolute
 }
 
 ion-chip{

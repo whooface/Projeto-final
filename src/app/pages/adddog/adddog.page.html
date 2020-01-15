@@ -52,9 +52,10 @@
 
   <!--  -->
   <ion-item>
-    <ion-label><strong>Qual a Data de Nascimento?</strong></ion-label>
-    <ion-datetime displayFormat="YYYY, MMMM" monthNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Novembro, Dezembro, ' [(ngModel)]="dog.idade" name="idade"></ion-datetime>
+    <ion-label position="floating"><strong>Idade:</strong></ion-label>
+    <ion-input  maxlength="10" type="date" name="idade" [(ngModel)]="dog.idade" maxlength="10" placeholder="dia/mês/ano"></ion-input >
   </ion-item>
+
   <!--  -->
 
 
