@@ -28,7 +28,7 @@ import { PerfildogPageModule } from '../app/pages/perfildog/perfildog.module'
 import {ChatPageModule} from '../app/pages/chat/chat.module'
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: '10.144.111.18:3000', options: {} };
+const config: SocketIoConfig = { url: 'localhost:3000', options: {} };
 
 
 @NgModule({
